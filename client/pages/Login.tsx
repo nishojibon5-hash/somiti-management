@@ -58,7 +58,11 @@ export default function Login() {
     e.preventDefault();
 
     if (!formData.email || !formData.password) {
-      alert(language === 'bn' ? 'ইমেইল ও পাসওয়ার্ড দিন' : 'Please enter email and password');
+      toast({
+        variant: "destructive",
+        title: language === 'bn' ? 'ত্রুটি' : 'Error',
+        description: language === 'bn' ? 'ইমেইল ও পাসওয়ার্ড দিন' : 'Please enter email and password'
+      });
       return;
     }
 
