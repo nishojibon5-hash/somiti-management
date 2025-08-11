@@ -24,6 +24,7 @@ export default function MonthlyCollections() {
   const [selectedMember, setSelectedMember] = useState('');
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     // Load members and collections data
@@ -61,7 +62,7 @@ export default function MonthlyCollections() {
       selectMemberFirst: "প্রথমে একজন সদস্য নির্বাচন করুন",
       noCollections: "এই মাসে কোনো কালেকশন নেই",
       months: [
-        "জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রি���", "মে", "জুন",
+        "জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন",
         "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"
       ],
       days: ["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "শনি"]
@@ -155,7 +156,7 @@ export default function MonthlyCollections() {
               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
                 <Calendar className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="font-bold text-xl text-primary">সমিতি ��্যানেজার</span>
+              <span className="font-bold text-xl text-primary">সমিতি ম্যানেজার</span>
             </div>
           </div>
           
@@ -263,7 +264,7 @@ export default function MonthlyCollections() {
                           <p className="font-medium">৳{selectedMemberData.dailySavings || 0}</p>
                         </div>
                         <div>
-                          <p className="text-muted-foreground">{language === 'bn' ? 'দৈনিক কিস্তি' : 'Daily Installment'}</p>
+                          <p className="text-muted-foreground">{language === 'bn' ? 'দৈন���ক কিস্তি' : 'Daily Installment'}</p>
                           <p className="font-medium">৳{selectedMemberData.dailyInstallment || 0}</p>
                         </div>
                       </div>
