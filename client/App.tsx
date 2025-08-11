@@ -35,8 +35,10 @@ const App = () => (
           <Route path="/add-member" element={<AddMember />} />
           <Route path="/members" element={<MembersList />} />
           <Route path="/member/:memberID" element={<MemberProfile />} />
+          <Route path="/edit-member/:memberID" element={<EditMember />} />
           <Route path="/daily-collection" element={<DailyCollection />} />
           <Route path="/collections" element={<CollectionsList />} />
+          <Route path="/backup-restore" element={<BackupRestore />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
