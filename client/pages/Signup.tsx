@@ -29,7 +29,7 @@ export default function Signup() {
       title: "সমিতি ম্যানেজার",
       signup: "সাইন আপ",
       createAccount: "নতুন অ্যাকাউন্ট তৈরি করুন",
-      subtitle: "আজই শুরু করুন আপনার সমিতি ব��যবস্থাপনা",
+      subtitle: "আজই শুরু করুন আপনার সমিতি ব্যবস্থাপনা",
       organizationName: "প্রতিষ্ঠানের নাম",
       fullName: "পূর্ণ নাম",
       email: "ইমেইল",
@@ -188,11 +188,13 @@ export default function Signup() {
 
               <div className="space-y-2">
                 <Label htmlFor="phone">{t.phone}</Label>
-                <Input 
-                  id="phone" 
-                  type="tel" 
+                <Input
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => handleInputChange('phone', e.target.value)}
                   placeholder={language === 'bn' ? '+৮৮০ ১৭ ১২৩৪ ৫৬৭৮' : '+880 17 1234 5678'}
-                  required 
+                  required
                 />
               </div>
 
