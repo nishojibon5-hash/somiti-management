@@ -16,7 +16,8 @@ import {
   LogOut,
   BarChart3,
   PieChart,
-  Calendar
+  Calendar,
+  Shield
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -65,7 +66,7 @@ export default function Dashboard() {
       addMember: "নতুন সদস্য",
       newLoan: "নতুন ঋণ",
       deposit: "জমা",
-      withdraw: "���ত্তোলন",
+      withdraw: "উত্তোলন",
       viewAll: "সব দেখুন",
       amount: "পরিমাণ",
       date: "তারিখ",
@@ -330,7 +331,7 @@ export default function Dashboard() {
               <Button className="w-full justify-start" variant="outline" asChild>
                 <Link to="/backup-restore">
                   <Download className="h-4 w-4 mr-2" />
-                  {language === 'bn' ? '��্যাকআপ সিস্টেম' : 'Backup System'}
+                  {language === 'bn' ? 'ব্যাকআপ সিস্টেম' : 'Backup System'}
                 </Link>
               </Button>
               <Button className="w-full justify-start bg-purple-600 hover:bg-purple-700 text-white" asChild>
@@ -367,7 +368,7 @@ export default function Dashboard() {
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg">
-                  {language === 'bn' ? 'সাহায্য দেখুন' : 'View Help'}
+                  {language === 'bn' ? '���াহায্য দেখুন' : 'View Help'}
                 </Button>
               </div>
             </CardContent>
