@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Users, 
-  CreditCard, 
-  TrendingUp, 
+import {
+  Users,
+  CreditCard,
+  TrendingUp,
   DollarSign,
   Plus,
   Search,
@@ -17,6 +17,7 @@ import {
   BarChart3,
   PieChart
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const [language, setLanguage] = useState<'bn' | 'en'>('bn');
@@ -49,7 +50,7 @@ export default function Dashboard() {
       welcome: "স্বাগতম",
       totalMembers: "মোট সদস্য",
       totalLoans: "মোট ঋণ",
-      totalSavings: "মোট সঞ্চ���়",
+      totalSavings: "মোট সঞ্চয়",
       monthlyCollection: "মাসিক আদায়",
       recentTransactions: "সাম্প্রতিক লেনদেন",
       quickActions: "দ্রুত কার্যক্রম",
@@ -240,7 +241,7 @@ export default function Dashboard() {
                 <div className="text-center py-8">
                   <Users className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                   <h3 className="text-lg font-medium mb-2">
-                    {language === 'bn' ? 'ক���নো সদস্য নেই' : 'No Members Yet'}
+                    {language === 'bn' ? 'কোনো সদস্য নেই' : 'No Members Yet'}
                   </h3>
                   <p className="text-muted-foreground mb-4">
                     {language === 'bn' ? 'আপনার প্রথম সদস্য যোগ করে শুরু করুন' : 'Add your first member to get started'}
