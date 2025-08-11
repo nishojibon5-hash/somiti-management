@@ -107,6 +107,10 @@ export default function Dashboard() {
   const todaysCollections = dailyCollections.filter(collection => collection.collectionDate === today);
   const todaysTotalCollection = todaysCollections.reduce((sum, collection) => sum + collection.totalAmount, 0);
 
+  // Worker statistics
+  const uniqueWorkers = [...new Set(members.map(member => member.workerName))].filter(Boolean);
+  const activeWorkersToday = [...new Set(todaysCollections.map(collection => collection.workerName))].filter(Boolean);
+
   const stats = [
     {
       title: t.totalMembers,
@@ -196,7 +200,7 @@ export default function Dashboard() {
                 {language === 'bn' ? 'প্রতিষ্ঠান: ' : 'Organization: '}{userData.organization}
               </span>
             )}
-            {language === 'bn' ? 'আজকের তারিখ: ১৫ জানুয়ারি, ২০২৪' : 'Today: January 15, 2024'}
+            {language === 'bn' ? 'আজকের তারিখ: ১৫ জান��য়ারি, ২০২৪' : 'Today: January 15, 2024'}
           </p>
         </div>
 
@@ -275,7 +279,7 @@ export default function Dashboard() {
                     {language === 'bn' ? 'কোনো সদস্য নেই' : 'No Members Yet'}
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    {language === 'bn' ? 'আপনার প্রথম সদস্য যোগ করে শুরু করুন' : 'Add your first member to get started'}
+                    {language === 'bn' ? 'আপনার ��্রথম সদস্য যোগ করে শুরু করুন' : 'Add your first member to get started'}
                   </p>
                   <Button asChild>
                     <Link to="/add-member">
@@ -380,7 +384,7 @@ export default function Dashboard() {
               </h4>
               <p className="text-sm text-muted-foreground">
                 {language === 'bn'
-                  ? 'সদস্যদের সঞ্চয় এবং ঋণের হিসাব রাখুন এবং ট্র্যাক করুন'
+                  ? '���দস্যদের সঞ্চয় এবং ঋণের হিসাব রাখুন এবং ট্র্যাক করুন'
                   : 'Track member savings and loan accounts with detailed records'
                 }
               </p>
