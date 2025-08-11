@@ -71,7 +71,7 @@ export default function Dashboard() {
       type: "ধরন",
       member: "সদস্য",
       comingSoon: "শীঘ্রই আসছে",
-      placeholder: "এই পৃষ্���াটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
+      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
     },
     en: {
       title: "Dashboard",
@@ -130,11 +130,11 @@ export default function Dashboard() {
       positive: true
     },
     {
-      title: t.monthlyCollection,
-      value: totalDailyCollection > 0 ? `৳${(totalDailyCollection * 30).toLocaleString()}` : "৳0",
-      change: totalDailyCollection > 0 ? "+100%" : "0%",
+      title: language === 'bn' ? 'আজকের আদায়' : "Today's Collection",
+      value: todaysTotalCollection > 0 ? `৳${todaysTotalCollection.toLocaleString()}` : "৳0",
+      change: todaysTotalCollection > 0 ? "+100%" : "0%",
       icon: <DollarSign className="h-6 w-6" />,
-      positive: totalDailyCollection > 0
+      positive: todaysTotalCollection > 0
     }
   ];
 
@@ -336,7 +336,7 @@ export default function Dashboard() {
               </h3>
               <p className="text-muted-foreground max-w-md mx-auto mb-6">
                 {language === 'bn'
-                  ? 'আপনার সমিতি ব্যবস্থাপনা শুর��� করতে প্রথমে কিছু সদস্য যোগ করুন। প্রতিটি সদস্যের সম্পূর্ণ তথ্য সংরক্ষণ করা হবে।'
+                  ? 'আপনার সমিতি ব্যবস্থাপনা শুরু করতে প্রথমে কিছু সদস্য যোগ করুন। প্রতিটি সদস্যের সম্পূর্ণ তথ্য সংরক্ষণ কর�� হবে।'
                   : 'Start managing your cooperative by adding members first. All member information will be stored securely.'
                 }
               </p>
