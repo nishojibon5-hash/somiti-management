@@ -132,7 +132,7 @@ export default function DailyCollection() {
       toast({
         variant: "destructive",
         title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'কর্মী, সদস্য, সঞ্চয় ও ক���স্তির পরিমাণ আবশ্যক' : 'Worker, member, savings and installment amounts are required'
+        description: language === 'bn' ? 'কর্মী, সদস্য, সঞ্চয় ও কিস্তির পরিমাণ আবশ্যক' : 'Worker, member, savings and installment amounts are required'
       });
       return;
     }
@@ -180,6 +180,7 @@ export default function DailyCollection() {
       if (saveAndAdd) {
         // Reset form for adding another collection
         setFormData({
+          selectedWorker: '',
           memberID: '',
           memberName: '',
           workerName: '',
@@ -235,7 +236,7 @@ export default function DailyCollection() {
             </Button>
             <Button variant="outline" asChild>
               <Link to="/collections">
-                {language === 'bn' ? 'কালেকশন তালিকা' : 'View Collections'}
+                {language === 'bn' ? 'কালেকশন ত��লিকা' : 'View Collections'}
               </Link>
             </Button>
           </div>
