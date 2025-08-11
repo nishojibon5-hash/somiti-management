@@ -15,7 +15,8 @@ import {
   Settings,
   LogOut,
   BarChart3,
-  PieChart
+  PieChart,
+  Calendar
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -64,7 +65,7 @@ export default function Dashboard() {
       addMember: "নতুন সদস্য",
       newLoan: "নতুন ঋণ",
       deposit: "জমা",
-      withdraw: "উ��্তোলন",
+      withdraw: "উত্তোলন",
       viewAll: "সব দেখুন",
       amount: "পরিমাণ",
       date: "তারিখ",
