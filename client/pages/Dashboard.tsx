@@ -49,7 +49,7 @@ export default function Dashboard() {
       welcome: "স্বাগতম",
       totalMembers: "মোট সদস্য",
       totalLoans: "মোট ঋণ",
-      totalSavings: "মোট সঞ্চয়",
+      totalSavings: "মোট সঞ্চ���়",
       monthlyCollection: "মাসিক আদায়",
       recentTransactions: "সাম্প্রতিক লেনদেন",
       quickActions: "দ্রুত কার্যক্রম",
@@ -62,7 +62,7 @@ export default function Dashboard() {
       date: "তারিখ",
       type: "ধরন",
       member: "সদস্য",
-      comingSoon: "শীঘ্��ই আসছে",
+      comingSoon: "শীঘ্রই আসছে",
       placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
     },
     en: {
@@ -240,7 +240,7 @@ export default function Dashboard() {
                 <div className="text-center py-8">
                   <Users className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                   <h3 className="text-lg font-medium mb-2">
-                    {language === 'bn' ? 'কোনো সদস্য নেই' : 'No Members Yet'}
+                    {language === 'bn' ? 'ক���নো সদস্য নেই' : 'No Members Yet'}
                   </h3>
                   <p className="text-muted-foreground mb-4">
                     {language === 'bn' ? 'আপনার প্রথম সদস্য যোগ করে শুরু করুন' : 'Add your first member to get started'}
@@ -262,9 +262,11 @@ export default function Dashboard() {
               <CardTitle>{t.quickActions}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <Button className="w-full justify-start" variant="outline">
-                <Plus className="h-4 w-4 mr-2" />
-                {t.addMember}
+              <Button className="w-full justify-start" variant="outline" asChild>
+                <Link to="/add-member">
+                  <Plus className="h-4 w-4 mr-2" />
+                  {t.addMember}
+                </Link>
               </Button>
               <Button className="w-full justify-start" variant="outline">
                 <CreditCard className="h-4 w-4 mr-2" />
