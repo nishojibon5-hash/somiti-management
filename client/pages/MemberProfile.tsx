@@ -67,7 +67,7 @@ export default function MemberProfile() {
       savings: "সঞ্চয়",
       installment: "কিস্তি",
       total: "মোট",
-      edit: "সম্পাদন���",
+      edit: "সম্পাদনা",
       active: "সক্রিয়"
     },
     en: {
@@ -178,6 +178,12 @@ export default function MemberProfile() {
               onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
             >
               {language === 'bn' ? 'EN' : 'বাং'}
+            </Button>
+            <Button variant="outline" asChild>
+              <Link to={`/monthly-collections?member=${memberID}`}>
+                <Calendar className="h-4 w-4 mr-2" />
+                {language === 'bn' ? 'মাসিক ক্যালেন্ডার' : 'Monthly Calendar'}
+              </Link>
             </Button>
             <Button asChild>
               <Link to={`/edit-member/${memberID}`}>
@@ -377,7 +383,7 @@ export default function MemberProfile() {
                 <h3 className="text-lg font-semibold mb-2">{t.noCollections}</h3>
                 <p className="text-muted-foreground">
                   {language === 'bn' 
-                    ? 'এই সদস্যের এখনো কোনো কালেকশন রেকর্ড নেই'
+                    ? '���ই সদস্যের এখনো কোনো কালেকশন রেকর্ড নেই'
                     : 'No collection records found for this member'
                   }
                 </p>
