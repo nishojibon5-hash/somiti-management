@@ -62,8 +62,8 @@ export default function Dashboard() {
       date: "তারিখ",
       type: "ধরন",
       member: "সদস্য",
-      comingSoon: "শীঘ্রই আসছে",
-      placeholder: "এই ���ৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
+      comingSoon: "শীঘ্��ই আসছে",
+      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
     },
     en: {
       title: "Dashboard",
@@ -206,31 +206,53 @@ export default function Dashboard() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Recent Transactions */}
+          {/* Recent Transactions / Members */}
           <Card className="lg:col-span-2">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>{t.recentTransactions}</CardTitle>
-                <Button variant="outline" size="sm">
-                  {t.viewAll}
-                </Button>
+                <CardTitle>
+                  {members.length > 0 ? t.recentTransactions : (language === 'bn' ? 'সদস্য তালিকা' : 'Member List')}
+                </CardTitle>
+                {members.length > 0 && (
+                  <Button variant="outline" size="sm">
+                    {t.viewAll}
+                  </Button>
+                )}
               </div>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                {recentTransactions.map((transaction) => (
-                  <div key={transaction.id} className="flex items-center justify-between border-b pb-3">
-                    <div>
-                      <p className="font-medium">{transaction.member}</p>
-                      <p className="text-sm text-muted-foreground">{transaction.type}</p>
+              {members.length > 0 ? (
+                <div className="space-y-4">
+                  {recentTransactions.map((transaction) => (
+                    <div key={transaction.id} className="flex items-center justify-between border-b pb-3">
+                      <div>
+                        <p className="font-medium">{transaction.member}</p>
+                        <p className="text-sm text-muted-foreground">{transaction.type}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-medium">{transaction.amount}</p>
+                        <p className="text-sm text-muted-foreground">{transaction.date}</p>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <p className="font-medium">{transaction.amount}</p>
-                      <p className="text-sm text-muted-foreground">{transaction.date}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <Users className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                  <h3 className="text-lg font-medium mb-2">
+                    {language === 'bn' ? 'কোনো সদস্য নেই' : 'No Members Yet'}
+                  </h3>
+                  <p className="text-muted-foreground mb-4">
+                    {language === 'bn' ? 'আপনার প্রথম সদস্য যোগ করে শুরু করুন' : 'Add your first member to get started'}
+                  </p>
+                  <Button asChild>
+                    <Link to="/add-member">
+                      <Plus className="h-4 w-4 mr-2" />
+                      {language === 'bn' ? 'প্রথম সদস্য যোগ করুন' : 'Add First Member'}
+                    </Link>
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
 
