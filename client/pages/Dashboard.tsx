@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -103,7 +103,7 @@ export default function Dashboard() {
   const recentTransactions = [
     { id: 1, member: "আহমেদ আলী", type: "জমা", amount: "৳5,000", date: "২০২৪-০১-১৫" },
     { id: 2, member: "ফাতেমা খাতুন", type: "উত্তোলন", amount: "৳3,000", date: "২০২৪-০১-১৪" },
-    { id: 3, member: "রহিম উদ্দিন", type: "ঋণ পরিশোধ", amount: "৳2,500", date: "২০২৪-০১-১���" },
+    { id: 3, member: "রহিম উদ্দিন", type: "ঋণ পরিশোধ", amount: "৳2,500", date: "২০২৪-০১-১৩" },
     { id: 4, member: "সালমা বেগম", type: "জমা", amount: "৳1,500", date: "২০২৪-০১-১২" },
     { id: 5, member: "করিম মিয়া", type: "ঋণ গ্রহণ", amount: "৳25,000", date: "২০২৪-০১-১১" }
   ];
