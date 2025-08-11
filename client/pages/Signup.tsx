@@ -35,7 +35,7 @@ export default function Signup() {
       email: "ইমেইল",
       phone: "ফোন নম্বর",
       password: "পাসওয়ার্ড",
-      confirmPassword: "পাসওয়ার্ড নিশ্চিত করুন",
+      confirmPassword: "পাসওয়ার্ড নিশ্চিত কর���ন",
       plan: "প্ল্যান নির্বাচন করুন",
       free: "ফ্রি",
       pro: "প্রো",
@@ -200,7 +200,7 @@ export default function Signup() {
 
               <div className="space-y-2">
                 <Label htmlFor="plan">{t.plan}</Label>
-                <Select>
+                <Select value={formData.plan} onValueChange={(value) => handleInputChange('plan', value)}>
                   <SelectTrigger>
                     <SelectValue placeholder={language === 'bn' ? 'প্ল্যান নির্বাচন করুন' : 'Select a plan'} />
                   </SelectTrigger>
