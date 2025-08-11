@@ -44,7 +44,7 @@ export default function DailyCollection() {
   const text = {
     bn: {
       title: "দৈনিক কালেকশন",
-      subtitle: "সদস্যদের দৈনিক সঞ্চয় ও কিস্তি আদায়",
+      subtitle: "সদস্যদের দৈনি�� সঞ্চয় ও কিস্তি আদায়",
       selectWorker: "কর্মী নির্বাচন করুন",
       selectMember: "সদস্য নির্বাচন করুন",
       memberName: "সদস্যের নাম",
@@ -83,6 +83,14 @@ export default function DailyCollection() {
   };
 
   const t = text[language];
+
+  // Get unique workers from members
+  const uniqueWorkers = [...new Set(members.map(member => member.workerName))].filter(Boolean);
+
+  // Filter members based on selected worker
+  const filteredMembers = formData.selectedWorker
+    ? members.filter(member => member.workerName === formData.selectedWorker)
+    : [];
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
