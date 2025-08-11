@@ -33,7 +33,7 @@ export default function Signup() {
       organizationName: "প্রতিষ্ঠানের নাম",
       fullName: "পূর্ণ নাম",
       email: "ইমেইল",
-      phone: "ফো��� নম্বর",
+      phone: "ফোন নম্বর",
       password: "পাসওয়ার্ড",
       confirmPassword: "পাসওয়ার্ড নিশ্চিত করুন",
       plan: "প্ল্যান নির্বাচন করুন",
@@ -149,7 +149,7 @@ export default function Signup() {
               </Button>
             </div>
 
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="space-y-2">
                 <Label htmlFor="organization">{t.organizationName}</Label>
                 <Input 
