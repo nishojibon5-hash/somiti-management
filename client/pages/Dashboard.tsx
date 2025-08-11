@@ -64,7 +64,7 @@ export default function Dashboard() {
       type: "ধরন",
       member: "সদস্য",
       comingSoon: "শীঘ্রই আসছে",
-      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশ���ষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
+      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
     },
     en: {
       title: "Dashboard",
@@ -92,8 +92,9 @@ export default function Dashboard() {
   const t = text[language];
 
   // Calculate actual stats
-  const totalSavings = members.reduce((sum, member) => sum + (member.savings || 0), 0);
+  const totalSavings = members.reduce((sum, member) => sum + (member.savingsAmount || member.savings || 0), 0);
   const totalLoans = members.reduce((sum, member) => sum + (member.loanAmount || 0), 0);
+  const totalDailyCollection = members.reduce((sum, member) => sum + ((member.dailyInstallment || 0) + (member.dailySavings || 0)), 0);
 
   const stats = [
     {
