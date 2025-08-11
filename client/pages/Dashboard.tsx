@@ -64,7 +64,7 @@ export default function Dashboard() {
       type: "ধরন",
       member: "সদস্য",
       comingSoon: "শীঘ্রই আসছে",
-      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ���ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
+      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
     },
     en: {
       title: "Dashboard",
@@ -130,9 +130,12 @@ export default function Dashboard() {
   const recentTransactions = members.length > 0 ?
     members.slice(0, 5).map((member, index) => ({
       id: index + 1,
-      member: member.name,
+      member: member.memberName || member.name,
+      memberID: member.memberID,
+      workerName: member.workerName,
       type: language === 'bn' ? "সদস্য যোগ" : "Member Added",
-      amount: `৳${member.savings || 0}`,
+      amount: `৳${member.savingsAmount || member.savings || 0}`,
+      dailyAmount: member.dailyInstallment ? `৳${member.dailyInstallment}` : '৳0',
       date: member.joinDate || new Date().toLocaleDateString('bn-BD')
     })) : [];
 
