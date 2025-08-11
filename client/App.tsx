@@ -16,6 +16,7 @@ import MemberProfile from "./pages/MemberProfile";
 import EditMember from "./pages/EditMember";
 import DailyCollection from "./pages/DailyCollection";
 import CollectionsList from "./pages/CollectionsList";
+import MonthlyCollections from "./pages/MonthlyCollections";
 import BackupRestore from "./pages/BackupRestore";
 import NotFound from "./pages/NotFound";
 
