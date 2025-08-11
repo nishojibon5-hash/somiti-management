@@ -20,6 +20,7 @@ import MonthlyCollections from "./pages/MonthlyCollections";
 import BackupRestore from "./pages/BackupRestore";
 import AdminDashboard from "./pages/AdminDashboard";
 import SystemManagement from "./pages/SystemManagement";
+import AdminLogin from "./pages/AdminLogin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
