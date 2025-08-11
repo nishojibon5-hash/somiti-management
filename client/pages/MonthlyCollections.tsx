@@ -37,7 +37,13 @@ export default function MonthlyCollections() {
     if (storedCollections) {
       setCollections(JSON.parse(storedCollections));
     }
-  }, []);
+
+    // Auto-select member from URL parameter
+    const memberParam = searchParams.get('member');
+    if (memberParam) {
+      setSelectedMember(memberParam);
+    }
+  }, [searchParams]);
 
   const text = {
     bn: {
@@ -264,7 +270,7 @@ export default function MonthlyCollections() {
                           <p className="font-medium">৳{selectedMemberData.dailySavings || 0}</p>
                         </div>
                         <div>
-                          <p className="text-muted-foreground">{language === 'bn' ? 'দৈন���ক কিস্তি' : 'Daily Installment'}</p>
+                          <p className="text-muted-foreground">{language === 'bn' ? 'দৈনিক কিস্তি' : 'Daily Installment'}</p>
                           <p className="font-medium">৳{selectedMemberData.dailyInstallment || 0}</p>
                         </div>
                       </div>
