@@ -71,7 +71,7 @@ export default function Dashboard() {
       type: "ধরন",
       member: "সদস্য",
       comingSoon: "শীঘ্রই আসছে",
-      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
+      placeholder: "এই পৃষ্���াটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
     },
     en: {
       title: "Dashboard",
@@ -101,7 +101,11 @@ export default function Dashboard() {
   // Calculate actual stats
   const totalSavings = members.reduce((sum, member) => sum + (member.savingsAmount || member.savings || 0), 0);
   const totalLoans = members.reduce((sum, member) => sum + (member.loanAmount || 0), 0);
-  const totalDailyCollection = members.reduce((sum, member) => sum + ((member.dailyInstallment || 0) + (member.dailySavings || 0)), 0);
+
+  // Today's collections
+  const today = new Date().toISOString().split('T')[0];
+  const todaysCollections = dailyCollections.filter(collection => collection.collectionDate === today);
+  const todaysTotalCollection = todaysCollections.reduce((sum, collection) => sum + collection.totalAmount, 0);
 
   const stats = [
     {
@@ -314,7 +318,7 @@ export default function Dashboard() {
               </Button>
               <Button className="w-full justify-start" variant="outline">
                 <BarChart3 className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'রি��োর্ট' : 'Reports'}
+                {language === 'bn' ? 'রিপোর্ট' : 'Reports'}
               </Button>
             </CardContent>
           </Card>
@@ -332,7 +336,7 @@ export default function Dashboard() {
               </h3>
               <p className="text-muted-foreground max-w-md mx-auto mb-6">
                 {language === 'bn'
-                  ? 'আপনার সমিতি ব্যবস্থাপনা শুরু করতে প্রথমে কিছু সদস্য যোগ করুন। প্রতিটি সদস্যের সম্পূর্ণ তথ্য সংরক্ষণ করা হবে।'
+                  ? 'আপনার সমিতি ব্যবস্থাপনা শুর��� করতে প্রথমে কিছু সদস্য যোগ করুন। প্রতিটি সদস্যের সম্পূর্ণ তথ্য সংরক্ষণ করা হবে।'
                   : 'Start managing your cooperative by adding members first. All member information will be stored securely.'
                 }
               </p>
