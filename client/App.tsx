@@ -12,6 +12,8 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import AddMember from "./pages/AddMember";
 import MembersList from "./pages/MembersList";
+import DailyCollection from "./pages/DailyCollection";
+import CollectionsList from "./pages/CollectionsList";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
