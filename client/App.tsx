@@ -13,8 +13,10 @@ import Dashboard from "./pages/Dashboard";
 import AddMember from "./pages/AddMember";
 import MembersList from "./pages/MembersList";
 import MemberProfile from "./pages/MemberProfile";
+import EditMember from "./pages/EditMember";
 import DailyCollection from "./pages/DailyCollection";
 import CollectionsList from "./pages/CollectionsList";
+import BackupRestore from "./pages/BackupRestore";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
