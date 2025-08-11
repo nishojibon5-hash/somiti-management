@@ -17,7 +17,8 @@ import {
   Trophy,
   Phone,
   Mail,
-  MapPin
+  MapPin,
+  Crown
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -28,7 +29,7 @@ export default function Index() {
     bn: {
       title: "সমিতি ম্যানেজার",
       subtitle: "আধুনিক সমিতি ও ক্ষুদ্রঋণ ব্যবস্থাপনা সফটওয়্যার",
-      description: "বাংলাদেশের সবচেয়ে উন্ন�� ও নিরাপদ সমিতি ব্যবস্থাপনা সমাধান। সহজ, নিরাপদ এবং কার্যকর।",
+      description: "বাংলাদেশের সবচেয়ে উন্নত ও নিরাপদ সমিতি ব্যবস্থাপনা সমাধান। সহজ, নিরাপদ এবং কার্যকর।",
       getStarted: "শুরু করুন",
       learnMore: "আরও জানুন",
       features: "বৈশিষ্ট্যসমূহ",
@@ -83,7 +84,7 @@ export default function Index() {
     {
       icon: <Users className="h-8 w-8" />,
       title: language === 'bn' ? "সদস্য ব্যবস্থাপনা" : "Member Management",
-      description: language === 'bn' ? "সম্পূর্ণ স��স্য তথ্য ও লেনদেন ব্যবস্থাপনা" : "Complete member information and transaction management"
+      description: language === 'bn' ? "সম্পূর্ণ সদস্য তথ্য ও লেনদেন ব্যবস্থাপনা" : "Complete member information and transaction management"
     },
     {
       icon: <CreditCard className="h-8 w-8" />,
@@ -93,7 +94,7 @@ export default function Index() {
     {
       icon: <BarChart3 className="h-8 w-8" />,
       title: language === 'bn' ? "রিপোর্ট ও বিশ্লেষণ" : "Reports & Analytics",
-      description: language === 'bn' ? "বিস্তারিত আর্থিক রিপোর্ট ও ডেটা বিশ্লেষণ" : "Detailed financial reports and data analytics"
+      description: language === 'bn' ? "বিস্তারিত আর্থিক রিপোর্ট ও ডেটা বিশ্��েষণ" : "Detailed financial reports and data analytics"
     },
     {
       icon: <Shield className="h-8 w-8" />,
@@ -344,7 +345,7 @@ export default function Index() {
               </div>
               <p className="text-muted-foreground">
                 {language === 'bn' 
-                  ? 'বাংলাদেশের সবচেয়ে ���িশ্বস্ত সমিতি ব্যবস্থাপনা সমাধান।'
+                  ? 'বাংলাদেশের সবচেয়ে বিশ্বস্ত সমিতি ব্যবস্থাপনা সমাধান।'
                   : 'Bangladesh\'s most trusted cooperative management solution.'
                 }
               </p>
