@@ -81,10 +81,20 @@ export default function Login() {
         plan: 'pro'
       }));
 
+      // Show success message
+      toast({
+        title: language === 'bn' ? 'সফল!' : 'Success!',
+        description: language === 'bn' ? 'সফলভাবে লগইন হয়েছে' : 'Successfully logged in',
+      });
+
       // Navigate to dashboard
       navigate('/dashboard');
     } catch (error) {
-      alert(language === 'bn' ? 'লগইন ব্যর্থ হয়েছে' : 'Login failed');
+      toast({
+        variant: "destructive",
+        title: language === 'bn' ? 'ত্রুটি' : 'Error',
+        description: language === 'bn' ? 'লগইন ব্যর্থ হয়েছে' : 'Login failed'
+      });
     } finally {
       setIsLoading(false);
     }
