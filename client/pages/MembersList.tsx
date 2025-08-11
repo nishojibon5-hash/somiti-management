@@ -52,7 +52,7 @@ export default function MembersList() {
       delete: "মুছুন",
       noMembers: "কোনো সদস্য নেই",
       addFirst: "প্রথম সদস্য যোগ করুন",
-      noResults: "কোনো ফলাফল পাওয়া যায়নি",
+      noResults: "কোন��� ফলাফল পাওয়া যায়নি",
       active: "সক্রিয়"
     },
     en: {
@@ -231,9 +231,36 @@ export default function MembersList() {
                             <Edit className="h-4 w-4" />
                           </Link>
                         </Button>
-                        <Button size="sm" variant="outline" className="text-destructive hover:bg-destructive hover:text-destructive-foreground">
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button size="sm" variant="outline" className="text-destructive hover:bg-destructive hover:text-destructive-foreground">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                {language === 'bn' ? 'ডেটা সুরক্ষা' : 'Data Protection'}
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                {language === 'bn'
+                                  ? 'এই সদস্যের তথ্য স্থায়ীভাবে মুছে ফেলা যাবে না। সকল ডেটা নিরাপত্তার জন্য সুরক্ষিত রাখা হয়। তথ্য সম্পাদনা করতে Edit বাটন ব্যবহার করুন।'
+                                  : 'This member\'s data cannot be permanently deleted. All data is protected for security purposes. Use the Edit button to modify information.'
+                                }
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>
+                                {language === 'bn' ? 'বুঝেছি' : 'Understood'}
+                              </AlertDialogCancel>
+                              <AlertDialogAction asChild>
+                                <Link to={`/edit-member/${member.memberID}`}>
+                                  {language === 'bn' ? 'তথ্য সম্পাদনা করুন' : 'Edit Information'}
+                                </Link>
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
                       </div>
                     </div>
                   </div>
@@ -271,7 +298,7 @@ export default function MembersList() {
               <h3 className="text-lg font-semibold mb-2">{t.noResults}</h3>
               <p className="text-muted-foreground">
                 {language === 'bn' 
-                  ? 'অন্য নাম বা আইডি দিয়ে খোঁজ করে দেখুন'
+                  ? 'অন্য নাম ব�� আইডি দিয়ে খোঁজ করে দেখুন'
                   : 'Try searching with a different name or ID'
                 }
               </p>
