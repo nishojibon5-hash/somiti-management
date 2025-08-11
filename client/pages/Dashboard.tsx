@@ -71,7 +71,7 @@ export default function Dashboard() {
       type: "ধরন",
       member: "সদস্য",
       comingSoon: "শীঘ্রই আসছে",
-      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
+      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী ���ির্দেশনা দিন।"
     },
     en: {
       title: "Dashboard",
@@ -316,9 +316,11 @@ export default function Dashboard() {
                 <CreditCard className="h-4 w-4 mr-2" />
                 {t.newLoan}
               </Button>
-              <Button className="w-full justify-start" variant="outline">
-                <BarChart3 className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'রিপোর্ট' : 'Reports'}
+              <Button className="w-full justify-start" variant="outline" asChild>
+                <Link to="/backup-restore">
+                  <Download className="h-4 w-4 mr-2" />
+                  {language === 'bn' ? 'ব্যাকআপ সিস্টেম' : 'Backup System'}
+                </Link>
               </Button>
             </CardContent>
           </Card>
