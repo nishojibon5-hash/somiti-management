@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { useToast } from "@/hooks/use-toast";
 import { 
   DollarSign, 
   ArrowLeft, 
@@ -49,9 +51,9 @@ export default function CollectionsList() {
       actions: "কার্যক্রম",
       view: "দেখুন",
       edit: "সম্পাদনা", 
-      delete: "মুছ���ন",
+      delete: "মুছুন",
       noCollections: "কোনো কালেকশন নেই",
-      addFirst: "প্রথম কালেকশন যোগ করুন",
+      addFirst: "প্রথম কালেকশন যোগ কর��ন",
       noResults: "কোনো ফলাফল পাওয়া যায়নি",
       collectionsCount: "টি কালেকশন",
       memberCount: "জন সদস্য",
