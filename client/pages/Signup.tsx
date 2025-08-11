@@ -152,11 +152,13 @@ export default function Signup() {
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="space-y-2">
                 <Label htmlFor="organization">{t.organizationName}</Label>
-                <Input 
-                  id="organization" 
-                  type="text" 
+                <Input
+                  id="organization"
+                  type="text"
+                  value={formData.organizationName}
+                  onChange={(e) => handleInputChange('organizationName', e.target.value)}
                   placeholder={language === 'bn' ? 'আপনার প্রতিষ্ঠানের নাম' : 'Enter organization name'}
-                  required 
+                  required
                 />
               </div>
 
