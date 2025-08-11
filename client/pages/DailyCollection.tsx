@@ -91,6 +91,18 @@ export default function DailyCollection() {
     }));
   };
 
+  const handleWorkerSelect = (workerName: string) => {
+    setFormData(prev => ({
+      ...prev,
+      selectedWorker: workerName,
+      memberID: '',
+      memberName: '',
+      workerName: workerName,
+      savingsAmount: '',
+      installmentAmount: ''
+    }));
+  };
+
   const handleMemberSelect = (memberID: string) => {
     const selectedMember = members.find(member => member.memberID === memberID);
     if (selectedMember) {
@@ -98,7 +110,6 @@ export default function DailyCollection() {
         ...prev,
         memberID: memberID,
         memberName: selectedMember.memberName,
-        workerName: selectedMember.workerName,
         savingsAmount: selectedMember.dailySavings?.toString() || '',
         installmentAmount: selectedMember.dailyInstallment?.toString() || ''
       }));
@@ -237,7 +248,7 @@ export default function DailyCollection() {
               <h3 className="text-xl font-semibold mb-2">{t.noMembers}</h3>
               <p className="text-muted-foreground mb-6">
                 {language === 'bn' 
-                  ? 'কালেক��ন রেকর্ড করতে প্রথমে সদস্য যোগ করুন'
+                  ? 'কালেকশন রেকর্ড করতে প্রথমে সদস্য যোগ করুন'
                   : 'Add members first to record collections'
                 }
               </p>
