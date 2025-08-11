@@ -4,20 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { 
   Users, 
   ArrowLeft, 
-  Camera, 
   User, 
   Phone, 
-  Mail, 
-  MapPin, 
   CreditCard,
-  Calendar,
-  FileText
+  MapPin,
+  DollarSign
 } from "lucide-react";
 
 export default function AddMember() {
@@ -27,132 +22,61 @@ export default function AddMember() {
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
-    // ব্যক্তিগত তথ্য
     memberID: '',
-    name: '',
-    fatherName: '',
-    motherName: '',
-    nid: '',
-    birthDate: '',
-    gender: '',
-    maritalStatus: '',
-    
-    // যোগাযোগের তথ্য
-    phone: '',
-    email: '',
-    emergencyContact: '',
-    presentAddress: '',
-    permanentAddress: '',
-    
-    // পেশাগত তথ্য
-    occupation: '',
-    monthlyIncome: '',
-    
-    // সমিতির তথ্য
-    membershipType: '',
-    joiningFee: '',
-    initialSavings: '',
-    nomineeInfo: '',
-    
-    // ব্যাংক তথ্য
-    bankName: '',
-    accountNumber: '',
-    
-    // অন্যান্য
-    notes: '',
-    photo: null as File | null
+    memberName: '',
+    nidNumber: '',
+    mobileNumber: '',
+    workerName: '',
+    loanAmount: '',
+    savingsAmount: '',
+    dailyInstallment: '',
+    dailySavings: ''
   });
 
   const text = {
     bn: {
       title: "নতুন সদস্য যোগ করুন",
-      personalInfo: "ব্যক্তিগত তথ্য",
-      contactInfo: "যোগাযোগের তথ্য", 
-      professionalInfo: "পেশাগত তথ্য",
-      membershipInfo: "সদস্যপদের তথ্য",
-      bankInfo: "ব্যাংক তথ্য",
-      additionalInfo: "অতিরিক্ত তথ্য",
+      subtitle: "সদস্যের প্রয়োজনীয় তথ্য দিয়ে ফর্মটি পূরণ করুন",
+      basicInfo: "মৌলিক তথ্য",
+      financialInfo: "আর্থিক তথ্য",
       memberID: "সদস্য আইডি",
-      name: "পূর্ণ নাম",
-      fatherName: "পিতার নাম",
-      motherName: "মাতার নাম",
-      nid: "জাতীয় পরিচয়পত্র",
-      birthDate: "জন্ম তারিখ",
-      gender: "লিঙ্গ",
-      male: "পুরুষ",
-      female: "মহিলা",
-      maritalStatus: "বৈবাহিক অবস্থা",
-      single: "অবিবাহিত",
-      married: "বিবাহিত",
-      phone: "মোবাইল নম্বর",
-      email: "ইমেইল",
-      emergencyContact: "জরুরি যোগাযোগ",
-      presentAddress: "বর্তমান ঠিকানা",
-      permanentAddress: "স্থায়ী ঠিকানা",
-      occupation: "পেশা",
-      monthlyIncome: "মাসিক আয়",
-      membershipType: "সদস্যপদের ধরন",
-      general: "সাধারণ",
-      premium: "প্রিমিয়াম",
-      joiningFee: "ভর্তি ফি",
-      initialSavings: "প্রাথমিক সঞ্চয়",
-      nomineeInfo: "মনোনীত ��্যক্তির তথ্য",
-      bankName: "ব্যাংকের নাম",
-      accountNumber: "অ্যাকাউন্ট নম্বর",
-      notes: "মন্তব্য",
-      photo: "ছবি",
+      memberName: "সদস্যের নাম",
+      nidNumber: "জাতীয় পরিচয়পত্র নম্বর",
+      mobileNumber: "মোবাইল নম্বর",
+      workerName: "এলাকার কর্মীর নাম",
+      loanAmount: "ঋণের পরিমাণ",
+      savingsAmount: "সঞ্চয়ের পরিমাণ",
+      dailyInstallment: "দৈনিক কিস্তির পরিমাণ",
+      dailySavings: "দৈনিক সঞ্চয়ের পরিমাণ",
+      save: "সংরক্ষণ করুন",
       saveAndAdd: "সেভ করে আরেকটি যোগ করুন",
-      saveAndView: "সেভ করে দেখুন",
       cancel: "বাতিল",
-      uploadPhoto: "ছবি আপলোড করুন"
+      required: "আবশ্যক"
     },
     en: {
       title: "Add New Member",
-      personalInfo: "Personal Information",
-      contactInfo: "Contact Information",
-      professionalInfo: "Professional Information", 
-      membershipInfo: "Membership Information",
-      bankInfo: "Bank Information",
-      additionalInfo: "Additional Information",
+      subtitle: "Fill out the form with required member information",
+      basicInfo: "Basic Information",
+      financialInfo: "Financial Information",
       memberID: "Member ID",
-      name: "Full Name",
-      fatherName: "Father's Name",
-      motherName: "Mother's Name",
-      nid: "National ID",
-      birthDate: "Date of Birth",
-      gender: "Gender",
-      male: "Male",
-      female: "Female",
-      maritalStatus: "Marital Status",
-      single: "Single",
-      married: "Married",
-      phone: "Mobile Number",
-      email: "Email",
-      emergencyContact: "Emergency Contact",
-      presentAddress: "Present Address",
-      permanentAddress: "Permanent Address",
-      occupation: "Occupation",
-      monthlyIncome: "Monthly Income",
-      membershipType: "Membership Type",
-      general: "General",
-      premium: "Premium",
-      joiningFee: "Joining Fee",
-      initialSavings: "Initial Savings",
-      nomineeInfo: "Nominee Information",
-      bankName: "Bank Name",
-      accountNumber: "Account Number",
-      notes: "Notes",
-      photo: "Photo",
+      memberName: "Member Name",
+      nidNumber: "NID Number",
+      mobileNumber: "Mobile Number",
+      workerName: "Area Worker Name",
+      loanAmount: "Loan Amount",
+      savingsAmount: "Savings Amount",
+      dailyInstallment: "Daily Installment",
+      dailySavings: "Daily Savings",
+      save: "Save",
       saveAndAdd: "Save & Add Another",
-      saveAndView: "Save & View",
       cancel: "Cancel",
-      uploadPhoto: "Upload Photo"
+      required: "Required"
     }
   };
 
   const t = text[language];
 
-  const handleInputChange = (field: string, value: string | File | null) => {
+  const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -169,11 +93,11 @@ export default function AddMember() {
     e.preventDefault();
     
     // Validation
-    if (!formData.name || !formData.phone || !formData.membershipType) {
+    if (!formData.memberName || !formData.nidNumber || !formData.mobileNumber || !formData.workerName) {
       toast({
         variant: "destructive",
         title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'নাম, ফোন ও সদস্যপদের ধরন আবশ্যক' : 'Name, phone, and membership type are required'
+        description: language === 'bn' ? 'সদস্যের নাম, এনআইডি, মোবা��ল ও কর্মীর নাম আবশ্যক' : 'Member name, NID, mobile and worker name are required'
       });
       return;
     }
@@ -190,8 +114,10 @@ export default function AddMember() {
         memberID,
         joinDate: new Date().toLocaleDateString('bn-BD'),
         status: 'active',
-        savings: parseFloat(formData.initialSavings) || 0,
-        loanAmount: 0,
+        loanAmount: parseFloat(formData.loanAmount) || 0,
+        savingsAmount: parseFloat(formData.savingsAmount) || 0,
+        dailyInstallment: parseFloat(formData.dailyInstallment) || 0,
+        dailySavings: parseFloat(formData.dailySavings) || 0,
         createdAt: new Date().toISOString()
       };
 
@@ -209,31 +135,17 @@ export default function AddMember() {
         // Reset form for adding another member
         setFormData({
           memberID: '',
-          name: '',
-          fatherName: '',
-          motherName: '',
-          nid: '',
-          birthDate: '',
-          gender: '',
-          maritalStatus: '',
-          phone: '',
-          email: '',
-          emergencyContact: '',
-          presentAddress: '',
-          permanentAddress: '',
-          occupation: '',
-          monthlyIncome: '',
-          membershipType: '',
-          joiningFee: '',
-          initialSavings: '',
-          nomineeInfo: '',
-          bankName: '',
-          accountNumber: '',
-          notes: '',
-          photo: null
+          memberName: '',
+          nidNumber: '',
+          mobileNumber: '',
+          workerName: '',
+          loanAmount: '',
+          savingsAmount: '',
+          dailyInstallment: '',
+          dailySavings: ''
         });
       } else {
-        // Navigate to dashboard or member list
+        // Navigate to dashboard
         navigate('/dashboard');
       }
     } catch (error) {
@@ -280,21 +192,19 @@ export default function AddMember() {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto p-6 max-w-4xl">
+      <main className="container mx-auto p-6 max-w-3xl">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">{t.title}</h1>
-          <p className="text-muted-foreground">
-            {language === 'bn' ? 'নতুন সদস্যের সম্পূর্ণ তথ্য দিয়ে ফর্মটি পূরণ করুন' : 'Fill out the form with complete member information'}
-          </p>
+          <p className="text-muted-foreground">{t.subtitle}</p>
         </div>
 
-        <form className="space-y-8">
-          {/* Personal Information */}
+        <form className="space-y-6" onSubmit={(e) => handleSubmit(e, false)}>
+          {/* Basic Information */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
                 <User className="h-5 w-5 mr-2" />
-                {t.personalInfo}
+                {t.basicInfo}
               </CardTitle>
             </CardHeader>
             <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -309,307 +219,120 @@ export default function AddMember() {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="name">{t.name} *</Label>
+                <Label htmlFor="memberName">{t.memberName} *</Label>
                 <Input 
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
-                  placeholder={language === 'bn' ? 'সদস্যের পূর্ণ নাম' : 'Member full name'}
+                  id="memberName"
+                  value={formData.memberName}
+                  onChange={(e) => handleInputChange('memberName', e.target.value)}
+                  placeholder={language === 'bn' ? 'সদস্যের পূর্ণ নাম লিখুন' : 'Enter member full name'}
                   required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="fatherName">{t.fatherName}</Label>
+                <Label htmlFor="nidNumber">{t.nidNumber} *</Label>
                 <Input 
-                  id="fatherName"
-                  value={formData.fatherName}
-                  onChange={(e) => handleInputChange('fatherName', e.target.value)}
-                  placeholder={language === 'bn' ? 'পিতার নাম' : "Father's name"}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="motherName">{t.motherName}</Label>
-                <Input 
-                  id="motherName"
-                  value={formData.motherName}
-                  onChange={(e) => handleInputChange('motherName', e.target.value)}
-                  placeholder={language === 'bn' ? 'মাতার নাম' : "Mother's name"}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="nid">{t.nid}</Label>
-                <Input 
-                  id="nid"
-                  value={formData.nid}
-                  onChange={(e) => handleInputChange('nid', e.target.value)}
+                  id="nidNumber"
+                  value={formData.nidNumber}
+                  onChange={(e) => handleInputChange('nidNumber', e.target.value)}
                   placeholder={language === 'bn' ? 'জাতীয় পরিচয়পত্র নম্বর' : 'National ID number'}
+                  required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="birthDate">{t.birthDate}</Label>
+                <Label htmlFor="mobileNumber">{t.mobileNumber} *</Label>
                 <Input 
-                  id="birthDate"
-                  type="date"
-                  value={formData.birthDate}
-                  onChange={(e) => handleInputChange('birthDate', e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="gender">{t.gender}</Label>
-                <Select value={formData.gender} onValueChange={(value) => handleInputChange('gender', value)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder={language === 'bn' ? 'লিঙ্গ নির্বাচন করুন' : 'Select gender'} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="male">{t.male}</SelectItem>
-                    <SelectItem value="female">{t.female}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="maritalStatus">{t.maritalStatus}</Label>
-                <Select value={formData.maritalStatus} onValueChange={(value) => handleInputChange('maritalStatus', value)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder={language === 'bn' ? 'বৈবাহিক অবস্থা নির্বাচন করুন' : 'Select marital status'} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="single">{t.single}</SelectItem>
-                    <SelectItem value="married">{t.married}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Contact Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Phone className="h-5 w-5 mr-2" />
-                {t.contactInfo}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="phone">{t.phone} *</Label>
-                <Input 
-                  id="phone"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange('phone', e.target.value)}
+                  id="mobileNumber"
+                  value={formData.mobileNumber}
+                  onChange={(e) => handleInputChange('mobileNumber', e.target.value)}
                   placeholder={language === 'bn' ? '+৮৮০ ১৭ ১২৩৪ ৫৬৭৮' : '+880 17 1234 5678'}
                   required
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="email">{t.email}</Label>
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="workerName">{t.workerName} *</Label>
                 <Input 
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  placeholder={language === 'bn' ? 'ইমেইল ঠিকানা' : 'Email address'}
-                />
-              </div>
-
-              <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="emergencyContact">{t.emergencyContact}</Label>
-                <Input 
-                  id="emergencyContact"
-                  value={formData.emergencyContact}
-                  onChange={(e) => handleInputChange('emergencyContact', e.target.value)}
-                  placeholder={language === 'bn' ? 'জরুরি যোগাযোগের নম্বর' : 'Emergency contact number'}
-                />
-              </div>
-
-              <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="presentAddress">{t.presentAddress}</Label>
-                <Textarea 
-                  id="presentAddress"
-                  value={formData.presentAddress}
-                  onChange={(e) => handleInputChange('presentAddress', e.target.value)}
-                  placeholder={language === 'bn' ? 'বর্তমান ঠিকানা' : 'Present address'}
-                  rows={2}
-                />
-              </div>
-
-              <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="permanentAddress">{t.permanentAddress}</Label>
-                <Textarea 
-                  id="permanentAddress"
-                  value={formData.permanentAddress}
-                  onChange={(e) => handleInputChange('permanentAddress', e.target.value)}
-                  placeholder={language === 'bn' ? 'স্থায়ী ঠিকানা' : 'Permanent address'}
-                  rows={2}
+                  id="workerName"
+                  value={formData.workerName}
+                  onChange={(e) => handleInputChange('workerName', e.target.value)}
+                  placeholder={language === 'bn' ? 'এলাকার দায়িত্বপ্রাপ্ত কর্মীর নাম' : 'Area responsible worker name'}
+                  required
                 />
               </div>
             </CardContent>
           </Card>
 
-          {/* Professional Information */}
+          {/* Financial Information */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <FileText className="h-5 w-5 mr-2" />
-                {t.professionalInfo}
+                <DollarSign className="h-5 w-5 mr-2" />
+                {t.financialInfo}
               </CardTitle>
             </CardHeader>
             <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="occupation">{t.occupation}</Label>
+                <Label htmlFor="loanAmount">{t.loanAmount}</Label>
                 <Input 
-                  id="occupation"
-                  value={formData.occupation}
-                  onChange={(e) => handleInputChange('occupation', e.target.value)}
-                  placeholder={language === 'bn' ? 'পেশা' : 'Occupation'}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="monthlyIncome">{t.monthlyIncome}</Label>
-                <Input 
-                  id="monthlyIncome"
+                  id="loanAmount"
                   type="number"
-                  value={formData.monthlyIncome}
-                  onChange={(e) => handleInputChange('monthlyIncome', e.target.value)}
-                  placeholder={language === 'bn' ? 'মাসিক আয় (টাকায়)' : 'Monthly income (BDT)'}
+                  value={formData.loanAmount}
+                  onChange={(e) => handleInputChange('loanAmount', e.target.value)}
+                  placeholder={language === 'bn' ? 'ঋণের পরিমাণ (টাকা)' : 'Loan amount (BDT)'}
+                  min="0"
+                  step="100"
                 />
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Membership Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <CreditCard className="h-5 w-5 mr-2" />
-                {t.membershipInfo}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="membershipType">{t.membershipType} *</Label>
-                <Select value={formData.membershipType} onValueChange={(value) => handleInputChange('membershipType', value)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder={language === 'bn' ? 'সদস্যপদের ধরন নির্বাচন করুন' : 'Select membership type'} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="general">{t.general}</SelectItem>
-                    <SelectItem value="premium">{t.premium}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
 
               <div className="space-y-2">
-                <Label htmlFor="joiningFee">{t.joiningFee}</Label>
+                <Label htmlFor="savingsAmount">{t.savingsAmount}</Label>
                 <Input 
-                  id="joiningFee"
+                  id="savingsAmount"
                   type="number"
-                  value={formData.joiningFee}
-                  onChange={(e) => handleInputChange('joiningFee', e.target.value)}
-                  placeholder={language === 'bn' ? 'ভর্তি ফি (টাকায়)' : 'Joining fee (BDT)'}
+                  value={formData.savingsAmount}
+                  onChange={(e) => handleInputChange('savingsAmount', e.target.value)}
+                  placeholder={language === 'bn' ? 'সঞ্চয়ের পরিমাণ (টাকা)' : 'Savings amount (BDT)'}
+                  min="0"
+                  step="10"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="initialSavings">{t.initialSavings}</Label>
+                <Label htmlFor="dailyInstallment">{t.dailyInstallment}</Label>
                 <Input 
-                  id="initialSavings"
+                  id="dailyInstallment"
                   type="number"
-                  value={formData.initialSavings}
-                  onChange={(e) => handleInputChange('initialSavings', e.target.value)}
-                  placeholder={language === 'bn' ? 'প্রাথমিক সঞ্চয় (টাকায়)' : 'Initial savings (BDT)'}
+                  value={formData.dailyInstallment}
+                  onChange={(e) => handleInputChange('dailyInstallment', e.target.value)}
+                  placeholder={language === 'bn' ? 'প্রতিদিন কিস্তির টাকা' : 'Daily installment amount'}
+                  min="0"
+                  step="10"
                 />
               </div>
 
-              <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="nomineeInfo">{t.nomineeInfo}</Label>
-                <Textarea 
-                  id="nomineeInfo"
-                  value={formData.nomineeInfo}
-                  onChange={(e) => handleInputChange('nomineeInfo', e.target.value)}
-                  placeholder={language === 'bn' ? 'মনোনীত ব্যক্তির নাম ও সম্পর্ক' : 'Nominee name and relationship'}
-                  rows={2}
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Bank Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <CreditCard className="h-5 w-5 mr-2" />
-                {t.bankInfo}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="bankName">{t.bankName}</Label>
+                <Label htmlFor="dailySavings">{t.dailySavings}</Label>
                 <Input 
-                  id="bankName"
-                  value={formData.bankName}
-                  onChange={(e) => handleInputChange('bankName', e.target.value)}
-                  placeholder={language === 'bn' ? 'ব্যাংকের নাম' : 'Bank name'}
+                  id="dailySavings"
+                  type="number"
+                  value={formData.dailySavings}
+                  onChange={(e) => handleInputChange('dailySavings', e.target.value)}
+                  placeholder={language === 'bn' ? 'প্রতিদিন সঞ্চয়ের টাকা' : 'Daily savings amount'}
+                  min="0"
+                  step="10"
                 />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="accountNumber">{t.accountNumber}</Label>
-                <Input 
-                  id="accountNumber"
-                  value={formData.accountNumber}
-                  onChange={(e) => handleInputChange('accountNumber', e.target.value)}
-                  placeholder={language === 'bn' ? 'অ্যাকাউন্ট নম্বর' : 'Account number'}
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Additional Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <FileText className="h-5 w-5 mr-2" />
-                {t.additionalInfo}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="notes">{t.notes}</Label>
-                <Textarea 
-                  id="notes"
-                  value={formData.notes}
-                  onChange={(e) => handleInputChange('notes', e.target.value)}
-                  placeholder={language === 'bn' ? 'অতিরিক্ত মন্তব্য বা নোট' : 'Additional comments or notes'}
-                  rows={3}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="photo">{t.photo}</Label>
-                <div className="border-2 border-dashed border-muted rounded-lg p-6 text-center">
-                  <Camera className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                  <p className="text-sm text-muted-foreground mb-2">{t.uploadPhoto}</p>
-                  <Button variant="outline" size="sm">
-                    {language === 'bn' ? 'ছবি বেছে নিন' : 'Choose Photo'}
-                  </Button>
-                </div>
               </div>
             </CardContent>
           </Card>
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-end">
-            <Button variant="outline" asChild>
+            <Button variant="outline" type="button" asChild>
               <Link to="/dashboard">{t.cancel}</Link>
             </Button>
+            
             <Button 
               type="button"
               variant="outline"
@@ -625,9 +348,9 @@ export default function AddMember() {
                 t.saveAndAdd
               )}
             </Button>
+            
             <Button 
-              type="button"
-              onClick={(e) => handleSubmit(e, false)}
+              type="submit"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -636,11 +359,44 @@ export default function AddMember() {
                   {language === 'bn' ? 'সেভ হচ্ছে...' : 'Saving...'}
                 </div>
               ) : (
-                t.saveAndView
+                t.save
               )}
             </Button>
           </div>
         </form>
+
+        {/* Information Card */}
+        <Card className="mt-8 bg-muted/30">
+          <CardContent className="p-6">
+            <h3 className="font-semibold mb-3 flex items-center">
+              <CreditCard className="h-5 w-5 mr-2" />
+              {language === 'bn' ? 'গুরুত্বপূর্ণ তথ্য' : 'Important Information'}
+            </h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                {language === 'bn' 
+                  ? 'সদস্য আইডি ফাঁকা রাখলে স্বয়ংক্রিয়ভাবে তৈরি হবে' 
+                  : 'Member ID will be auto-generated if left empty'
+                }
+              </li>
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                {language === 'bn' 
+                  ? 'দৈনিক কিস্তি ও সঞ্চয়ের পরিমাণ সদস্যের সাথে আলোচনা করে নির্ধারণ ক��ুন' 
+                  : 'Daily installment and savings amount should be discussed with the member'
+                }
+              </li>
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                {language === 'bn' 
+                  ? 'এলাকার কর্মীর নাম সঠিকভাবে লিখুন যিনি এই সদস্যের দায়িত্বে থাকবেন' 
+                  : 'Enter the correct name of the area worker who will be responsible for this member'
+                }
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
       </main>
     </div>
   );
