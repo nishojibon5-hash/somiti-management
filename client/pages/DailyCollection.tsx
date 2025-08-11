@@ -23,6 +23,7 @@ export default function DailyCollection() {
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
+    selectedWorker: '',
     memberID: '',
     memberName: '',
     workerName: '',
@@ -44,7 +45,7 @@ export default function DailyCollection() {
     bn: {
       title: "দৈনিক কালেকশন",
       subtitle: "সদস্যদের দৈনিক সঞ্চয় ও কিস্তি আদায়",
-      selectMember: "সদস্য নির্বাচন করুন",
+      selectMember: "সদস্য নি��্বাচন করুন",
       memberName: "সদস্যের নাম",
       workerName: "কর্মীর নাম",
       savingsAmount: "সঞ্চয়ের পরিমাণ",
@@ -55,7 +56,7 @@ export default function DailyCollection() {
       saveAndAdd: "সেভ করে আরেকটি যোগ করুন",
       cancel: "বাতিল",
       totalAmount: "মোট পরিমাণ",
-      defaultAmounts: "ডিফল্ট পরি���াণ ব্যবহার করুন",
+      defaultAmounts: "ডিফল্ট পরিমাণ ব্যবহার করুন",
       noMembers: "কোনো সদস্য নেই",
       addMembersFirst: "প্রথমে সদস্য যোগ করুন"
     },
@@ -110,7 +111,7 @@ export default function DailyCollection() {
       toast({
         variant: "destructive",
         title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'সদস্য, সঞ্চয় ও কিস্তির পরিমাণ আবশ্যক' : 'Member, savings and installment amounts are required'
+        description: language === 'bn' ? 'সদস্য, সঞ্চয় ও কিস্তির পরিম��ণ আবশ্যক' : 'Member, savings and installment amounts are required'
       });
       return;
     }
