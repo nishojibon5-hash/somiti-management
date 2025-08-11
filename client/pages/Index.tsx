@@ -28,7 +28,7 @@ export default function Index() {
     bn: {
       title: "সমিতি ম্যানেজার",
       subtitle: "আধুনিক সমিতি ও ক্ষুদ্রঋণ ব্যবস্থাপনা সফটওয়্যার",
-      description: "বাংলাদেশের সবচেয়ে উন্নত ও নিরাপদ সমিতি ব্যবস্থাপনা সমাধান। সহজ, নিরাপদ এবং কার্যকর।",
+      description: "বাংলাদেশের সবচেয়ে উন্ন�� ও নিরাপদ সমিতি ব্যবস্থাপনা সমাধান। সহজ, নিরাপদ এবং কার্যকর।",
       getStarted: "শুরু করুন",
       learnMore: "আরও জানুন",
       features: "বৈশিষ্ট্যসমূহ",
@@ -83,7 +83,7 @@ export default function Index() {
     {
       icon: <Users className="h-8 w-8" />,
       title: language === 'bn' ? "সদস্য ব্যবস্থাপনা" : "Member Management",
-      description: language === 'bn' ? "সম্পূর্ণ সদস্য তথ্য ও লেনদেন ব্যবস্থাপনা" : "Complete member information and transaction management"
+      description: language === 'bn' ? "সম্পূর্ণ স��স্য তথ্য ও লেনদেন ব্যবস্থাপনা" : "Complete member information and transaction management"
     },
     {
       icon: <CreditCard className="h-8 w-8" />,
@@ -344,7 +344,7 @@ export default function Index() {
               </div>
               <p className="text-muted-foreground">
                 {language === 'bn' 
-                  ? 'বাংলাদেশের সবচেয়ে বিশ্বস্ত সমিতি ব্যব���্থাপনা সমাধান।'
+                  ? 'বাংলাদেশের সবচেয়ে ���িশ্বস্ত সমিতি ব্যবস্থাপনা সমাধান।'
                   : 'Bangladesh\'s most trusted cooperative management solution.'
                 }
               </p>
@@ -390,6 +390,15 @@ export default function Index() {
           </div>
           
           <div className="border-t mt-8 pt-8 text-center text-muted-foreground">
+            <div className="flex justify-center items-center space-x-4 mb-4">
+              <Link
+                to="/admin-login"
+                className="text-xs text-purple-600 hover:underline flex items-center"
+              >
+                <Crown className="h-3 w-3 mr-1" />
+                {language === 'bn' ? 'এডমিন লগইন' : 'Admin Login'}
+              </Link>
+            </div>
             <p>&copy; 2024 {t.title}. {language === 'bn' ? 'সর্বস্বত্ব সংরক্ষিত।' : 'All rights reserved.'}</p>
           </div>
         </div>
