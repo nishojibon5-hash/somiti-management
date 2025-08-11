@@ -18,6 +18,8 @@ import DailyCollection from "./pages/DailyCollection";
 import CollectionsList from "./pages/CollectionsList";
 import MonthlyCollections from "./pages/MonthlyCollections";
 import BackupRestore from "./pages/BackupRestore";
+import AdminDashboard from "./pages/AdminDashboard";
+import SystemManagement from "./pages/SystemManagement";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
