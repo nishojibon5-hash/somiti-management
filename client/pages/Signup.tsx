@@ -28,7 +28,7 @@ export default function Signup() {
     bn: {
       title: "সমিতি ম্যানেজার",
       signup: "সাইন আপ",
-      createAccount: "নতুন অ্য���কাউন্ট তৈরি করুন",
+      createAccount: "নতুন অ্যাকাউন্ট তৈরি করুন",
       subtitle: "আজই শুরু করুন আপনার সমিতি ব্যবস্থাপনা",
       organizationName: "প্রতিষ্ঠানের নাম",
       fullName: "পূর্ণ নাম",
@@ -241,11 +241,13 @@ export default function Signup() {
 
               <div className="space-y-2">
                 <Label htmlFor="confirmPassword">{t.confirmPassword}</Label>
-                <Input 
-                  id="confirmPassword" 
-                  type="password" 
-                  placeholder={language === 'bn' ? 'পাসওয়া��্ড নিশ্চিত করুন' : 'Confirm your password'}
-                  required 
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  value={formData.confirmPassword}
+                  onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+                  placeholder={language === 'bn' ? 'পাসওয়ার্ড নিশ্চিত করুন' : 'Confirm your password'}
+                  required
                 />
               </div>
 
