@@ -44,6 +44,7 @@ const App = () => (
           <Route path="/collections" element={<CollectionsList />} />
           <Route path="/monthly-collections" element={<MonthlyCollections />} />
           <Route path="/backup-restore" element={<BackupRestore />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/system-management" element={<SystemManagement />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
