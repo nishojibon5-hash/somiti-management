@@ -63,7 +63,7 @@ export default function Dashboard() {
       type: "ধরন",
       member: "সদস্য",
       comingSoon: "শীঘ্রই আসছে",
-      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
+      placeholder: "এই ���ৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
     },
     en: {
       title: "Dashboard",
@@ -125,13 +125,15 @@ export default function Dashboard() {
     }
   ];
 
-  const recentTransactions = [
-    { id: 1, member: "আহমেদ আলী", type: "জমা", amount: "৳5,000", date: "২০২৪-০১-১৫" },
-    { id: 2, member: "ফাতেমা খাতুন", type: "উত্তোলন", amount: "৳3,000", date: "২০২৪-০১-১৪" },
-    { id: 3, member: "রহিম উদ্দিন", type: "ঋণ পরিশোধ", amount: "৳2,500", date: "২০২৪-০১-১৩" },
-    { id: 4, member: "সালমা বেগম", type: "জমা", amount: "৳1,500", date: "২০২৪-০১-১২" },
-    { id: 5, member: "করিম মিয়া", type: "ঋণ গ্রহণ", amount: "৳25,000", date: "২০২৪-০১-১১" }
-  ];
+  // Recent member activities (empty for new users)
+  const recentTransactions = members.length > 0 ?
+    members.slice(0, 5).map((member, index) => ({
+      id: index + 1,
+      member: member.name,
+      type: language === 'bn' ? "সদস্য যোগ" : "Member Added",
+      amount: `৳${member.savings || 0}`,
+      date: member.joinDate || new Date().toLocaleDateString('bn-BD')
+    })) : [];
 
   return (
     <div className="min-h-screen bg-background">
