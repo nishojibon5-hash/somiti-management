@@ -9,6 +9,12 @@ import { Users, Eye, EyeOff } from "lucide-react";
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const navigate = useNavigate();
 
   const text = {
     bn: {
