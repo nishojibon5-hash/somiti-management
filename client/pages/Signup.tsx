@@ -28,7 +28,7 @@ export default function Signup() {
     bn: {
       title: "সমিতি ম্যানেজার",
       signup: "সাইন আপ",
-      createAccount: "নতুন অ্যাকাউন্ট ত���রি করুন",
+      createAccount: "নতুন অ্যাকাউন্ট তৈরি করুন",
       subtitle: "আজই শুরু করুন আপনার সমিতি ব্যবস্থাপনা",
       organizationName: "প্রতিষ্ঠানের নাম",
       fullName: "পূর্ণ নাম",
@@ -263,8 +263,20 @@ export default function Signup() {
                 </Label>
               </div>
 
-              <Button className="w-full" size="lg">
-                {t.signupButton}
+              <Button
+                type="submit"
+                className="w-full"
+                size="lg"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <div className="flex items-center">
+                    <div className="animate-spin h-4 w-4 border-2 border-background border-t-transparent rounded-full mr-2"></div>
+                    {language === 'bn' ? 'অপেক্ষা করুন...' : 'Please wait...'}
+                  </div>
+                ) : (
+                  t.signupButton
+                )}
               </Button>
             </form>
 
