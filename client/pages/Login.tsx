@@ -116,11 +116,13 @@ export default function Login() {
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="space-y-2">
                 <Label htmlFor="email">{t.email}</Label>
-                <Input 
-                  id="email" 
-                  type="email" 
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
                   placeholder={language === 'bn' ? 'আপনার ইমেইল' : 'Enter your email'}
-                  required 
+                  required
                 />
               </div>
               
