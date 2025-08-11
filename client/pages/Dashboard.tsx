@@ -44,7 +44,7 @@ export default function Dashboard() {
       totalSavings: "মোট সঞ্চয়",
       monthlyCollection: "মাসিক আদায়",
       recentTransactions: "সাম্প্রতিক লেনদেন",
-      quickActions: "দ্রুত কার্যক��রম",
+      quickActions: "দ্রুত কার্যক্রম",
       addMember: "নতুন সদস্য",
       newLoan: "নতুন ঋণ",
       deposit: "জমা",
@@ -158,8 +158,17 @@ export default function Dashboard() {
       {/* Main Content */}
       <main className="p-6">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold">{t.welcome}, আহমেদ আলী</h1>
-          <p className="text-muted-foreground">{language === 'bn' ? 'আজকের তারিখ: ১৫ জানুয়ারি, ২০২৪' : 'Today: January 15, 2024'}</p>
+          <h1 className="text-3xl font-bold">
+            {t.welcome}, {userData?.name || 'ব্যবহারকারী'}
+          </h1>
+          <p className="text-muted-foreground">
+            {userData?.organization && (
+              <span className="mr-4">
+                {language === 'bn' ? 'প্রতিষ্ঠান: ' : 'Organization: '}{userData.organization}
+              </span>
+            )}
+            {language === 'bn' ? 'আজকের তারিখ: ১৫ জানুয়ারি, ২০২৪' : 'Today: January 15, 2024'}
+          </p>
         </div>
 
         {/* Stats Cards */}
