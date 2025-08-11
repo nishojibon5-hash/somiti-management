@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import AddMember from "./pages/AddMember";
 import MembersList from "./pages/MembersList";
+import MemberProfile from "./pages/MemberProfile";
 import DailyCollection from "./pages/DailyCollection";
 import CollectionsList from "./pages/CollectionsList";
 import NotFound from "./pages/NotFound";
