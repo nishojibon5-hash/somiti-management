@@ -64,7 +64,7 @@ export default function Dashboard() {
       addMember: "নতুন সদস্য",
       newLoan: "নতুন ঋণ",
       deposit: "জমা",
-      withdraw: "উত্তোলন",
+      withdraw: "উ��্তোলন",
       viewAll: "সব দেখুন",
       amount: "পরিমাণ",
       date: "তারিখ",
@@ -200,7 +200,7 @@ export default function Dashboard() {
                 {language === 'bn' ? 'প্রতিষ্ঠান: ' : 'Organization: '}{userData.organization}
               </span>
             )}
-            {language === 'bn' ? 'আজকের তারিখ: ১৫ জান��য়ারি, ২০২৪' : 'Today: January 15, 2024'}
+            {language === 'bn' ? 'আজকের তারিখ: ১৫ জানুয়ারি, ২০২৪' : 'Today: January 15, 2024'}
           </p>
         </div>
 
@@ -279,7 +279,7 @@ export default function Dashboard() {
                     {language === 'bn' ? 'কোনো সদস্য নেই' : 'No Members Yet'}
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    {language === 'bn' ? 'আপনার ��্রথম সদস্য যোগ করে শুরু করুন' : 'Add your first member to get started'}
+                    {language === 'bn' ? 'আপনার প্রথম সদস্য যোগ করে শুরু করুন' : 'Add your first member to get started'}
                   </p>
                   <Button asChild>
                     <Link to="/add-member">
@@ -314,6 +314,12 @@ export default function Dashboard() {
                 <Link to="/collections">
                   <BarChart3 className="h-4 w-4 mr-2" />
                   {language === 'bn' ? 'কালেকশন তালিকা' : 'Collection List'}
+                </Link>
+              </Button>
+              <Button className="w-full justify-start" variant="outline" asChild>
+                <Link to="/monthly-collections">
+                  <Calendar className="h-4 w-4 mr-2" />
+                  {language === 'bn' ? 'মাসিক ক্যালেন্ডার' : 'Monthly Calendar'}
                 </Link>
               </Button>
               <Button className="w-full justify-start" variant="outline">
@@ -384,7 +390,7 @@ export default function Dashboard() {
               </h4>
               <p className="text-sm text-muted-foreground">
                 {language === 'bn'
-                  ? '���দস্যদের সঞ্চয় এবং ঋণের হিসাব রাখুন এবং ট্র্যাক করুন'
+                  ? 'সদস্যদের সঞ্চয় এবং ঋণের হিসাব রাখুন এবং ট্র্যাক করুন'
                   : 'Track member savings and loan accounts with detailed records'
                 }
               </p>
