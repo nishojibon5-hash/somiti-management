@@ -120,10 +120,10 @@ export default function Dashboard() {
     },
     {
       title: t.monthlyCollection,
-      value: "৳0",
-      change: "0%",
+      value: totalDailyCollection > 0 ? `৳${(totalDailyCollection * 30).toLocaleString()}` : "৳0",
+      change: totalDailyCollection > 0 ? "+100%" : "0%",
       icon: <DollarSign className="h-6 w-6" />,
-      positive: false
+      positive: totalDailyCollection > 0
     }
   ];
 
