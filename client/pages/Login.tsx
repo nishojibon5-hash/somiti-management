@@ -16,6 +16,7 @@ export default function Login() {
     password: ''
   });
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const text = {
     bn: {
