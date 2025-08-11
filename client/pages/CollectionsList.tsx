@@ -25,6 +25,7 @@ export default function CollectionsList() {
   const [collections, setCollections] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+  const { toast } = useToast();
 
   useEffect(() => {
     // Load collections data
@@ -53,7 +54,7 @@ export default function CollectionsList() {
       edit: "সম্পাদনা", 
       delete: "মুছুন",
       noCollections: "কোনো কালেকশন নেই",
-      addFirst: "প্রথম কালেকশন যোগ কর��ন",
+      addFirst: "প্রথম কালেকশন যোগ করুন",
       noResults: "কোনো ফলাফল পাওয়া যায়নি",
       collectionsCount: "টি কালেকশন",
       memberCount: "জন সদস্য",
@@ -272,7 +273,7 @@ export default function CollectionsList() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-bold text-primary">৳{workerTotal.toLocaleString()}</p>
+                        <p className="text-2xl font-bold text-primary">��{workerTotal.toLocaleString()}</p>
                         <p className="text-sm text-muted-foreground">
                           {t.savings}: ৳{workerSavings.toLocaleString()} | {t.installment}: ৳{workerInstallments.toLocaleString()}
                         </p>
