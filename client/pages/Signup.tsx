@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,7 +17,7 @@ export default function Signup() {
       title: "সমিতি ম্যানেজার",
       signup: "সাইন আপ",
       createAccount: "নতুন অ্যাকাউন্ট তৈরি করুন",
-      subtitle: "আজই শুরু ক���ুন আপনার সমিতি ব্যবস্থাপনা",
+      subtitle: "আজই শুরু করুন আপনার সমিতি ব্যবস্থাপনা",
       organizationName: "প্রতিষ্ঠানের নাম",
       fullName: "পূর্ণ নাম",
       email: "ইমেইল",
@@ -31,7 +31,7 @@ export default function Signup() {
       agreeTerms: "আমি শর্তাবলী ও গোপনীয়তা নীতি মেনে নিই",
       signupButton: "সাইন আপ করুন",
       haveAccount: "ইতিমধ্যে অ্যাকাউন্ট আছে?",
-      login: "লগইন করুন"
+      login: "লগই�� করুন"
     },
     en: {
       title: "Somiti Manager",
