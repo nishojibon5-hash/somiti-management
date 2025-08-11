@@ -43,6 +43,12 @@ export default function Dashboard() {
     if (storedMembers) {
       setMembers(JSON.parse(storedMembers));
     }
+
+    // Load daily collections data
+    const storedCollections = localStorage.getItem('dailyCollections');
+    if (storedCollections) {
+      setDailyCollections(JSON.parse(storedCollections));
+    }
   }, []);
 
   const text = {
@@ -308,7 +314,7 @@ export default function Dashboard() {
               </Button>
               <Button className="w-full justify-start" variant="outline">
                 <BarChart3 className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'রিপোর্ট' : 'Reports'}
+                {language === 'bn' ? 'রি��োর্ট' : 'Reports'}
               </Button>
             </CardContent>
           </Card>
@@ -334,11 +340,11 @@ export default function Dashboard() {
                 <Button size="lg" asChild>
                   <Link to="/add-member">
                     <Plus className="h-5 w-5 mr-2" />
-                    {language === 'bn' ? 'প্রথম সদস্য যোগ কর���ন' : 'Add First Member'}
+                    {language === 'bn' ? 'প্রথম সদস্য যোগ করুন' : 'Add First Member'}
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg">
-                  {language === 'bn' ? 'সাহায্য দ��খুন' : 'View Help'}
+                  {language === 'bn' ? 'সাহায্য দেখুন' : 'View Help'}
                 </Button>
               </div>
             </CardContent>
