@@ -218,8 +218,10 @@ export default function MembersList() {
                       </div>
                       
                       <div className="flex gap-2">
-                        <Button size="sm" variant="outline">
-                          <Eye className="h-4 w-4" />
+                        <Button size="sm" variant="outline" asChild>
+                          <Link to={`/member/${member.memberID}`}>
+                            <Eye className="h-4 w-4" />
+                          </Link>
                         </Button>
                         <Button size="sm" variant="outline">
                           <Edit className="h-4 w-4" />
