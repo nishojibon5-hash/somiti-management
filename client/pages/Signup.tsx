@@ -29,7 +29,7 @@ export default function Signup() {
       title: "সমিতি ম্যানেজার",
       signup: "সাইন আপ",
       createAccount: "নতুন অ্যাকাউন্ট তৈরি করুন",
-      subtitle: "আজই শুরু করুন আপনার সমিতি ব্যবস্থাপনা",
+      subtitle: "আজই শুরু ক���ুন আপনার সমিতি ব্যবস্থাপনা",
       organizationName: "প্রতিষ্ঠানের নাম",
       fullName: "পূর্ণ নাম",
       email: "ইমেইল",
@@ -164,11 +164,13 @@ export default function Signup() {
 
               <div className="space-y-2">
                 <Label htmlFor="fullName">{t.fullName}</Label>
-                <Input 
-                  id="fullName" 
-                  type="text" 
+                <Input
+                  id="fullName"
+                  type="text"
+                  value={formData.fullName}
+                  onChange={(e) => handleInputChange('fullName', e.target.value)}
                   placeholder={language === 'bn' ? 'আপনার পূর্ণ নাম' : 'Enter your full name'}
-                  required 
+                  required
                 />
               </div>
               
