@@ -44,7 +44,7 @@ export default function DailyCollection() {
   const text = {
     bn: {
       title: "দৈনিক কালেকশন",
-      subtitle: "সদস্যদের দৈনি�� সঞ্চয় ও কিস্তি আদায়",
+      subtitle: "সদস্যদের দৈনিক সঞ্চয় ও কিস্তি আদায়",
       selectWorker: "কর্মী নির্বাচন করুন",
       selectMember: "সদস্য নির্বাচন করুন",
       memberName: "সদস্যের নাম",
@@ -128,11 +128,11 @@ export default function DailyCollection() {
     e.preventDefault();
     
     // Validation
-    if (!formData.memberID || !formData.savingsAmount || !formData.installmentAmount) {
+    if (!formData.selectedWorker || !formData.memberID || !formData.savingsAmount || !formData.installmentAmount) {
       toast({
         variant: "destructive",
         title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'সদস্য, সঞ্চয় ও কিস্তির পরিমাণ আবশ্যক' : 'Member, savings and installment amounts are required'
+        description: language === 'bn' ? 'কর্মী, সদস্য, সঞ্চয় ও ক���স্তির পরিমাণ আবশ্যক' : 'Worker, member, savings and installment amounts are required'
       });
       return;
     }
