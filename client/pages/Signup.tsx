@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/hooks/use-toast";
 import { Users, Eye, EyeOff } from "lucide-react";
 
 export default function Signup() {
@@ -246,7 +247,7 @@ export default function Signup() {
                   type="password"
                   value={formData.confirmPassword}
                   onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                  placeholder={language === 'bn' ? 'পাসওয়ার্ড নিশ্চিত করুন' : 'Confirm your password'}
+                  placeholder={language === 'bn' ? 'পাসওয়ার্ড ন��শ্চিত করুন' : 'Confirm your password'}
                   required
                 />
               </div>
