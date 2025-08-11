@@ -55,7 +55,7 @@ export default function DailyCollection() {
       notes: "মন্তব্য",
       save: "সংরক্ষণ করুন",
       saveAndAdd: "সেভ করে আরেকটি যোগ করুন",
-      cancel: "বাতিল",
+      cancel: "বাত��ল",
       totalAmount: "মোট পরিমাণ",
       defaultAmounts: "ডিফল্ট পরিমাণ ব্যবহার করুন",
       noMembers: "কোনো সদস্য নেই",
@@ -338,11 +338,10 @@ export default function DailyCollection() {
 
                 <div className="space-y-2">
                   <Label htmlFor="workerName">{t.workerName}</Label>
-                  <Input 
+                  <Input
                     id="workerName"
-                    value={formData.workerName}
-                    onChange={(e) => handleInputChange('workerName', e.target.value)}
-                    placeholder={language === 'bn' ? 'কর্মীর নাম' : 'Worker name'}
+                    value={formData.selectedWorker}
+                    placeholder={language === 'bn' ? 'নির্বাচিত কর্মী' : 'Selected worker'}
                     readOnly
                     className="bg-muted"
                   />
