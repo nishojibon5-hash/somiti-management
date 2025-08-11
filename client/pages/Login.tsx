@@ -45,6 +45,45 @@ export default function Login() {
 
   const t = text[language];
 
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.email || !formData.password) {
+      alert(language === 'bn' ? 'ইমেইল ও পাসওয়ার্ড দিন' : 'Please enter email and password');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Store user data in localStorage (in real app, this would be handled by backend)
+      localStorage.setItem('userLoggedIn', 'true');
+      localStorage.setItem('userData', JSON.stringify({
+        name: 'আহমেদ আলী',
+        email: formData.email,
+        organization: 'আল-আমিন সমিতি',
+        plan: 'pro'
+      }));
+
+      // Navigate to dashboard
+      navigate('/dashboard');
+    } catch (error) {
+      alert(language === 'bn' ? 'লগইন ব্যর্থ হয়েছে' : 'Login failed');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
