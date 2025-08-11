@@ -20,6 +20,20 @@ import {
 
 export default function Dashboard() {
   const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [userData, setUserData] = useState<{
+    name: string;
+    email: string;
+    organization: string;
+    plan: string;
+  } | null>(null);
+
+  useEffect(() => {
+    // Load user data from localStorage
+    const storedUserData = localStorage.getItem('userData');
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
+  }, []);
 
   const text = {
     bn: {
@@ -30,7 +44,7 @@ export default function Dashboard() {
       totalSavings: "মোট সঞ্চয়",
       monthlyCollection: "মাসিক আদায়",
       recentTransactions: "সাম্প্রতিক লেনদেন",
-      quickActions: "দ্রুত কার্যক্রম",
+      quickActions: "দ্রুত কার্যক��রম",
       addMember: "নতুন সদস্য",
       newLoan: "নতুন ঋণ",
       deposit: "জমা",
