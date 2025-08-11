@@ -24,6 +24,7 @@ export default function Signup() {
     agreeTerms: false
   });
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const text = {
     bn: {
@@ -37,7 +38,7 @@ export default function Signup() {
       phone: "ফোন নম্বর",
       password: "পাসওয়ার্ড",
       confirmPassword: "পাসওয়ার্ড নিশ্চিত করুন",
-      plan: "প্ল্যান নির্বাচন করুন",
+      plan: "প্ল্যান নির্বা���ন করুন",
       free: "ফ্রি",
       pro: "প্রো",
       premium: "প্রিমিয়াম",
@@ -203,7 +204,7 @@ export default function Signup() {
                 <Label htmlFor="plan">{t.plan}</Label>
                 <Select value={formData.plan} onValueChange={(value) => handleInputChange('plan', value)}>
                   <SelectTrigger>
-                    <SelectValue placeholder={language === 'bn' ? 'প্ল্যান নির্বাচন করুন' : 'Select a plan'} />
+                    <SelectValue placeholder={language === 'bn' ? 'প্ল্যান নির্বাচন কর��ন' : 'Select a plan'} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="free">{t.free} - {language === 'bn' ? 'বিনামূল্যে' : 'Free'}</SelectItem>
@@ -247,7 +248,7 @@ export default function Signup() {
                   type="password"
                   value={formData.confirmPassword}
                   onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                  placeholder={language === 'bn' ? 'পাসওয়ার্ড ন��শ্চিত করুন' : 'Confirm your password'}
+                  placeholder={language === 'bn' ? 'পাসওয়ার্ড নিশ্চিত করুন' : 'Confirm your password'}
                   required
                 />
               </div>
