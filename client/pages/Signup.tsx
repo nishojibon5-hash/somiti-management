@@ -11,13 +11,25 @@ import { Users, Eye, EyeOff } from "lucide-react";
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    organizationName: '',
+    fullName: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
+    plan: '',
+    agreeTerms: false
+  });
+  const navigate = useNavigate();
 
   const text = {
     bn: {
       title: "সমিতি ম্যানেজার",
       signup: "সাইন আপ",
       createAccount: "নতুন অ্যাকাউন্ট তৈরি করুন",
-      subtitle: "আজই শুরু করুন আপনার সমিতি ব্যবস্থাপনা",
+      subtitle: "আজই শুরু করুন আপনার সমিতি ব্য���স্থাপনা",
       organizationName: "প্রতিষ্ঠানের নাম",
       fullName: "পূর্ণ নাম",
       email: "ইমেইল",
@@ -31,7 +43,7 @@ export default function Signup() {
       agreeTerms: "আমি শর্তাবলী ও গোপনীয়তা নীতি মেনে নিই",
       signupButton: "সাইন আপ করুন",
       haveAccount: "ইতিমধ্যে অ্যাকাউন্ট আছে?",
-      login: "লগই�� করুন"
+      login: "লগইন করুন"
     },
     en: {
       title: "Somiti Manager",
