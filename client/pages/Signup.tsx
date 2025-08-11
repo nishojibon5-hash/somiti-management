@@ -32,7 +32,7 @@ export default function Signup() {
       signup: "সাইন আপ",
       createAccount: "নতুন অ্যাকাউন্ট তৈরি করুন",
       subtitle: "আজই শুরু করুন আপনার সমিতি ব্যবস্থাপনা",
-      organizationName: "প্রতিষ্ঠানের না���",
+      organizationName: "প্রতিষ্ঠানের নাম",
       fullName: "পূর্ণ নাম",
       email: "ইমেইল",
       phone: "ফোন নম্বর",
@@ -84,17 +84,29 @@ export default function Signup() {
     // Validation
     if (!formData.organizationName || !formData.fullName || !formData.email ||
         !formData.phone || !formData.password || !formData.plan) {
-      alert(language === 'bn' ? 'সকল ক্ষেত্র পূরণ করুন' : 'Please fill all fields');
+      toast({
+        variant: "destructive",
+        title: language === 'bn' ? 'ত্রুটি' : 'Error',
+        description: language === 'bn' ? 'সকল ক্ষেত্র পূরণ করুন' : 'Please fill all fields'
+      });
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      alert(language === 'bn' ? 'পাসওয়ার্ড মিলছে না' : 'Passwords do not match');
+      toast({
+        variant: "destructive",
+        title: language === 'bn' ? 'ত্রুটি' : 'Error',
+        description: language === 'bn' ? 'পাসওয়ার্ড মিলছে না' : 'Passwords do not match'
+      });
       return;
     }
 
     if (!formData.agreeTerms) {
-      alert(language === 'bn' ? 'শর্তাবলী মেনে নিন' : 'Please agree to terms and conditions');
+      toast({
+        variant: "destructive",
+        title: language === 'bn' ? 'ত্রুটি' : 'Error',
+        description: language === 'bn' ? 'শর্তাবলী মেনে নিন' : 'Please agree to terms and conditions'
+      });
       return;
     }
 
@@ -122,7 +134,7 @@ export default function Signup() {
       // Navigate to dashboard
       navigate('/dashboard');
     } catch (error) {
-      alert(language === 'bn' ? 'রেজিস্ট্রেশন ব্যর্থ হয়েছে' : 'Registration failed');
+      alert(language === 'bn' ? 'র���জিস্ট্রেশন ব্যর্থ হয়েছে' : 'Registration failed');
     } finally {
       setIsLoading(false);
     }
