@@ -219,8 +219,10 @@ export default function Dashboard() {
                   {members.length > 0 ? t.recentTransactions : (language === 'bn' ? 'সদস্য তালিকা' : 'Member List')}
                 </CardTitle>
                 {members.length > 0 && (
-                  <Button variant="outline" size="sm">
-                    {t.viewAll}
+                  <Button variant="outline" size="sm" asChild>
+                    <Link to="/members">
+                      {t.viewAll}
+                    </Link>
                   </Button>
                 )}
               </div>
@@ -361,7 +363,7 @@ export default function Dashboard() {
               </h4>
               <p className="text-sm text-muted-foreground">
                 {language === 'bn'
-                  ? 'সদস্যদের সঞ্চয় এবং ঋণের হিসাব রাখুন এবং ট্র্যাক করুন'
+                  ? 'সদস্যদের স���্চয় এবং ঋণের হিসাব রাখুন এবং ট্র্যাক করুন'
                   : 'Track member savings and loan accounts with detailed records'
                 }
               </p>
