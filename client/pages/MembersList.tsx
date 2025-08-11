@@ -4,11 +4,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  Users, 
-  ArrowLeft, 
+import {
+  Users,
+  ArrowLeft,
   Plus,
   Search,
   Phone,
@@ -16,18 +26,18 @@ import {
   MapPin,
   Eye,
   Edit,
-  Trash2
+  Trash2,
 } from "lucide-react";
 
 export default function MembersList() {
-  const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [language, setLanguage] = useState<"bn" | "en">("bn");
   const [members, setMembers] = useState<any[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const { toast } = useToast();
 
   useEffect(() => {
     // Load members data
-    const storedMembers = localStorage.getItem('members');
+    const storedMembers = localStorage.getItem("members");
     if (storedMembers) {
       setMembers(JSON.parse(storedMembers));
     }
@@ -53,7 +63,7 @@ export default function MembersList() {
       noMembers: "কোনো সদস্য নেই",
       addFirst: "প্রথম সদস্য যোগ করুন",
       noResults: "কোন��� ফলাফল পাওয়া যায়নি",
-      active: "সক্রিয়"
+      active: "সক্রিয়",
     },
     en: {
       title: "Members List",
@@ -74,18 +84,27 @@ export default function MembersList() {
       noMembers: "No Members",
       addFirst: "Add First Member",
       noResults: "No results found",
-      active: "Active"
-    }
+      active: "Active",
+    },
   };
 
   const t = text[language];
 
   // Filter members based on search term
-  const filteredMembers = members.filter(member =>
-    (member.memberName || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (member.memberID || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (member.mobileNumber || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (member.workerName || '').toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredMembers = members.filter(
+    (member) =>
+      (member.memberName || "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      (member.memberID || "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      (member.mobileNumber || "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      (member.workerName || "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()),
   );
 
   return (
@@ -97,29 +116,31 @@ export default function MembersList() {
             <Button variant="ghost" size="sm" asChild>
               <Link to="/dashboard">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'ফিরে যান' : 'Back'}
+                {language === "bn" ? "ফিরে যান" : "Back"}
               </Link>
             </Button>
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
                 <Users className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="font-bold text-xl text-primary">সমিতি ম্যানেজার</span>
+              <span className="font-bold text-xl text-primary">
+                সমিতি ম্যানেজার
+              </span>
             </div>
           </div>
-          
+
           <div className="ml-auto flex items-center space-x-4">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
+              onClick={() => setLanguage(language === "bn" ? "en" : "bn")}
             >
-              {language === 'bn' ? 'EN' : 'বাং'}
+              {language === "bn" ? "EN" : "বাং"}
             </Button>
             <Button asChild>
               <Link to="/add-member">
                 <Plus className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'নতুন সদস্য' : 'Add Member'}
+                {language === "bn" ? "নতুন সদস্য" : "Add Member"}
               </Link>
             </Button>
           </div>
@@ -140,7 +161,7 @@ export default function MembersList() {
               {t.totalMembers}: {members.length}
             </Badge>
           </div>
-          
+
           <div className="relative w-full sm:w-80">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
@@ -156,7 +177,10 @@ export default function MembersList() {
         {filteredMembers.length > 0 ? (
           <div className="grid gap-4">
             {filteredMembers.map((member, index) => (
-              <Card key={member.memberID || index} className="hover:shadow-md transition-shadow">
+              <Card
+                key={member.memberID || index}
+                className="hover:shadow-md transition-shadow"
+              >
                 <CardContent className="p-6">
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                     {/* Member Basic Info */}
@@ -166,7 +190,9 @@ export default function MembersList() {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-semibold text-lg">{member.memberName}</h3>
+                          <h3 className="font-semibold text-lg">
+                            {member.memberName}
+                          </h3>
                           <Badge variant="outline" className="text-xs">
                             {t.active}
                           </Badge>
@@ -184,20 +210,26 @@ export default function MembersList() {
                     {/* Financial Info */}
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
                       <div>
-                        <p className="text-sm text-muted-foreground">{t.loan}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {t.loan}
+                        </p>
                         <p className="font-semibold text-destructive">
                           ৳{(member.loanAmount || 0).toLocaleString()}
                         </p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">{t.savings}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {t.savings}
+                        </p>
                         <p className="font-semibold text-success">
                           ৳{(member.savingsAmount || 0).toLocaleString()}
                         </p>
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">
-                          {language === 'bn' ? 'দৈনিক কিস্তি' : 'Daily Installment'}
+                          {language === "bn"
+                            ? "দৈনিক কিস্তি"
+                            : "Daily Installment"}
                         </p>
                         <p className="font-semibold text-primary">
                           ৳{member.dailyInstallment || 0}
@@ -205,7 +237,7 @@ export default function MembersList() {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">
-                          {language === 'bn' ? 'দৈনিক সঞ্চয়' : 'Daily Savings'}
+                          {language === "bn" ? "দৈনিক সঞ্চয়" : "Daily Savings"}
                         </p>
                         <p className="font-semibold text-info">
                           ৳{member.dailySavings || 0}
@@ -217,9 +249,10 @@ export default function MembersList() {
                     <div className="flex flex-col lg:items-end gap-3">
                       <div className="flex items-center text-sm text-muted-foreground">
                         <MapPin className="h-4 w-4 mr-1" />
-                        {language === 'bn' ? 'কর্মী: ' : 'Worker: '}{member.workerName}
+                        {language === "bn" ? "কর্মী: " : "Worker: "}
+                        {member.workerName}
                       </div>
-                      
+
                       <div className="flex gap-2">
                         <Button size="sm" variant="outline" asChild>
                           <Link to={`/member/${member.memberID}`}>
@@ -233,29 +266,36 @@ export default function MembersList() {
                         </Button>
                         <AlertDialog>
                           <AlertDialogTrigger asChild>
-                            <Button size="sm" variant="outline" className="text-destructive hover:bg-destructive hover:text-destructive-foreground">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="text-destructive hover:bg-destructive hover:text-destructive-foreground"
+                            >
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </AlertDialogTrigger>
                           <AlertDialogContent>
                             <AlertDialogHeader>
                               <AlertDialogTitle>
-                                {language === 'bn' ? 'ডেটা সুরক্ষা' : 'Data Protection'}
+                                {language === "bn"
+                                  ? "ডেটা সুরক্ষা"
+                                  : "Data Protection"}
                               </AlertDialogTitle>
                               <AlertDialogDescription>
-                                {language === 'bn'
-                                  ? 'এই সদস্যের তথ্য স্থায়ীভাবে মুছে ফেলা যাবে না। সকল ডেটা নিরাপত্তার জন্য সুরক্ষিত রাখা হয়। তথ্য সম্পাদনা করতে Edit বাটন ব্যবহার করুন।'
-                                  : 'This member\'s data cannot be permanently deleted. All data is protected for security purposes. Use the Edit button to modify information.'
-                                }
+                                {language === "bn"
+                                  ? "এই সদস্যের তথ্য স্থায়ীভাবে মুছে ফেলা যাবে না। সকল ডেটা নিরাপত্তার জন্য সুরক্ষিত রাখা হয়। তথ্য সম্পাদনা করতে Edit বাটন ব্যবহার করুন।"
+                                  : "This member's data cannot be permanently deleted. All data is protected for security purposes. Use the Edit button to modify information."}
                               </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
                               <AlertDialogCancel>
-                                {language === 'bn' ? 'বুঝেছি' : 'Understood'}
+                                {language === "bn" ? "বুঝেছি" : "Understood"}
                               </AlertDialogCancel>
                               <AlertDialogAction asChild>
                                 <Link to={`/edit-member/${member.memberID}`}>
-                                  {language === 'bn' ? 'তথ্য সম্পাদনা করুন' : 'Edit Information'}
+                                  {language === "bn"
+                                    ? "তথ্য সম্পাদনা করুন"
+                                    : "Edit Information"}
                                 </Link>
                               </AlertDialogAction>
                             </AlertDialogFooter>
@@ -277,10 +317,9 @@ export default function MembersList() {
               </div>
               <h3 className="text-xl font-semibold mb-2">{t.noMembers}</h3>
               <p className="text-muted-foreground mb-6">
-                {language === 'bn' 
-                  ? 'আপনার প্রথম সদস্য যোগ করে শুরু করুন'
-                  : 'Add your first member to get started'
-                }
+                {language === "bn"
+                  ? "আপনার প্রথম সদস্য যোগ করে শুরু করুন"
+                  : "Add your first member to get started"}
               </p>
               <Button asChild>
                 <Link to="/add-member">
@@ -297,10 +336,9 @@ export default function MembersList() {
               <Search className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
               <h3 className="text-lg font-semibold mb-2">{t.noResults}</h3>
               <p className="text-muted-foreground">
-                {language === 'bn' 
-                  ? 'অন্য নাম ব�� আইডি দিয়ে খোঁজ করে দেখুন'
-                  : 'Try searching with a different name or ID'
-                }
+                {language === "bn"
+                  ? "অন্য নাম ব�� আইডি দিয়ে খোঁজ করে দেখুন"
+                  : "Try searching with a different name or ID"}
               </p>
             </CardContent>
           </Card>

@@ -3,17 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Users, Eye, EyeOff } from "lucide-react";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [language, setLanguage] = useState<"bn" | "en">("bn");
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -29,7 +35,7 @@ export default function Login() {
       signUp: "সাইন আপ করুন",
       loginButton: "লগইন করুন",
       welcome: "স্বাগতম",
-      subtitle: "আপনার অ্যাকাউন্টে প্রবেশ করুন"
+      subtitle: "আপনার অ্যাকাউন্টে প্রবেশ করুন",
     },
     en: {
       title: "Somiti Manager",
@@ -41,16 +47,16 @@ export default function Login() {
       signUp: "Sign up",
       loginButton: "Login",
       welcome: "Welcome back",
-      subtitle: "Enter your credentials to access your account"
-    }
+      subtitle: "Enter your credentials to access your account",
+    },
   };
 
   const t = text[language];
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
@@ -60,8 +66,11 @@ export default function Login() {
     if (!formData.email || !formData.password) {
       toast({
         variant: "destructive",
-        title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'ইমেইল ও পাসওয়ার্ড দিন' : 'Please enter email and password'
+        title: language === "bn" ? "ত্রুটি" : "Error",
+        description:
+          language === "bn"
+            ? "ইমেইল ও পাসওয়ার্ড দিন"
+            : "Please enter email and password",
       });
       return;
     }
@@ -70,30 +79,34 @@ export default function Login() {
 
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Store user data in localStorage (in real app, this would be handled by backend)
-      localStorage.setItem('userLoggedIn', 'true');
-      localStorage.setItem('userData', JSON.stringify({
-        name: 'আহমেদ আলী',
-        email: formData.email,
-        organization: 'আল-আমিন সমিতি',
-        plan: 'pro'
-      }));
+      localStorage.setItem("userLoggedIn", "true");
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          name: "আহমেদ আলী",
+          email: formData.email,
+          organization: "আল-আমিন সমিতি",
+          plan: "pro",
+        }),
+      );
 
       // Show success message
       toast({
-        title: language === 'bn' ? 'সফল!' : 'Success!',
-        description: language === 'bn' ? 'সফলভাবে লগইন হয়েছে' : 'Successfully logged in',
+        title: language === "bn" ? "সফল!" : "Success!",
+        description:
+          language === "bn" ? "সফলভাবে লগইন হয়েছে" : "Successfully logged in",
       });
 
       // Navigate to dashboard
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (error) {
       toast({
         variant: "destructive",
-        title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'লগইন ব্যর্থ হয়েছে' : 'Login failed'
+        title: language === "bn" ? "ত্রুটি" : "Error",
+        description: language === "bn" ? "লগইন ব্যর্থ হয়েছে" : "Login failed",
       });
     } finally {
       setIsLoading(false);
@@ -123,9 +136,9 @@ export default function Login() {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
+                onClick={() => setLanguage(language === "bn" ? "en" : "bn")}
               >
-                {language === 'bn' ? 'EN' : 'বাং'}
+                {language === "bn" ? "EN" : "বাং"}
               </Button>
             </div>
 
@@ -136,12 +149,14 @@ export default function Login() {
                   id="email"
                   type="email"
                   value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  placeholder={language === 'bn' ? 'আপনার ইমেইল' : 'Enter your email'}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  placeholder={
+                    language === "bn" ? "আপনার ইমেইল" : "Enter your email"
+                  }
                   required
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="password">{t.password}</Label>
                 <div className="relative">
@@ -149,8 +164,14 @@ export default function Login() {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     value={formData.password}
-                    onChange={(e) => handleInputChange('password', e.target.value)}
-                    placeholder={language === 'bn' ? 'আপনার পাসওয়ার্ড' : 'Enter your password'}
+                    onChange={(e) =>
+                      handleInputChange("password", e.target.value)
+                    }
+                    placeholder={
+                      language === "bn"
+                        ? "আপনার পাসওয়ার্ড"
+                        : "Enter your password"
+                    }
                     required
                   />
                   <Button
@@ -170,8 +191,8 @@ export default function Login() {
               </div>
 
               <div className="flex items-center justify-between">
-                <Link 
-                  to="/forgot-password" 
+                <Link
+                  to="/forgot-password"
                   className="text-sm text-primary hover:underline"
                 >
                   {t.forgotPassword}
@@ -187,7 +208,7 @@ export default function Login() {
                 {isLoading ? (
                   <div className="flex items-center">
                     <div className="animate-spin h-4 w-4 border-2 border-background border-t-transparent rounded-full mr-2"></div>
-                    {language === 'bn' ? 'অপেক্ষা করুন...' : 'Please wait...'}
+                    {language === "bn" ? "অপেক্ষা করুন..." : "Please wait..."}
                   </div>
                 ) : (
                   t.loginButton

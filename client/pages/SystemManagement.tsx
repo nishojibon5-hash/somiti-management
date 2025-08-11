@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
-import { 
+import {
   ArrowLeft,
   Settings,
   Shield,
@@ -31,11 +31,11 @@ import {
   FileText,
   Download,
   Upload,
-  RefreshCw
+  RefreshCw,
 } from "lucide-react";
 
 export default function SystemManagement() {
-  const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [language, setLanguage] = useState<"bn" | "en">("bn");
   const [systemSettings, setSystemSettings] = useState({
     maintenanceMode: false,
     autoBackup: true,
@@ -45,8 +45,8 @@ export default function SystemManagement() {
     guestAccess: false,
     sessionTimeout: 30,
     maxFileSize: 10,
-    supportEmail: 'support@somitimanager.com',
-    supportPhone: '+880171234567'
+    supportEmail: "support@somitimanager.com",
+    supportPhone: "+880171234567",
   });
   const { toast } = useToast();
 
@@ -101,7 +101,8 @@ export default function SystemManagement() {
       medium: "মাঝারি",
       settingsSaved: "সেটিংস সংরক্ষিত হয়েছে",
       warningTitle: "সতর্কতা",
-      maintenanceWarning: "রক্ষণাবেক্ষণ মোড সক্রিয় করলে সব ব্যবহারকারী সিস্টেম ব্যবহার করতে পারবে না।"
+      maintenanceWarning:
+        "রক্ষণাবেক্ষণ মোড সক্রিয় করলে সব ব্যবহারকারী সিস্টেম ব্যবহার করতে পারবে না।",
     },
     en: {
       title: "System Management",
@@ -153,37 +154,38 @@ export default function SystemManagement() {
       medium: "Medium",
       settingsSaved: "Settings saved successfully",
       warningTitle: "Warning",
-      maintenanceWarning: "Enabling maintenance mode will prevent all users from accessing the system."
-    }
+      maintenanceWarning:
+        "Enabling maintenance mode will prevent all users from accessing the system.",
+    },
   };
 
   const t = text[language];
 
   const handleSettingChange = (key: string, value: any) => {
-    setSystemSettings(prev => ({
+    setSystemSettings((prev) => ({
       ...prev,
-      [key]: value
+      [key]: value,
     }));
   };
 
   const handleSaveSettings = () => {
     // In a real system, this would save to backend
-    localStorage.setItem('systemSettings', JSON.stringify(systemSettings));
-    
+    localStorage.setItem("systemSettings", JSON.stringify(systemSettings));
+
     toast({
-      title: language === 'bn' ? 'সফল!' : 'Success!',
+      title: language === "bn" ? "সফল!" : "Success!",
       description: t.settingsSaved,
     });
   };
 
   const systemMetrics = {
-    serverStatus: 'online',
-    databaseStatus: 'healthy',
+    serverStatus: "online",
+    databaseStatus: "healthy",
     storageUsage: 45,
     memoryUsage: 68,
     cpuUsage: 23,
-    networkStatus: 'online',
-    uptime: '45 days'
+    networkStatus: "online",
+    uptime: "45 days",
   };
 
   return (
@@ -195,24 +197,26 @@ export default function SystemManagement() {
             <Button variant="ghost" size="sm" asChild>
               <Link to="/admin-dashboard">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'ফিরে যান' : 'Back'}
+                {language === "bn" ? "ফিরে যান" : "Back"}
               </Link>
             </Button>
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 bg-purple-600 rounded-lg flex items-center justify-center">
                 <Settings className="h-5 w-5 text-white" />
               </div>
-              <span className="font-bold text-xl text-purple-600">সমি���ি ম্যানেজার</span>
+              <span className="font-bold text-xl text-purple-600">
+                সমি���ি ম্যানেজার
+              </span>
             </div>
           </div>
-          
+
           <div className="ml-auto flex items-center space-x-4">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
+              onClick={() => setLanguage(language === "bn" ? "en" : "bn")}
             >
-              {language === 'bn' ? 'EN' : 'বাং'}
+              {language === "bn" ? "EN" : "বাং"}
             </Button>
           </div>
         </div>
@@ -238,25 +242,33 @@ export default function SystemManagement() {
           <TabsContent value="general" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>{language === 'bn' ? 'সাধারণ সেটিংস' : 'General Settings'}</CardTitle>
+                <CardTitle>
+                  {language === "bn" ? "সাধারণ সেটিংস" : "General Settings"}
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Maintenance Mode */}
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
                     <Label className="font-medium">{t.maintenanceMode}</Label>
-                    <p className="text-sm text-muted-foreground">{t.maintenanceDesc}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {t.maintenanceDesc}
+                    </p>
                   </div>
                   <Switch
                     checked={systemSettings.maintenanceMode}
-                    onCheckedChange={(checked) => handleSettingChange('maintenanceMode', checked)}
+                    onCheckedChange={(checked) =>
+                      handleSettingChange("maintenanceMode", checked)
+                    }
                   />
                 </div>
 
                 {systemSettings.maintenanceMode && (
                   <Alert className="border-amber-200 bg-amber-50">
                     <AlertTriangle className="h-4 w-4 text-amber-600" />
-                    <AlertTitle className="text-amber-800">{t.warningTitle}</AlertTitle>
+                    <AlertTitle className="text-amber-800">
+                      {t.warningTitle}
+                    </AlertTitle>
                     <AlertDescription className="text-amber-700">
                       {t.maintenanceWarning}
                     </AlertDescription>
@@ -267,23 +279,33 @@ export default function SystemManagement() {
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
                     <Label className="font-medium">{t.autoBackup}</Label>
-                    <p className="text-sm text-muted-foreground">{t.autoBackupDesc}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {t.autoBackupDesc}
+                    </p>
                   </div>
                   <Switch
                     checked={systemSettings.autoBackup}
-                    onCheckedChange={(checked) => handleSettingChange('autoBackup', checked)}
+                    onCheckedChange={(checked) =>
+                      handleSettingChange("autoBackup", checked)
+                    }
                   />
                 </div>
 
                 {/* New User Registration */}
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
-                    <Label className="font-medium">{t.newUserRegistration}</Label>
-                    <p className="text-sm text-muted-foreground">{t.newUserDesc}</p>
+                    <Label className="font-medium">
+                      {t.newUserRegistration}
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      {t.newUserDesc}
+                    </p>
                   </div>
                   <Switch
                     checked={systemSettings.newUserRegistration}
-                    onCheckedChange={(checked) => handleSettingChange('newUserRegistration', checked)}
+                    onCheckedChange={(checked) =>
+                      handleSettingChange("newUserRegistration", checked)
+                    }
                   />
                 </div>
 
@@ -295,7 +317,12 @@ export default function SystemManagement() {
                       id="sessionTimeout"
                       type="number"
                       value={systemSettings.sessionTimeout}
-                      onChange={(e) => handleSettingChange('sessionTimeout', parseInt(e.target.value))}
+                      onChange={(e) =>
+                        handleSettingChange(
+                          "sessionTimeout",
+                          parseInt(e.target.value),
+                        )
+                      }
                       min="5"
                       max="120"
                     />
@@ -307,7 +334,12 @@ export default function SystemManagement() {
                       id="maxFileSize"
                       type="number"
                       value={systemSettings.maxFileSize}
-                      onChange={(e) => handleSettingChange('maxFileSize', parseInt(e.target.value))}
+                      onChange={(e) =>
+                        handleSettingChange(
+                          "maxFileSize",
+                          parseInt(e.target.value),
+                        )
+                      }
                       min="1"
                       max="100"
                     />
@@ -322,7 +354,9 @@ export default function SystemManagement() {
                       id="supportEmail"
                       type="email"
                       value={systemSettings.supportEmail}
-                      onChange={(e) => handleSettingChange('supportEmail', e.target.value)}
+                      onChange={(e) =>
+                        handleSettingChange("supportEmail", e.target.value)
+                      }
                     />
                   </div>
 
@@ -332,7 +366,9 @@ export default function SystemManagement() {
                       id="supportPhone"
                       type="tel"
                       value={systemSettings.supportPhone}
-                      onChange={(e) => handleSettingChange('supportPhone', e.target.value)}
+                      onChange={(e) =>
+                        handleSettingChange("supportPhone", e.target.value)
+                      }
                     />
                   </div>
                 </div>
@@ -354,34 +390,46 @@ export default function SystemManagement() {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
                       <span className="font-medium">{t.passwordPolicy}</span>
-                      <Badge className="bg-green-100 text-green-800">{t.high}</Badge>
+                      <Badge className="bg-green-100 text-green-800">
+                        {t.high}
+                      </Badge>
                     </div>
-                    
+
                     <div className="flex justify-between items-center">
                       <span className="font-medium">{t.twoFactorAuth}</span>
-                      <Badge className="bg-green-100 text-green-800">{t.enabled}</Badge>
+                      <Badge className="bg-green-100 text-green-800">
+                        {t.enabled}
+                      </Badge>
                     </div>
-                    
+
                     <div className="flex justify-between items-center">
                       <span className="font-medium">{t.encryptionLevel}</span>
-                      <Badge className="bg-blue-100 text-blue-800">AES-256</Badge>
+                      <Badge className="bg-blue-100 text-blue-800">
+                        AES-256
+                      </Badge>
                     </div>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
                       <span className="font-medium">{t.accessControl}</span>
-                      <Badge className="bg-green-100 text-green-800">{t.enabled}</Badge>
+                      <Badge className="bg-green-100 text-green-800">
+                        {t.enabled}
+                      </Badge>
                     </div>
-                    
+
                     <div className="flex justify-between items-center">
                       <span className="font-medium">{t.auditLogging}</span>
-                      <Badge className="bg-green-100 text-green-800">{t.enabled}</Badge>
+                      <Badge className="bg-green-100 text-green-800">
+                        {t.enabled}
+                      </Badge>
                     </div>
-                    
+
                     <div className="flex justify-between items-center">
                       <span className="font-medium">API Rate Limiting</span>
-                      <Badge className="bg-blue-100 text-blue-800">1000/hour</Badge>
+                      <Badge className="bg-blue-100 text-blue-800">
+                        1000/hour
+                      </Badge>
                     </div>
                   </div>
                 </div>
@@ -395,18 +443,26 @@ export default function SystemManagement() {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Bell className="h-5 w-5 mr-2" />
-                  {language === 'bn' ? 'বিজ্ঞপ্তি সেটিংস' : 'Notification Settings'}
+                  {language === "bn"
+                    ? "বিজ্ঞপ্তি সেটিংস"
+                    : "Notification Settings"}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
-                    <Label className="font-medium">{t.emailNotifications}</Label>
-                    <p className="text-sm text-muted-foreground">{t.emailDesc}</p>
+                    <Label className="font-medium">
+                      {t.emailNotifications}
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      {t.emailDesc}
+                    </p>
                   </div>
                   <Switch
                     checked={systemSettings.emailNotifications}
-                    onCheckedChange={(checked) => handleSettingChange('emailNotifications', checked)}
+                    onCheckedChange={(checked) =>
+                      handleSettingChange("emailNotifications", checked)
+                    }
                   />
                 </div>
 
@@ -417,7 +473,9 @@ export default function SystemManagement() {
                   </div>
                   <Switch
                     checked={systemSettings.smsNotifications}
-                    onCheckedChange={(checked) => handleSettingChange('smsNotifications', checked)}
+                    onCheckedChange={(checked) =>
+                      handleSettingChange("smsNotifications", checked)
+                    }
                   />
                 </div>
               </CardContent>
@@ -431,23 +489,41 @@ export default function SystemManagement() {
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Database className="h-5 w-5 mr-2" />
-                    {language === 'bn' ? 'ব্যাকআপ ব্যবস্থাপনা' : 'Backup Management'}
+                    {language === "bn"
+                      ? "ব্যাকআপ ব্যবস্থাপনা"
+                      : "Backup Management"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'স্বয়ংক্রিয় ব্যাকআপ' : 'Auto Backup'}</span>
-                    <Badge className="bg-green-100 text-green-800">{t.enabled}</Badge>
+                    <span>
+                      {language === "bn"
+                        ? "স্বয়ংক্রিয় ব্যাকআপ"
+                        : "Auto Backup"}
+                    </span>
+                    <Badge className="bg-green-100 text-green-800">
+                      {t.enabled}
+                    </Badge>
                   </div>
-                  
+
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'ব্যাকআপ ফ্রিকোয়েন্সি' : 'Backup Frequency'}</span>
-                    <Badge variant="secondary">{language === 'bn' ? 'দৈনিক' : 'Daily'}</Badge>
+                    <span>
+                      {language === "bn"
+                        ? "ব্যাকআপ ফ্রিকোয়েন্সি"
+                        : "Backup Frequency"}
+                    </span>
+                    <Badge variant="secondary">
+                      {language === "bn" ? "দৈনিক" : "Daily"}
+                    </Badge>
                   </div>
-                  
+
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'শেষ ব্যাকআপ' : 'Last Backup'}</span>
-                    <span className="text-sm text-muted-foreground">2 hours ago</span>
+                    <span>
+                      {language === "bn" ? "শেষ ব্যাকআপ" : "Last Backup"}
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      2 hours ago
+                    </span>
                   </div>
 
                   <div className="flex gap-2 mt-4">
@@ -467,19 +543,26 @@ export default function SystemManagement() {
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <FileText className="h-5 w-5 mr-2" />
-                    {language === 'bn' ? 'ব্যাকআপ ইতিহাস' : 'Backup History'}
+                    {language === "bn" ? "ব্যাকআপ ইতিহাস" : "Backup History"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     {[1, 2, 3, 4, 5].map((_, index) => (
-                      <div key={index} className="flex justify-between items-center p-2 border rounded">
+                      <div
+                        key={index}
+                        className="flex justify-between items-center p-2 border rounded"
+                      >
                         <div>
                           <p className="text-sm font-medium">
-                            {language === 'bn' ? 'দৈনিক ব্যাকআপ' : 'Daily Backup'}
+                            {language === "bn"
+                              ? "দৈনিক ব্যাকআপ"
+                              : "Daily Backup"}
                           </p>
                           <p className="text-xs text-muted-foreground">
-                            {new Date(Date.now() - index * 24 * 60 * 60 * 1000).toLocaleDateString()}
+                            {new Date(
+                              Date.now() - index * 24 * 60 * 60 * 1000,
+                            ).toLocaleDateString()}
                           </p>
                         </div>
                         <div className="flex gap-1">
@@ -519,33 +602,49 @@ export default function SystemManagement() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <Server className="h-4 w-4 text-green-600" />
-                        <span className="text-sm font-medium">{t.serverStatus}</span>
+                        <span className="text-sm font-medium">
+                          {t.serverStatus}
+                        </span>
                       </div>
-                      <Badge className="bg-green-100 text-green-800">{t.online}</Badge>
+                      <Badge className="bg-green-100 text-green-800">
+                        {t.online}
+                      </Badge>
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <Database className="h-4 w-4 text-green-600" />
-                        <span className="text-sm font-medium">{t.databaseStatus}</span>
+                        <span className="text-sm font-medium">
+                          {t.databaseStatus}
+                        </span>
                       </div>
-                      <Badge className="bg-green-100 text-green-800">{t.healthy}</Badge>
+                      <Badge className="bg-green-100 text-green-800">
+                        {t.healthy}
+                      </Badge>
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <Wifi className="h-4 w-4 text-green-600" />
-                        <span className="text-sm font-medium">{t.networkStatus}</span>
+                        <span className="text-sm font-medium">
+                          {t.networkStatus}
+                        </span>
                       </div>
-                      <Badge className="bg-green-100 text-green-800">{t.online}</Badge>
+                      <Badge className="bg-green-100 text-green-800">
+                        {t.online}
+                      </Badge>
                     </div>
                   </div>
 
                   <div className="space-y-3">
                     <div className="space-y-1">
                       <div className="flex justify-between">
-                        <span className="text-sm font-medium">{t.cpuUsage}</span>
-                        <span className="text-sm">{systemMetrics.cpuUsage}%</span>
+                        <span className="text-sm font-medium">
+                          {t.cpuUsage}
+                        </span>
+                        <span className="text-sm">
+                          {systemMetrics.cpuUsage}%
+                        </span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
@@ -557,8 +656,12 @@ export default function SystemManagement() {
 
                     <div className="space-y-1">
                       <div className="flex justify-between">
-                        <span className="text-sm font-medium">{t.memoryUsage}</span>
-                        <span className="text-sm">{systemMetrics.memoryUsage}%</span>
+                        <span className="text-sm font-medium">
+                          {t.memoryUsage}
+                        </span>
+                        <span className="text-sm">
+                          {systemMetrics.memoryUsage}%
+                        </span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
@@ -570,8 +673,12 @@ export default function SystemManagement() {
 
                     <div className="space-y-1">
                       <div className="flex justify-between">
-                        <span className="text-sm font-medium">{t.storageUsage}</span>
-                        <span className="text-sm">{systemMetrics.storageUsage}%</span>
+                        <span className="text-sm font-medium">
+                          {t.storageUsage}
+                        </span>
+                        <span className="text-sm">
+                          {systemMetrics.storageUsage}%
+                        </span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
@@ -586,9 +693,13 @@ export default function SystemManagement() {
                     <div className="p-4 bg-green-50 rounded-lg border border-green-200">
                       <div className="flex items-center space-x-2 mb-2">
                         <CheckCircle className="h-4 w-4 text-green-600" />
-                        <span className="text-sm font-medium text-green-800">System Uptime</span>
+                        <span className="text-sm font-medium text-green-800">
+                          System Uptime
+                        </span>
                       </div>
-                      <p className="text-2xl font-bold text-green-600">{systemMetrics.uptime}</p>
+                      <p className="text-2xl font-bold text-green-600">
+                        {systemMetrics.uptime}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -601,12 +712,13 @@ export default function SystemManagement() {
         <Card>
           <CardContent className="p-6">
             <div className="flex justify-end space-x-4">
-              <Button variant="outline" onClick={() => window.location.reload()}>
+              <Button
+                variant="outline"
+                onClick={() => window.location.reload()}
+              >
                 {t.reset}
               </Button>
-              <Button onClick={handleSaveSettings}>
-                {t.save}
-              </Button>
+              <Button onClick={handleSaveSettings}>{t.save}</Button>
             </div>
           </CardContent>
         </Card>

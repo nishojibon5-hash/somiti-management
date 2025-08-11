@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { 
-  Users, 
-  ArrowLeft, 
+import {
+  Users,
+  ArrowLeft,
   Phone,
   CreditCard,
   Calendar,
@@ -14,18 +14,18 @@ import {
   TrendingUp,
   MapPin,
   Edit,
-  Eye
+  Eye,
 } from "lucide-react";
 
 export default function MemberProfile() {
-  const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [language, setLanguage] = useState<"bn" | "en">("bn");
   const [member, setMember] = useState<any>(null);
   const [collections, setCollections] = useState<any[]>([]);
   const { memberID } = useParams();
 
   useEffect(() => {
     // Load member data
-    const storedMembers = localStorage.getItem('members');
+    const storedMembers = localStorage.getItem("members");
     if (storedMembers && memberID) {
       const members = JSON.parse(storedMembers);
       const foundMember = members.find((m: any) => m.memberID === memberID);
@@ -33,10 +33,12 @@ export default function MemberProfile() {
     }
 
     // Load collections data for this member
-    const storedCollections = localStorage.getItem('dailyCollections');
+    const storedCollections = localStorage.getItem("dailyCollections");
     if (storedCollections && memberID) {
       const allCollections = JSON.parse(storedCollections);
-      const memberCollections = allCollections.filter((c: any) => c.memberID === memberID);
+      const memberCollections = allCollections.filter(
+        (c: any) => c.memberID === memberID,
+      );
       setCollections(memberCollections);
     }
   }, [memberID]);
@@ -68,7 +70,7 @@ export default function MemberProfile() {
       installment: "কিস্তি",
       total: "মোট",
       edit: "সম্পাদনা",
-      active: "সক্রিয়"
+      active: "সক্রিয়",
     },
     en: {
       title: "Member Profile",
@@ -96,8 +98,8 @@ export default function MemberProfile() {
       installment: "Installment",
       total: "Total",
       edit: "Edit",
-      active: "Active"
-    }
+      active: "Active",
+    },
   };
 
   const t = text[language];
@@ -108,11 +110,13 @@ export default function MemberProfile() {
         <div className="text-center">
           <Users className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
           <h3 className="text-xl font-semibold mb-2">
-            {language === 'bn' ? 'সদস্য পাওয়া যায়নি' : 'Member Not Found'}
+            {language === "bn" ? "সদস্য পাওয়া যায়নি" : "Member Not Found"}
           </h3>
           <Button asChild>
             <Link to="/members">
-              {language === 'bn' ? 'সদস্য তালিকায় ফিরুন' : 'Back to Members List'}
+              {language === "bn"
+                ? "সদস্য তালিকায় ফিরুন"
+                : "Back to Members List"}
             </Link>
           </Button>
         </div>
@@ -125,30 +129,48 @@ export default function MemberProfile() {
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
-  const thisMonthCollections = collections.filter(collection => {
+  const thisMonthCollections = collections.filter((collection) => {
     const collectionDate = new Date(collection.collectionDate);
-    return collectionDate.getMonth() === currentMonth && collectionDate.getFullYear() === currentYear;
+    return (
+      collectionDate.getMonth() === currentMonth &&
+      collectionDate.getFullYear() === currentYear
+    );
   });
 
-  const lastMonthCollections = collections.filter(collection => {
+  const lastMonthCollections = collections.filter((collection) => {
     const collectionDate = new Date(collection.collectionDate);
     const lastMonth = currentMonth === 0 ? 11 : currentMonth - 1;
     const lastMonthYear = currentMonth === 0 ? currentYear - 1 : currentYear;
-    return collectionDate.getMonth() === lastMonth && collectionDate.getFullYear() === lastMonthYear;
+    return (
+      collectionDate.getMonth() === lastMonth &&
+      collectionDate.getFullYear() === lastMonthYear
+    );
   });
 
   const thisMonthStats = {
-    totalAmount: thisMonthCollections.reduce((sum, c) => sum + c.totalAmount, 0),
+    totalAmount: thisMonthCollections.reduce(
+      (sum, c) => sum + c.totalAmount,
+      0,
+    ),
     savings: thisMonthCollections.reduce((sum, c) => sum + c.savingsAmount, 0),
-    installments: thisMonthCollections.reduce((sum, c) => sum + c.installmentAmount, 0),
-    days: thisMonthCollections.length
+    installments: thisMonthCollections.reduce(
+      (sum, c) => sum + c.installmentAmount,
+      0,
+    ),
+    days: thisMonthCollections.length,
   };
 
   const lastMonthStats = {
-    totalAmount: lastMonthCollections.reduce((sum, c) => sum + c.totalAmount, 0),
+    totalAmount: lastMonthCollections.reduce(
+      (sum, c) => sum + c.totalAmount,
+      0,
+    ),
     savings: lastMonthCollections.reduce((sum, c) => sum + c.savingsAmount, 0),
-    installments: lastMonthCollections.reduce((sum, c) => sum + c.installmentAmount, 0),
-    days: lastMonthCollections.length
+    installments: lastMonthCollections.reduce(
+      (sum, c) => sum + c.installmentAmount,
+      0,
+    ),
+    days: lastMonthCollections.length,
   };
 
   return (
@@ -160,29 +182,31 @@ export default function MemberProfile() {
             <Button variant="ghost" size="sm" asChild>
               <Link to="/members">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'ফিরে যান' : 'Back'}
+                {language === "bn" ? "ফিরে যান" : "Back"}
               </Link>
             </Button>
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
                 <Users className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="font-bold text-xl text-primary">সমিতি ম্যানেজার</span>
+              <span className="font-bold text-xl text-primary">
+                সমিতি ম্যানেজার
+              </span>
             </div>
           </div>
-          
+
           <div className="ml-auto flex items-center space-x-4">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
+              onClick={() => setLanguage(language === "bn" ? "en" : "bn")}
             >
-              {language === 'bn' ? 'EN' : 'বাং'}
+              {language === "bn" ? "EN" : "বাং"}
             </Button>
             <Button variant="outline" asChild>
               <Link to={`/monthly-collections?member=${memberID}`}>
                 <Calendar className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'মাসিক ক্যালেন্ডার' : 'Monthly Calendar'}
+                {language === "bn" ? "মাসিক ক্যালেন্ডার" : "Monthly Calendar"}
               </Link>
             </Button>
             <Button asChild>
@@ -206,7 +230,9 @@ export default function MemberProfile() {
             <div>
               <h1 className="text-3xl font-bold">{member.memberName}</h1>
               <div className="flex items-center space-x-4 mt-1">
-                <Badge variant="outline">{t.memberID}: {member.memberID}</Badge>
+                <Badge variant="outline">
+                  {t.memberID}: {member.memberID}
+                </Badge>
                 <Badge variant="secondary">{t.active}</Badge>
               </div>
             </div>
@@ -227,17 +253,17 @@ export default function MemberProfile() {
                 <Phone className="h-4 w-4 text-muted-foreground" />
                 <span>{member.mobileNumber}</span>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <CreditCard className="h-4 w-4 text-muted-foreground" />
                 <span>{member.nidNumber}</span>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 text-muted-foreground" />
                 <span>{member.workerName}</span>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <Calendar className="h-4 w-4 text-muted-foreground" />
                 <span>{member.joinDate}</span>
@@ -256,24 +282,34 @@ export default function MemberProfile() {
             <CardContent className="space-y-4">
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">{t.currentLoan}:</span>
-                <span className="font-semibold text-destructive">৳{(member.loanAmount || 0).toLocaleString()}</span>
+                <span className="font-semibold text-destructive">
+                  ৳{(member.loanAmount || 0).toLocaleString()}
+                </span>
               </div>
-              
+
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">{t.totalSavings}:</span>
-                <span className="font-semibold text-success">৳{(member.savingsAmount || 0).toLocaleString()}</span>
+                <span className="font-semibold text-success">
+                  ৳{(member.savingsAmount || 0).toLocaleString()}
+                </span>
               </div>
-              
+
               <Separator />
-              
+
               <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">{t.dailyInstallment}:</span>
-                <span className="font-semibold">৳{member.dailyInstallment || 0}</span>
+                <span className="text-muted-foreground">
+                  {t.dailyInstallment}:
+                </span>
+                <span className="font-semibold">
+                  ৳{member.dailyInstallment || 0}
+                </span>
               </div>
-              
+
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">{t.dailySavings}:</span>
-                <span className="font-semibold">৳{member.dailySavings || 0}</span>
+                <span className="font-semibold">
+                  ৳{member.dailySavings || 0}
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -283,7 +319,7 @@ export default function MemberProfile() {
             <CardHeader>
               <CardTitle className="flex items-center">
                 <TrendingUp className="h-5 w-5 mr-2" />
-                {language === 'bn' ? 'মাসিক পরিসংখ্যান' : 'Monthly Statistics'}
+                {language === "bn" ? "মাসিক পরিসংখ্যান" : "Monthly Statistics"}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -291,35 +327,55 @@ export default function MemberProfile() {
                 <h4 className="font-semibold mb-2">{t.thisMonth}</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">{t.totalCollected}:</span>
-                    <span className="font-semibold">৳{thisMonthStats.totalAmount.toLocaleString()}</span>
+                    <span className="text-muted-foreground">
+                      {t.totalCollected}:
+                    </span>
+                    <span className="font-semibold">
+                      ৳{thisMonthStats.totalAmount.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">{t.savingsCollected}:</span>
-                    <span className="text-success">৳{thisMonthStats.savings.toLocaleString()}</span>
+                    <span className="text-muted-foreground">
+                      {t.savingsCollected}:
+                    </span>
+                    <span className="text-success">
+                      ৳{thisMonthStats.savings.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">{t.installmentCollected}:</span>
-                    <span className="text-primary">৳{thisMonthStats.installments.toLocaleString()}</span>
+                    <span className="text-muted-foreground">
+                      {t.installmentCollected}:
+                    </span>
+                    <span className="text-primary">
+                      ৳{thisMonthStats.installments.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">{t.collectionDays}:</span>
+                    <span className="text-muted-foreground">
+                      {t.collectionDays}:
+                    </span>
                     <span>{thisMonthStats.days}</span>
                   </div>
                 </div>
               </div>
-              
+
               <Separator />
-              
+
               <div>
                 <h4 className="font-semibold mb-2">{t.lastMonth}</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">{t.totalCollected}:</span>
-                    <span className="font-semibold">৳{lastMonthStats.totalAmount.toLocaleString()}</span>
+                    <span className="text-muted-foreground">
+                      {t.totalCollected}:
+                    </span>
+                    <span className="font-semibold">
+                      ৳{lastMonthStats.totalAmount.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">{t.collectionDays}:</span>
+                    <span className="text-muted-foreground">
+                      {t.collectionDays}:
+                    </span>
                     <span>{lastMonthStats.days}</span>
                   </div>
                 </div>
@@ -339,40 +395,65 @@ export default function MemberProfile() {
           <CardContent>
             {collections.length > 0 ? (
               <div className="space-y-3">
-                {collections.slice().reverse().slice(0, 20).map((collection, index) => (
-                  <div key={collection.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/20 transition-colors">
-                    <div className="flex items-center space-x-4">
-                      <div className="h-8 w-8 bg-primary/10 rounded-full flex items-center justify-center">
-                        <Calendar className="h-4 w-4 text-primary" />
+                {collections
+                  .slice()
+                  .reverse()
+                  .slice(0, 20)
+                  .map((collection, index) => (
+                    <div
+                      key={collection.id}
+                      className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/20 transition-colors"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <div className="h-8 w-8 bg-primary/10 rounded-full flex items-center justify-center">
+                          <Calendar className="h-4 w-4 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium">
+                            {new Date(
+                              collection.collectionDate,
+                            ).toLocaleDateString("bn-BD")}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {collection.workerName}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="font-medium">{new Date(collection.collectionDate).toLocaleDateString('bn-BD')}</p>
-                        <p className="text-sm text-muted-foreground">{collection.workerName}</p>
+
+                      <div className="flex items-center space-x-6 text-right">
+                        <div>
+                          <p className="text-sm text-muted-foreground">
+                            {t.savings}
+                          </p>
+                          <p className="font-semibold text-success">
+                            ৳{collection.savingsAmount.toLocaleString()}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-muted-foreground">
+                            {t.installment}
+                          </p>
+                          <p className="font-semibold text-primary">
+                            ৳{collection.installmentAmount.toLocaleString()}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-muted-foreground">
+                            {t.total}
+                          </p>
+                          <p className="font-bold">
+                            ৳{collection.totalAmount.toLocaleString()}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                    
-                    <div className="flex items-center space-x-6 text-right">
-                      <div>
-                        <p className="text-sm text-muted-foreground">{t.savings}</p>
-                        <p className="font-semibold text-success">৳{collection.savingsAmount.toLocaleString()}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">{t.installment}</p>
-                        <p className="font-semibold text-primary">৳{collection.installmentAmount.toLocaleString()}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">{t.total}</p>
-                        <p className="font-bold">৳{collection.totalAmount.toLocaleString()}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-                
+                  ))}
+
                 {collections.length > 20 && (
                   <div className="text-center pt-4">
                     <Button variant="outline">
                       <Eye className="h-4 w-4 mr-2" />
-                      {language === 'bn' ? 'আরও দেখুন' : 'View More'}
+                      {language === "bn" ? "আরও দেখুন" : "View More"}
                     </Button>
                   </div>
                 )}
@@ -380,12 +461,13 @@ export default function MemberProfile() {
             ) : (
               <div className="text-center py-8">
                 <Calendar className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                <h3 className="text-lg font-semibold mb-2">{t.noCollections}</h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  {t.noCollections}
+                </h3>
                 <p className="text-muted-foreground">
-                  {language === 'bn' 
-                    ? '���ই সদস্যের এখনো কোনো কালেকশন রেকর্ড নেই'
-                    : 'No collection records found for this member'
-                  }
+                  {language === "bn"
+                    ? "���ই সদস্যের এখনো কোনো কালেকশন রেকর্ড নেই"
+                    : "No collection records found for this member"}
                 </p>
               </div>
             )}

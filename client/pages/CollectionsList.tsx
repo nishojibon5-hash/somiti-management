@@ -5,11 +5,21 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  DollarSign, 
-  ArrowLeft, 
+import {
+  DollarSign,
+  ArrowLeft,
   Plus,
   Search,
   Users,
@@ -17,19 +27,21 @@ import {
   Eye,
   Edit,
   Trash2,
-  MapPin
+  MapPin,
 } from "lucide-react";
 
 export default function CollectionsList() {
-  const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [language, setLanguage] = useState<"bn" | "en">("bn");
   const [collections, setCollections] = useState<any[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedDate, setSelectedDate] = useState(
+    new Date().toISOString().split("T")[0],
+  );
   const { toast } = useToast();
 
   useEffect(() => {
     // Load collections data
-    const storedCollections = localStorage.getItem('dailyCollections');
+    const storedCollections = localStorage.getItem("dailyCollections");
     if (storedCollections) {
       setCollections(JSON.parse(storedCollections));
     }
@@ -51,7 +63,7 @@ export default function CollectionsList() {
       total: "মোট",
       actions: "কার্যক্রম",
       view: "দেখুন",
-      edit: "সম্পাদনা", 
+      edit: "সম্পাদনা",
       delete: "মুছুন",
       noCollections: "কোনো কালেকশন নেই",
       addFirst: "প্রথম কালেকশন যোগ করুন",
@@ -59,7 +71,7 @@ export default function CollectionsList() {
       collectionsCount: "টি কালেকশন",
       memberCount: "জন সদস্য",
       today: "আজ",
-      yesterday: "গতকাল"
+      yesterday: "গতকাল",
     },
     en: {
       title: "Daily Collections List",
@@ -84,45 +96,59 @@ export default function CollectionsList() {
       collectionsCount: " collections",
       memberCount: " members",
       today: "Today",
-      yesterday: "Yesterday"
-    }
+      yesterday: "Yesterday",
+    },
   };
 
   const t = text[language];
 
   // Filter collections by date and search term
-  const filteredCollections = collections.filter(collection => {
+  const filteredCollections = collections.filter((collection) => {
     const matchesDate = collection.collectionDate === selectedDate;
-    const matchesSearch = 
+    const matchesSearch =
       collection.workerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       collection.memberName.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesDate && matchesSearch;
   });
 
   // Group collections by worker
-  const groupedCollections = filteredCollections.reduce((groups, collection) => {
-    const worker = collection.workerName;
-    if (!groups[worker]) {
-      groups[worker] = [];
-    }
-    groups[worker].push(collection);
-    return groups;
-  }, {} as Record<string, any[]>);
+  const groupedCollections = filteredCollections.reduce(
+    (groups, collection) => {
+      const worker = collection.workerName;
+      if (!groups[worker]) {
+        groups[worker] = [];
+      }
+      groups[worker].push(collection);
+      return groups;
+    },
+    {} as Record<string, any[]>,
+  );
 
   // Calculate statistics
   const totalWorkers = Object.keys(groupedCollections).length;
   const totalCollections = filteredCollections.length;
-  const totalAmount = filteredCollections.reduce((sum, collection) => sum + collection.totalAmount, 0);
-  const totalSavings = filteredCollections.reduce((sum, collection) => sum + collection.savingsAmount, 0);
-  const totalInstallments = filteredCollections.reduce((sum, collection) => sum + collection.installmentAmount, 0);
+  const totalAmount = filteredCollections.reduce(
+    (sum, collection) => sum + collection.totalAmount,
+    0,
+  );
+  const totalSavings = filteredCollections.reduce(
+    (sum, collection) => sum + collection.savingsAmount,
+    0,
+  );
+  const totalInstallments = filteredCollections.reduce(
+    (sum, collection) => sum + collection.installmentAmount,
+    0,
+  );
 
   const formatDate = (dateString: string) => {
-    const today = new Date().toISOString().split('T')[0];
-    const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-    
+    const today = new Date().toISOString().split("T")[0];
+    const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000)
+      .toISOString()
+      .split("T")[0];
+
     if (dateString === today) return t.today;
     if (dateString === yesterday) return t.yesterday;
-    return new Date(dateString).toLocaleDateString('bn-BD');
+    return new Date(dateString).toLocaleDateString("bn-BD");
   };
 
   return (
@@ -134,35 +160,37 @@ export default function CollectionsList() {
             <Button variant="ghost" size="sm" asChild>
               <Link to="/dashboard">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'ফিরে যান' : 'Back'}
+                {language === "bn" ? "ফিরে যান" : "Back"}
               </Link>
             </Button>
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
                 <DollarSign className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="font-bold text-xl text-primary">সমিতি ম্যানেজার</span>
+              <span className="font-bold text-xl text-primary">
+                সমিতি ম্যানেজার
+              </span>
             </div>
           </div>
-          
+
           <div className="ml-auto flex items-center space-x-4">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
+              onClick={() => setLanguage(language === "bn" ? "en" : "bn")}
             >
-              {language === 'bn' ? 'EN' : 'বাং'}
+              {language === "bn" ? "EN" : "বাং"}
             </Button>
             <Button variant="outline" asChild>
               <Link to="/monthly-collections">
                 <Calendar className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'মাসিক ক্যালেন্ডার' : 'Monthly Calendar'}
+                {language === "bn" ? "মাসিক ক্যালেন্ডার" : "Monthly Calendar"}
               </Link>
             </Button>
             <Button asChild>
               <Link to="/daily-collection">
                 <Plus className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'নতুন কালেকশন' : 'New Collection'}
+                {language === "bn" ? "নতুন কালেকশন" : "New Collection"}
               </Link>
             </Button>
           </div>
@@ -182,19 +210,23 @@ export default function CollectionsList() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t.totalWorkers}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {t.totalWorkers}
+                  </p>
                   <p className="text-2xl font-bold">{totalWorkers}</p>
                 </div>
                 <Users className="h-8 w-8 text-primary" />
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t.totalCollections}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {t.totalCollections}
+                  </p>
                   <p className="text-2xl font-bold">{totalCollections}</p>
                 </div>
                 <Calendar className="h-8 w-8 text-info" />
@@ -207,7 +239,9 @@ export default function CollectionsList() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">{t.savings}</p>
-                  <p className="text-2xl font-bold text-success">৳{totalSavings.toLocaleString()}</p>
+                  <p className="text-2xl font-bold text-success">
+                    ৳{totalSavings.toLocaleString()}
+                  </p>
                 </div>
                 <DollarSign className="h-8 w-8 text-success" />
               </div>
@@ -218,8 +252,12 @@ export default function CollectionsList() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t.installment}</p>
-                  <p className="text-2xl font-bold text-primary">৳{totalInstallments.toLocaleString()}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {t.installment}
+                  </p>
+                  <p className="text-2xl font-bold text-primary">
+                    ৳{totalInstallments.toLocaleString()}
+                  </p>
                 </div>
                 <DollarSign className="h-8 w-8 text-primary" />
               </div>
@@ -243,7 +281,7 @@ export default function CollectionsList() {
               {formatDate(selectedDate)}
             </Badge>
           </div>
-          
+
           <div className="relative w-full sm:w-80">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
@@ -258,120 +296,171 @@ export default function CollectionsList() {
         {/* Collections List */}
         {Object.keys(groupedCollections).length > 0 ? (
           <div className="space-y-6">
-            {Object.entries(groupedCollections).map(([workerName, workerCollections]) => {
-              const workerTotal = workerCollections.reduce((sum, collection) => sum + collection.totalAmount, 0);
-              const workerSavings = workerCollections.reduce((sum, collection) => sum + collection.savingsAmount, 0);
-              const workerInstallments = workerCollections.reduce((sum, collection) => sum + collection.installmentAmount, 0);
-              
-              return (
-                <Card key={workerName} className="overflow-hidden">
-                  <CardHeader className="bg-muted/30">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="h-10 w-10 bg-primary/10 rounded-full flex items-center justify-center">
-                          <MapPin className="h-5 w-5 text-primary" />
+            {Object.entries(groupedCollections).map(
+              ([workerName, workerCollections]) => {
+                const workerTotal = workerCollections.reduce(
+                  (sum, collection) => sum + collection.totalAmount,
+                  0,
+                );
+                const workerSavings = workerCollections.reduce(
+                  (sum, collection) => sum + collection.savingsAmount,
+                  0,
+                );
+                const workerInstallments = workerCollections.reduce(
+                  (sum, collection) => sum + collection.installmentAmount,
+                  0,
+                );
+
+                return (
+                  <Card key={workerName} className="overflow-hidden">
+                    <CardHeader className="bg-muted/30">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="h-10 w-10 bg-primary/10 rounded-full flex items-center justify-center">
+                            <MapPin className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <CardTitle className="text-lg">
+                              {workerName}
+                            </CardTitle>
+                            <p className="text-sm text-muted-foreground">
+                              {workerCollections.length}
+                              {t.collectionsCount} •{" "}
+                              {
+                                new Set(
+                                  workerCollections.map((c) => c.memberID),
+                                ).size
+                              }
+                              {t.memberCount}
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <CardTitle className="text-lg">{workerName}</CardTitle>
+                        <div className="text-right">
+                          <p className="text-2xl font-bold text-primary">
+                            ৳{workerTotal.toLocaleString()}
+                          </p>
                           <p className="text-sm text-muted-foreground">
-                            {workerCollections.length}{t.collectionsCount} • {new Set(workerCollections.map(c => c.memberID)).size}{t.memberCount}
+                            {t.savings}: ৳{workerSavings.toLocaleString()} |{" "}
+                            {t.installment}: ৳
+                            {workerInstallments.toLocaleString()}
                           </p>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <p className="text-2xl font-bold text-primary">৳{workerTotal.toLocaleString()}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {t.savings}: ৳{workerSavings.toLocaleString()} | {t.installment}: ৳{workerInstallments.toLocaleString()}
-                        </p>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  
-                  <CardContent className="p-0">
-                    <div className="space-y-0">
-                      {workerCollections.map((collection, index) => (
-                        <div key={collection.id}>
-                          <div className="p-4 hover:bg-muted/20 transition-colors">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center space-x-4">
-                                <div className="h-8 w-8 bg-accent/10 rounded-full flex items-center justify-center">
-                                  <Users className="h-4 w-4 text-accent" />
+                    </CardHeader>
+
+                    <CardContent className="p-0">
+                      <div className="space-y-0">
+                        {workerCollections.map((collection, index) => (
+                          <div key={collection.id}>
+                            <div className="p-4 hover:bg-muted/20 transition-colors">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center space-x-4">
+                                  <div className="h-8 w-8 bg-accent/10 rounded-full flex items-center justify-center">
+                                    <Users className="h-4 w-4 text-accent" />
+                                  </div>
+                                  <div>
+                                    <p className="font-medium">
+                                      {collection.memberName}
+                                    </p>
+                                    <p className="text-sm text-muted-foreground">
+                                      {language === "bn" ? "আইডি: " : "ID: "}
+                                      {collection.memberID}
+                                    </p>
+                                  </div>
                                 </div>
-                                <div>
-                                  <p className="font-medium">{collection.memberName}</p>
-                                  <p className="text-sm text-muted-foreground">
-                                    {language === 'bn' ? 'আইডি: ' : 'ID: '}{collection.memberID}
+
+                                <div className="flex items-center space-x-6">
+                                  <div className="text-center">
+                                    <p className="text-sm text-muted-foreground">
+                                      {t.savings}
+                                    </p>
+                                    <p className="font-semibold text-success">
+                                      ৳
+                                      {collection.savingsAmount.toLocaleString()}
+                                    </p>
+                                  </div>
+                                  <div className="text-center">
+                                    <p className="text-sm text-muted-foreground">
+                                      {t.installment}
+                                    </p>
+                                    <p className="font-semibold text-primary">
+                                      ৳
+                                      {collection.installmentAmount.toLocaleString()}
+                                    </p>
+                                  </div>
+                                  <div className="text-center">
+                                    <p className="text-sm text-muted-foreground">
+                                      {t.total}
+                                    </p>
+                                    <p className="font-bold text-lg">
+                                      ৳{collection.totalAmount.toLocaleString()}
+                                    </p>
+                                  </div>
+
+                                  <div className="flex gap-2">
+                                    <Button size="sm" variant="outline">
+                                      <Eye className="h-4 w-4" />
+                                    </Button>
+                                    <Button size="sm" variant="outline">
+                                      <Edit className="h-4 w-4" />
+                                    </Button>
+                                    <AlertDialog>
+                                      <AlertDialogTrigger asChild>
+                                        <Button
+                                          size="sm"
+                                          variant="outline"
+                                          className="text-destructive hover:bg-destructive hover:text-destructive-foreground"
+                                        >
+                                          <Trash2 className="h-4 w-4" />
+                                        </Button>
+                                      </AlertDialogTrigger>
+                                      <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                          <AlertDialogTitle>
+                                            {language === "bn"
+                                              ? "ডেটা সুরক্ষা"
+                                              : "Data Protection"}
+                                          </AlertDialogTitle>
+                                          <AlertDialogDescription>
+                                            {language === "bn"
+                                              ? "কালেকশন রেকর্ড স্থায়ীভাবে মুছে ফেলা যাবে না। সকল আর্থিক ডেটা অডিট ট্রেইল ও নিরাপত্তার জন্য সুরক্ষিত রাখা হয়।"
+                                              : "Collection records cannot be permanently deleted. All financial data is protected for audit trail and security purposes."}
+                                          </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                          <AlertDialogCancel>
+                                            {language === "bn"
+                                              ? "বুঝেছি"
+                                              : "Understood"}
+                                          </AlertDialogCancel>
+                                        </AlertDialogFooter>
+                                      </AlertDialogContent>
+                                    </AlertDialog>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {collection.notes && (
+                                <div className="mt-2 ml-12">
+                                  <p className="text-sm text-muted-foreground italic">
+                                    {language === "bn" ? "মন্তব্য: " : "Note: "}
+                                    {collection.notes}
                                   </p>
                                 </div>
-                              </div>
-                              
-                              <div className="flex items-center space-x-6">
-                                <div className="text-center">
-                                  <p className="text-sm text-muted-foreground">{t.savings}</p>
-                                  <p className="font-semibold text-success">৳{collection.savingsAmount.toLocaleString()}</p>
-                                </div>
-                                <div className="text-center">
-                                  <p className="text-sm text-muted-foreground">{t.installment}</p>
-                                  <p className="font-semibold text-primary">৳{collection.installmentAmount.toLocaleString()}</p>
-                                </div>
-                                <div className="text-center">
-                                  <p className="text-sm text-muted-foreground">{t.total}</p>
-                                  <p className="font-bold text-lg">৳{collection.totalAmount.toLocaleString()}</p>
-                                </div>
-                                
-                                <div className="flex gap-2">
-                                  <Button size="sm" variant="outline">
-                                    <Eye className="h-4 w-4" />
-                                  </Button>
-                                  <Button size="sm" variant="outline">
-                                    <Edit className="h-4 w-4" />
-                                  </Button>
-                                  <AlertDialog>
-                                    <AlertDialogTrigger asChild>
-                                      <Button size="sm" variant="outline" className="text-destructive hover:bg-destructive hover:text-destructive-foreground">
-                                        <Trash2 className="h-4 w-4" />
-                                      </Button>
-                                    </AlertDialogTrigger>
-                                    <AlertDialogContent>
-                                      <AlertDialogHeader>
-                                        <AlertDialogTitle>
-                                          {language === 'bn' ? 'ডেটা সুরক্ষা' : 'Data Protection'}
-                                        </AlertDialogTitle>
-                                        <AlertDialogDescription>
-                                          {language === 'bn'
-                                            ? 'কালেকশন রেকর্ড স্থায়ীভাবে মুছে ফেলা যাবে না। সকল আর্থিক ডেটা অডিট ট্রেইল ও নিরাপত্তার জন্য সুরক্ষিত রাখা হয়।'
-                                            : 'Collection records cannot be permanently deleted. All financial data is protected for audit trail and security purposes.'
-                                          }
-                                        </AlertDialogDescription>
-                                      </AlertDialogHeader>
-                                      <AlertDialogFooter>
-                                        <AlertDialogCancel>
-                                          {language === 'bn' ? 'বুঝেছি' : 'Understood'}
-                                        </AlertDialogCancel>
-                                      </AlertDialogFooter>
-                                    </AlertDialogContent>
-                                  </AlertDialog>
-                                </div>
-                              </div>
+                              )}
                             </div>
-                            
-                            {collection.notes && (
-                              <div className="mt-2 ml-12">
-                                <p className="text-sm text-muted-foreground italic">
-                                  {language === 'bn' ? 'মন্তব্য: ' : 'Note: '}{collection.notes}
-                                </p>
-                              </div>
+
+                            {index < workerCollections.length - 1 && (
+                              <Separator />
                             )}
                           </div>
-                          
-                          {index < workerCollections.length - 1 && <Separator />}
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              },
+            )}
           </div>
         ) : collections.length === 0 ? (
           /* No Collections State */
@@ -382,10 +471,9 @@ export default function CollectionsList() {
               </div>
               <h3 className="text-xl font-semibold mb-2">{t.noCollections}</h3>
               <p className="text-muted-foreground mb-6">
-                {language === 'bn' 
-                  ? 'আপনার প্রথম দৈনিক কালেকশন রেকর্ড করুন'
-                  : 'Record your first daily collection'
-                }
+                {language === "bn"
+                  ? "আপনার প্রথম দৈনিক কালেকশন রেকর্ড করুন"
+                  : "Record your first daily collection"}
               </p>
               <Button asChild>
                 <Link to="/daily-collection">
@@ -402,10 +490,9 @@ export default function CollectionsList() {
               <Search className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
               <h3 className="text-lg font-semibold mb-2">{t.noResults}</h3>
               <p className="text-muted-foreground">
-                {language === 'bn' 
-                  ? 'অন্য তারিখ বা নাম দিয়ে খোঁজ করে দেখুন'
-                  : 'Try searching with a different date or name'
-                }
+                {language === "bn"
+                  ? "অন্য তারিখ বা নাম দিয়ে খোঁজ করে দেখুন"
+                  : "Try searching with a different date or name"}
               </p>
             </CardContent>
           </Card>

@@ -4,16 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  Settings, 
-  Users, 
-  Building2, 
-  DollarSign, 
-  TrendingUp, 
-  Database, 
-  Shield, 
-  Bell, 
-  FileText, 
+import {
+  Settings,
+  Users,
+  Building2,
+  DollarSign,
+  TrendingUp,
+  Database,
+  Shield,
+  Bell,
+  FileText,
   BarChart3,
   Globe,
   Crown,
@@ -29,11 +29,11 @@ import {
   Eye,
   Edit,
   Trash2,
-  Plus
+  Plus,
 } from "lucide-react";
 
 export default function AdminDashboard() {
-  const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [language, setLanguage] = useState<"bn" | "en">("bn");
   const [organizations, setOrganizations] = useState<any[]>([]);
   const [allMembers, setAllMembers] = useState<any[]>([]);
   const [allCollections, setAllCollections] = useState<any[]>([]);
@@ -49,71 +49,71 @@ export default function AdminDashboard() {
     // For demo, we'll simulate multiple organizations
     const demoOrganizations = [
       {
-        id: 'org1',
-        name: 'আল-আমিন সমিতি',
-        plan: 'premium',
+        id: "org1",
+        name: "আল-আমিন সমিতি",
+        plan: "premium",
         members: 150,
         totalSavings: 450000,
         totalLoans: 800000,
-        status: 'active',
-        createdAt: '2024-01-15',
-        lastActive: '2024-12-31'
+        status: "active",
+        createdAt: "2024-01-15",
+        lastActive: "2024-12-31",
       },
       {
-        id: 'org2', 
-        name: 'বরকত সমিতি',
-        plan: 'pro',
+        id: "org2",
+        name: "বরকত সমিতি",
+        plan: "pro",
         members: 75,
         totalSavings: 180000,
         totalLoans: 300000,
-        status: 'active',
-        createdAt: '2024-03-20',
-        lastActive: '2024-12-30'
+        status: "active",
+        createdAt: "2024-03-20",
+        lastActive: "2024-12-30",
       },
       {
-        id: 'org3',
-        name: 'রহমত সমিতি',
-        plan: 'free',
+        id: "org3",
+        name: "রহমত সমিতি",
+        plan: "free",
         members: 25,
         totalSavings: 45000,
         totalLoans: 80000,
-        status: 'trial',
-        createdAt: '2024-11-10',
-        lastActive: '2024-12-29'
-      }
+        status: "trial",
+        createdAt: "2024-11-10",
+        lastActive: "2024-12-29",
+      },
     ];
 
     const demoUsers = [
       {
-        id: 'user1',
-        name: 'আহমেদ আলী',
-        email: 'ahmed@example.com',
-        role: 'admin',
-        organization: 'আল-আমিন সমিতি',
-        lastLogin: '2024-12-31',
-        status: 'active'
+        id: "user1",
+        name: "আহমেদ আলী",
+        email: "ahmed@example.com",
+        role: "admin",
+        organization: "আল-আমিন সমিতি",
+        lastLogin: "2024-12-31",
+        status: "active",
       },
       {
-        id: 'user2',
-        name: 'ফাতেমা খাতুন',
-        email: 'fatema@example.com', 
-        role: 'manager',
-        organization: 'বরকত সমিতি',
-        lastLogin: '2024-12-30',
-        status: 'active'
-      }
+        id: "user2",
+        name: "ফাতেমা খাতুন",
+        email: "fatema@example.com",
+        role: "manager",
+        organization: "বরকত সমিতি",
+        lastLogin: "2024-12-30",
+        status: "active",
+      },
     ];
 
     setOrganizations(demoOrganizations);
     setSystemUsers(demoUsers);
 
     // Load existing members and collections (this would be aggregated from all orgs)
-    const storedMembers = localStorage.getItem('members');
+    const storedMembers = localStorage.getItem("members");
     if (storedMembers) {
       setAllMembers(JSON.parse(storedMembers));
     }
 
-    const storedCollections = localStorage.getItem('dailyCollections');
+    const storedCollections = localStorage.getItem("dailyCollections");
     if (storedCollections) {
       setAllCollections(JSON.parse(storedCollections));
     }
@@ -166,7 +166,7 @@ export default function AdminDashboard() {
       delete: "মুছুন",
       excellent: "চমৎকার",
       good: "ভালো",
-      warning: "সতর্কতা"
+      warning: "সতর্কতা",
     },
     en: {
       title: "Admin Dashboard",
@@ -214,8 +214,8 @@ export default function AdminDashboard() {
       delete: "Delete",
       excellent: "Excellent",
       good: "Good",
-      warning: "Warning"
-    }
+      warning: "Warning",
+    },
   };
 
   const t = text[language];
@@ -223,32 +223,42 @@ export default function AdminDashboard() {
   // Calculate system statistics
   const systemStats = {
     totalOrganizations: organizations.length,
-    activeOrganizations: organizations.filter(org => org.status === 'active').length,
+    activeOrganizations: organizations.filter((org) => org.status === "active")
+      .length,
     totalUsers: systemUsers.length,
     totalMembers: organizations.reduce((sum, org) => sum + org.members, 0),
     totalRevenue: organizations.reduce((sum, org) => {
-      const planRevenue = org.plan === 'premium' ? 5000 : org.plan === 'pro' ? 2500 : 0;
+      const planRevenue =
+        org.plan === "premium" ? 5000 : org.plan === "pro" ? 2500 : 0;
       return sum + planRevenue;
     }, 0),
     totalSavings: organizations.reduce((sum, org) => sum + org.totalSavings, 0),
-    totalLoans: organizations.reduce((sum, org) => sum + org.totalLoans, 0)
+    totalLoans: organizations.reduce((sum, org) => sum + org.totalLoans, 0),
   };
 
   const getPlanBadgeColor = (plan: string) => {
     switch (plan) {
-      case 'premium': return 'bg-purple-100 text-purple-800';
-      case 'pro': return 'bg-blue-100 text-blue-800';
-      case 'free': return 'bg-gray-100 text-gray-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case "premium":
+        return "bg-purple-100 text-purple-800";
+      case "pro":
+        return "bg-blue-100 text-blue-800";
+      case "free":
+        return "bg-gray-100 text-gray-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   };
 
   const getStatusBadgeColor = (status: string) => {
     switch (status) {
-      case 'active': return 'bg-green-100 text-green-800';
-      case 'trial': return 'bg-yellow-100 text-yellow-800';
-      case 'suspended': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case "active":
+        return "bg-green-100 text-green-800";
+      case "trial":
+        return "bg-yellow-100 text-yellow-800";
+      case "suspended":
+        return "bg-red-100 text-red-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   };
 
@@ -262,18 +272,22 @@ export default function AdminDashboard() {
               <Crown className="h-5 w-5 text-white" />
             </div>
             <div>
-              <span className="font-bold text-xl text-purple-600">সমিতি ম্যানেজার</span>
-              <span className="text-sm text-muted-foreground ml-2">এডমিন প্যানেল</span>
+              <span className="font-bold text-xl text-purple-600">
+                সমিতি ম্যানেজার
+              </span>
+              <span className="text-sm text-muted-foreground ml-2">
+                এডমিন প্যানেল
+              </span>
             </div>
           </div>
-          
+
           <div className="ml-auto flex items-center space-x-4">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
+              onClick={() => setLanguage(language === "bn" ? "en" : "bn")}
             >
-              {language === 'bn' ? 'EN' : 'বাং'}
+              {language === "bn" ? "EN" : "বাং"}
             </Button>
             <Button variant="ghost" size="sm">
               <Bell className="h-5 w-5" />
@@ -309,8 +323,12 @@ export default function AdminDashboard() {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">{t.totalOrganizations}</p>
-                      <p className="text-3xl font-bold text-purple-600">{systemStats.totalOrganizations}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {t.totalOrganizations}
+                      </p>
+                      <p className="text-3xl font-bold text-purple-600">
+                        {systemStats.totalOrganizations}
+                      </p>
                     </div>
                     <Building2 className="h-10 w-10 text-purple-600" />
                   </div>
@@ -326,14 +344,20 @@ export default function AdminDashboard() {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">{t.totalMembers}</p>
-                      <p className="text-3xl font-bold text-blue-600">{systemStats.totalMembers.toLocaleString()}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {t.totalMembers}
+                      </p>
+                      <p className="text-3xl font-bold text-blue-600">
+                        {systemStats.totalMembers.toLocaleString()}
+                      </p>
                     </div>
                     <Users className="h-10 w-10 text-blue-600" />
                   </div>
                   <div className="mt-2">
                     <span className="text-sm text-muted-foreground">
-                      {language === 'bn' ? 'সব সংস্থায়' : 'Across all organizations'}
+                      {language === "bn"
+                        ? "সব সংস্থায়"
+                        : "Across all organizations"}
                     </span>
                   </div>
                 </CardContent>
@@ -343,14 +367,18 @@ export default function AdminDashboard() {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">{t.totalRevenue}</p>
-                      <p className="text-3xl font-bold text-green-600">৳{systemStats.totalRevenue.toLocaleString()}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {t.totalRevenue}
+                      </p>
+                      <p className="text-3xl font-bold text-green-600">
+                        ৳{systemStats.totalRevenue.toLocaleString()}
+                      </p>
                     </div>
                     <DollarSign className="h-10 w-10 text-green-600" />
                   </div>
                   <div className="mt-2">
                     <span className="text-sm text-green-600">
-                      {language === 'bn' ? 'ম��সিক' : 'Monthly'}
+                      {language === "bn" ? "ম��সিক" : "Monthly"}
                     </span>
                   </div>
                 </CardContent>
@@ -360,13 +388,17 @@ export default function AdminDashboard() {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">{t.systemHealth}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {t.systemHealth}
+                      </p>
                       <p className="text-3xl font-bold text-green-600">98%</p>
                     </div>
                     <Activity className="h-10 w-10 text-green-600" />
                   </div>
                   <div className="mt-2">
-                    <span className="text-sm text-green-600">{t.excellent}</span>
+                    <span className="text-sm text-green-600">
+                      {t.excellent}
+                    </span>
                   </div>
                 </CardContent>
               </Card>
@@ -379,21 +411,34 @@ export default function AdminDashboard() {
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <BarChart3 className="h-5 w-5 mr-2" />
-                    {language === 'bn' ? 'সিস্টেম ওভারভিউ' : 'System Overview'}
+                    {language === "bn" ? "সিস্টেম ওভারভিউ" : "System Overview"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'মোট সঞ্চয়' : 'Total Savings'}</span>
-                    <span className="font-bold text-green-600">৳{systemStats.totalSavings.toLocaleString()}</span>
+                    <span>
+                      {language === "bn" ? "মোট সঞ্চয়" : "Total Savings"}
+                    </span>
+                    <span className="font-bold text-green-600">
+                      ৳{systemStats.totalSavings.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'মোট ঋণ' : 'Total Loans'}</span>
-                    <span className="font-bold text-orange-600">৳{systemStats.totalLoans.toLocaleString()}</span>
+                    <span>{language === "bn" ? "মোট ঋণ" : "Total Loans"}</span>
+                    <span className="font-bold text-orange-600">
+                      ৳{systemStats.totalLoans.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'সক্রিয় সংস্থা' : 'Active Organizations'}</span>
-                    <span className="font-bold">{systemStats.activeOrganizations}/{systemStats.totalOrganizations}</span>
+                    <span>
+                      {language === "bn"
+                        ? "সক্রিয় সংস্থা"
+                        : "Active Organizations"}
+                    </span>
+                    <span className="font-bold">
+                      {systemStats.activeOrganizations}/
+                      {systemStats.totalOrganizations}
+                    </span>
                   </div>
                 </CardContent>
               </Card>
@@ -423,7 +468,11 @@ export default function AdminDashboard() {
                     <FileText className="h-4 w-4 mr-2" />
                     {t.auditLogs}
                   </Button>
-                  <Button className="w-full justify-start" variant="outline" asChild>
+                  <Button
+                    className="w-full justify-start"
+                    variant="outline"
+                    asChild
+                  >
                     <Link to="/system-management">
                       <Settings className="h-4 w-4 mr-2" />
                       {t.systemSettings}
@@ -450,12 +499,24 @@ export default function AdminDashboard() {
                   <table className="w-full">
                     <thead className="border-b bg-muted/30">
                       <tr>
-                        <th className="text-left p-4 font-semibold">{t.organizationName}</th>
-                        <th className="text-left p-4 font-semibold">{t.plan}</th>
-                        <th className="text-left p-4 font-semibold">{t.members}</th>
-                        <th className="text-left p-4 font-semibold">{t.status}</th>
-                        <th className="text-left p-4 font-semibold">{language === 'bn' ? 'সঞ্চয়' : 'Savings'}</th>
-                        <th className="text-right p-4 font-semibold">{t.actions}</th>
+                        <th className="text-left p-4 font-semibold">
+                          {t.organizationName}
+                        </th>
+                        <th className="text-left p-4 font-semibold">
+                          {t.plan}
+                        </th>
+                        <th className="text-left p-4 font-semibold">
+                          {t.members}
+                        </th>
+                        <th className="text-left p-4 font-semibold">
+                          {t.status}
+                        </th>
+                        <th className="text-left p-4 font-semibold">
+                          {language === "bn" ? "সঞ্চয়" : "Savings"}
+                        </th>
+                        <th className="text-right p-4 font-semibold">
+                          {t.actions}
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -465,7 +526,10 @@ export default function AdminDashboard() {
                             <div>
                               <p className="font-medium">{org.name}</p>
                               <p className="text-sm text-muted-foreground">
-                                {language === 'bn' ? 'তৈরি: ' : 'Created: '}{new Date(org.createdAt).toLocaleDateString('bn-BD')}
+                                {language === "bn" ? "তৈরি: " : "Created: "}
+                                {new Date(org.createdAt).toLocaleDateString(
+                                  "bn-BD",
+                                )}
                               </p>
                             </div>
                           </td>
@@ -483,7 +547,9 @@ export default function AdminDashboard() {
                             </Badge>
                           </td>
                           <td className="p-4">
-                            <span className="font-semibold text-green-600">৳{org.totalSavings.toLocaleString()}</span>
+                            <span className="font-semibold text-green-600">
+                              ৳{org.totalSavings.toLocaleString()}
+                            </span>
                           </td>
                           <td className="p-4">
                             <div className="flex gap-2 justify-end">
@@ -493,7 +559,11 @@ export default function AdminDashboard() {
                               <Button size="sm" variant="outline">
                                 <Edit className="h-4 w-4" />
                               </Button>
-                              <Button size="sm" variant="outline" className="text-destructive">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="text-destructive"
+                              >
                                 <Settings className="h-4 w-4" />
                               </Button>
                             </div>
@@ -513,7 +583,7 @@ export default function AdminDashboard() {
               <h2 className="text-2xl font-bold">{t.users}</h2>
               <Button>
                 <Plus className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'নতুন ব্যবহারকারী' : 'Add User'}
+                {language === "bn" ? "নতুন ব্যবহারকারী" : "Add User"}
               </Button>
             </div>
 
@@ -523,17 +593,32 @@ export default function AdminDashboard() {
                   <table className="w-full">
                     <thead className="border-b bg-muted/30">
                       <tr>
-                        <th className="text-left p-4 font-semibold">{t.userName}</th>
-                        <th className="text-left p-4 font-semibold">{t.email}</th>
-                        <th className="text-left p-4 font-semibold">{t.role}</th>
-                        <th className="text-left p-4 font-semibold">{t.organization}</th>
-                        <th className="text-left p-4 font-semibold">{t.lastLogin}</th>
-                        <th className="text-right p-4 font-semibold">{t.actions}</th>
+                        <th className="text-left p-4 font-semibold">
+                          {t.userName}
+                        </th>
+                        <th className="text-left p-4 font-semibold">
+                          {t.email}
+                        </th>
+                        <th className="text-left p-4 font-semibold">
+                          {t.role}
+                        </th>
+                        <th className="text-left p-4 font-semibold">
+                          {t.organization}
+                        </th>
+                        <th className="text-left p-4 font-semibold">
+                          {t.lastLogin}
+                        </th>
+                        <th className="text-right p-4 font-semibold">
+                          {t.actions}
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {systemUsers.map((user) => (
-                        <tr key={user.id} className="border-b hover:bg-muted/20">
+                        <tr
+                          key={user.id}
+                          className="border-b hover:bg-muted/20"
+                        >
                           <td className="p-4">
                             <div className="flex items-center space-x-3">
                               <div className="h-8 w-8 bg-primary/10 rounded-full flex items-center justify-center">
@@ -544,14 +629,20 @@ export default function AdminDashboard() {
                           </td>
                           <td className="p-4">{user.email}</td>
                           <td className="p-4">
-                            <Badge variant={user.role === 'admin' ? 'default' : 'secondary'}>
+                            <Badge
+                              variant={
+                                user.role === "admin" ? "default" : "secondary"
+                              }
+                            >
                               {t[user.role as keyof typeof t] || user.role}
                             </Badge>
                           </td>
                           <td className="p-4">{user.organization}</td>
                           <td className="p-4">
                             <span className="text-sm text-muted-foreground">
-                              {new Date(user.lastLogin).toLocaleDateString('bn-BD')}
+                              {new Date(user.lastLogin).toLocaleDateString(
+                                "bn-BD",
+                              )}
                             </span>
                           </td>
                           <td className="p-4">
@@ -562,7 +653,11 @@ export default function AdminDashboard() {
                               <Button size="sm" variant="outline">
                                 <Edit className="h-4 w-4" />
                               </Button>
-                              <Button size="sm" variant="outline" className="text-destructive">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="text-destructive"
+                              >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
                             </div>
@@ -579,16 +674,18 @@ export default function AdminDashboard() {
           {/* Reports Tab */}
           <TabsContent value="reports" className="space-y-6">
             <h2 className="text-2xl font-bold">{t.reports}</h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="cursor-pointer hover:shadow-lg transition-shadow">
                 <CardContent className="p-6 text-center">
                   <BarChart3 className="h-12 w-12 mx-auto text-blue-600 mb-4" />
                   <h3 className="font-semibold mb-2">
-                    {language === 'bn' ? 'আর্থিক রিপোর্ট' : 'Financial Reports'}
+                    {language === "bn" ? "আর্থিক রিপোর্ট" : "Financial Reports"}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {language === 'bn' ? 'সব সংস্থার আর্থিক পরিসংখ্যান' : 'Financial statistics across all organizations'}
+                    {language === "bn"
+                      ? "সব সংস্থার আর্থিক পরিসংখ্যান"
+                      : "Financial statistics across all organizations"}
                   </p>
                 </CardContent>
               </Card>
@@ -597,10 +694,12 @@ export default function AdminDashboard() {
                 <CardContent className="p-6 text-center">
                   <Users className="h-12 w-12 mx-auto text-green-600 mb-4" />
                   <h3 className="font-semibold mb-2">
-                    {language === 'bn' ? 'ব্যবহারকারী রিপোর্ট' : 'User Reports'}
+                    {language === "bn" ? "ব্যবহারকারী রিপোর্ট" : "User Reports"}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {language === 'bn' ? 'ব্যবহারকারী কার্যকলাপ ও এনগেজমেন্ট' : 'User activity and engagement'}
+                    {language === "bn"
+                      ? "ব্যবহারকারী কার্যকলাপ ও এনগেজমেন্ট"
+                      : "User activity and engagement"}
                   </p>
                 </CardContent>
               </Card>
@@ -609,10 +708,14 @@ export default function AdminDashboard() {
                 <CardContent className="p-6 text-center">
                   <Activity className="h-12 w-12 mx-auto text-purple-600 mb-4" />
                   <h3 className="font-semibold mb-2">
-                    {language === 'bn' ? 'সিস্টেম পারফরমেন্স' : 'System Performance'}
+                    {language === "bn"
+                      ? "সিস্টেম পারফরমেন্স"
+                      : "System Performance"}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {language === 'bn' ? 'সিস্টেম ব্যবহার ও পারফরমেন্স মেট্রিক্স' : 'System usage and performance metrics'}
+                    {language === "bn"
+                      ? "সিস্টেম ব্যবহার ও পারফরমেন্স মেট্রিক্স"
+                      : "System usage and performance metrics"}
                   </p>
                 </CardContent>
               </Card>
@@ -622,27 +725,45 @@ export default function AdminDashboard() {
           {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-6">
             <h2 className="text-2xl font-bold">{t.settings}</h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Settings className="h-5 w-5 mr-2" />
-                    {language === 'bn' ? 'সিস্টেম কনফিগারেশন' : 'System Configuration'}
+                    {language === "bn"
+                      ? "সিস্টেম কনফিগারেশন"
+                      : "System Configuration"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'রক্ষণাবেক্ষণ মো���' : 'Maintenance Mode'}</span>
-                    <Badge variant="secondary">{language === 'bn' ? 'বন্ধ' : 'Off'}</Badge>
+                    <span>
+                      {language === "bn"
+                        ? "রক্ষণাবেক্ষণ মো���"
+                        : "Maintenance Mode"}
+                    </span>
+                    <Badge variant="secondary">
+                      {language === "bn" ? "বন্ধ" : "Off"}
+                    </Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'স্বয়ংক্রিয় ব্যাকআপ' : 'Auto Backup'}</span>
-                    <Badge variant="secondary">{language === 'bn' ? 'সক্রিয়' : 'Enabled'}</Badge>
+                    <span>
+                      {language === "bn"
+                        ? "স্বয়ংক্রিয় ব্যাকআপ"
+                        : "Auto Backup"}
+                    </span>
+                    <Badge variant="secondary">
+                      {language === "bn" ? "সক্রিয়" : "Enabled"}
+                    </Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'নিরাপত্তা স্তর' : 'Security Level'}</span>
-                    <Badge className="bg-green-100 text-green-800">{language === 'bn' ? 'উচ্চ' : 'High'}</Badge>
+                    <span>
+                      {language === "bn" ? "নিরাপত্তা স্তর" : "Security Level"}
+                    </span>
+                    <Badge className="bg-green-100 text-green-800">
+                      {language === "bn" ? "উচ্চ" : "High"}
+                    </Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -651,21 +772,37 @@ export default function AdminDashboard() {
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Shield className="h-5 w-5 mr-2" />
-                    {language === 'bn' ? 'নিরাপত্তা ব্যবস্থা' : 'Security Settings'}
+                    {language === "bn"
+                      ? "নিরাপত্তা ব্যবস্থা"
+                      : "Security Settings"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'দুই-ফ্যাক্টর প্রমাণীকরণ' : 'Two-Factor Auth'}</span>
-                    <Badge className="bg-green-100 text-green-800">{language === 'bn' ? 'সক্রিয়' : 'Enabled'}</Badge>
+                    <span>
+                      {language === "bn"
+                        ? "দুই-ফ্যাক্টর প্রমাণীকরণ"
+                        : "Two-Factor Auth"}
+                    </span>
+                    <Badge className="bg-green-100 text-green-800">
+                      {language === "bn" ? "সক্রিয়" : "Enabled"}
+                    </Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'এনক্রিপশন' : 'Encryption'}</span>
-                    <Badge className="bg-green-100 text-green-800">AES-256</Badge>
+                    <span>
+                      {language === "bn" ? "এনক্রিপশন" : "Encryption"}
+                    </span>
+                    <Badge className="bg-green-100 text-green-800">
+                      AES-256
+                    </Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'সেশন টাইমআউট' : 'Session Timeout'}</span>
-                    <Badge variant="secondary">30 {language === 'bn' ? 'মিনিট' : 'min'}</Badge>
+                    <span>
+                      {language === "bn" ? "সেশন টাইমআউট" : "Session Timeout"}
+                    </span>
+                    <Badge variant="secondary">
+                      30 {language === "bn" ? "মিনিট" : "min"}
+                    </Badge>
                   </div>
                 </CardContent>
               </Card>

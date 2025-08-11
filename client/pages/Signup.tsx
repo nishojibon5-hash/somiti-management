@@ -3,25 +3,37 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Users, Eye, EyeOff } from "lucide-react";
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
-  const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [language, setLanguage] = useState<"bn" | "en">("bn");
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    organizationName: '',
-    fullName: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    plan: '',
-    agreeTerms: false
+    organizationName: "",
+    fullName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+    plan: "",
+    agreeTerms: false,
   });
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -45,7 +57,7 @@ export default function Signup() {
       agreeTerms: "আমি শর্তাবলী ও গোপনীয়তা নীতি মেনে নিই",
       signupButton: "সাইন আপ করুন",
       haveAccount: "ইতিমধ্যে অ্যাকাউন্ট আছে?",
-      login: "লগইন করুন"
+      login: "লগইন করুন",
     },
     en: {
       title: "Somiti Manager",
@@ -65,16 +77,16 @@ export default function Signup() {
       agreeTerms: "I agree to the Terms & Privacy Policy",
       signupButton: "Sign Up",
       haveAccount: "Already have an account?",
-      login: "Login"
-    }
+      login: "Login",
+    },
   };
 
   const t = text[language];
 
   const handleInputChange = (field: string, value: string | boolean) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
@@ -82,12 +94,21 @@ export default function Signup() {
     e.preventDefault();
 
     // Validation
-    if (!formData.organizationName || !formData.fullName || !formData.email ||
-        !formData.phone || !formData.password || !formData.plan) {
+    if (
+      !formData.organizationName ||
+      !formData.fullName ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.password ||
+      !formData.plan
+    ) {
       toast({
         variant: "destructive",
-        title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'সকল ক্ষেত্র পূরণ করুন' : 'Please fill all fields'
+        title: language === "bn" ? "ত্রুটি" : "Error",
+        description:
+          language === "bn"
+            ? "সকল ক্ষেত্র পূরণ করুন"
+            : "Please fill all fields",
       });
       return;
     }
@@ -95,8 +116,9 @@ export default function Signup() {
     if (formData.password !== formData.confirmPassword) {
       toast({
         variant: "destructive",
-        title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'পাসওয়ার্ড মিলছে না' : 'Passwords do not match'
+        title: language === "bn" ? "ত্রুটি" : "Error",
+        description:
+          language === "bn" ? "পাসওয়ার্ড মিলছে না" : "Passwords do not match",
       });
       return;
     }
@@ -104,8 +126,11 @@ export default function Signup() {
     if (!formData.agreeTerms) {
       toast({
         variant: "destructive",
-        title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'শর্তাবলী মেনে নিন' : 'Please agree to terms and conditions'
+        title: language === "bn" ? "ত্রুটি" : "Error",
+        description:
+          language === "bn"
+            ? "শর্তাবলী মেনে নিন"
+            : "Please agree to terms and conditions",
       });
       return;
     }
@@ -114,30 +139,39 @@ export default function Signup() {
 
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
       // Store user data in localStorage (in real app, this would be handled by backend)
-      localStorage.setItem('userLoggedIn', 'true');
-      localStorage.setItem('userData', JSON.stringify({
-        name: formData.fullName,
-        email: formData.email,
-        organization: formData.organizationName,
-        plan: formData.plan
-      }));
+      localStorage.setItem("userLoggedIn", "true");
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          organization: formData.organizationName,
+          plan: formData.plan,
+        }),
+      );
 
       // Show success message
       toast({
-        title: language === 'bn' ? 'সফল!' : 'Success!',
-        description: language === 'bn' ? 'আপনার অ্যাকাউন্ট তৈরি হয়েছে' : 'Your account has been created successfully',
+        title: language === "bn" ? "সফল!" : "Success!",
+        description:
+          language === "bn"
+            ? "আপনার অ্যাকাউন্ট তৈরি হয়েছে"
+            : "Your account has been created successfully",
       });
 
       // Navigate to dashboard
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (error) {
       toast({
         variant: "destructive",
-        title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'রেজিস্ট্রেশন ব্যর্থ হয়েছে' : 'Registration failed'
+        title: language === "bn" ? "ত্রুটি" : "Error",
+        description:
+          language === "bn"
+            ? "রেজিস্ট্রেশন ব্যর্থ হয়েছে"
+            : "Registration failed",
       });
     } finally {
       setIsLoading(false);
@@ -167,9 +201,9 @@ export default function Signup() {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
+                onClick={() => setLanguage(language === "bn" ? "en" : "bn")}
               >
-                {language === 'bn' ? 'EN' : 'বাং'}
+                {language === "bn" ? "EN" : "বাং"}
               </Button>
             </div>
 
@@ -180,8 +214,14 @@ export default function Signup() {
                   id="organization"
                   type="text"
                   value={formData.organizationName}
-                  onChange={(e) => handleInputChange('organizationName', e.target.value)}
-                  placeholder={language === 'bn' ? 'আপনার প্রতিষ্ঠানের নাম' : 'Enter organization name'}
+                  onChange={(e) =>
+                    handleInputChange("organizationName", e.target.value)
+                  }
+                  placeholder={
+                    language === "bn"
+                      ? "আপনার প্রতিষ্ঠানের নাম"
+                      : "Enter organization name"
+                  }
                   required
                 />
               </div>
@@ -192,20 +232,28 @@ export default function Signup() {
                   id="fullName"
                   type="text"
                   value={formData.fullName}
-                  onChange={(e) => handleInputChange('fullName', e.target.value)}
-                  placeholder={language === 'bn' ? 'আপনার পূর্ণ নাম' : 'Enter your full name'}
+                  onChange={(e) =>
+                    handleInputChange("fullName", e.target.value)
+                  }
+                  placeholder={
+                    language === "bn"
+                      ? "আপনার পূর্ণ নাম"
+                      : "Enter your full name"
+                  }
                   required
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="email">{t.email}</Label>
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  placeholder={language === 'bn' ? 'আপনার ইমেইল' : 'Enter your email'}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  placeholder={
+                    language === "bn" ? "আপনার ইমেইল" : "Enter your email"
+                  }
                   required
                 />
               </div>
@@ -216,26 +264,45 @@ export default function Signup() {
                   id="phone"
                   type="tel"
                   value={formData.phone}
-                  onChange={(e) => handleInputChange('phone', e.target.value)}
-                  placeholder={language === 'bn' ? '+৮৮০ ১৭ ১২৩৪ ৫৬৭৮' : '+880 17 1234 5678'}
+                  onChange={(e) => handleInputChange("phone", e.target.value)}
+                  placeholder={
+                    language === "bn"
+                      ? "+৮৮০ ১৭ ১২৩৪ ৫৬৭৮"
+                      : "+880 17 1234 5678"
+                  }
                   required
                 />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="plan">{t.plan}</Label>
-                <Select value={formData.plan} onValueChange={(value) => handleInputChange('plan', value)}>
+                <Select
+                  value={formData.plan}
+                  onValueChange={(value) => handleInputChange("plan", value)}
+                >
                   <SelectTrigger>
-                    <SelectValue placeholder={language === 'bn' ? 'প্ল্যান নির্বাচন করুন' : 'Select a plan'} />
+                    <SelectValue
+                      placeholder={
+                        language === "bn"
+                          ? "প্ল্যান নির্বাচন করুন"
+                          : "Select a plan"
+                      }
+                    />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="free">{t.free} - {language === 'bn' ? 'বিনামূল্যে' : 'Free'}</SelectItem>
-                    <SelectItem value="pro">{t.pro} - ৳২,৫০০/{language === 'bn' ? 'মাস' : 'month'}</SelectItem>
-                    <SelectItem value="premium">{t.premium} - ৳৫,০০০/{language === 'bn' ? 'মাস' : 'month'}</SelectItem>
+                    <SelectItem value="free">
+                      {t.free} - {language === "bn" ? "বিনামূল্যে" : "Free"}
+                    </SelectItem>
+                    <SelectItem value="pro">
+                      {t.pro} - ৳২,৫০০/{language === "bn" ? "মাস" : "month"}
+                    </SelectItem>
+                    <SelectItem value="premium">
+                      {t.premium} - ৳৫,০০০/{language === "bn" ? "মাস" : "month"}
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="password">{t.password}</Label>
                 <div className="relative">
@@ -243,8 +310,14 @@ export default function Signup() {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     value={formData.password}
-                    onChange={(e) => handleInputChange('password', e.target.value)}
-                    placeholder={language === 'bn' ? 'আপনার পাসওয়ার্ড' : 'Enter your password'}
+                    onChange={(e) =>
+                      handleInputChange("password", e.target.value)
+                    }
+                    placeholder={
+                      language === "bn"
+                        ? "আপনার পাসওয়ার্ড"
+                        : "Enter your password"
+                    }
                     required
                   />
                   <Button
@@ -269,8 +342,14 @@ export default function Signup() {
                   id="confirmPassword"
                   type="password"
                   value={formData.confirmPassword}
-                  onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                  placeholder={language === 'bn' ? 'পাসওয়ার্ড নিশ্চিত করুন' : 'Confirm your password'}
+                  onChange={(e) =>
+                    handleInputChange("confirmPassword", e.target.value)
+                  }
+                  placeholder={
+                    language === "bn"
+                      ? "পাসওয়ার্ড নিশ্চিত করুন"
+                      : "Confirm your password"
+                  }
                   required
                 />
               </div>
@@ -279,7 +358,9 @@ export default function Signup() {
                 <Checkbox
                   id="terms"
                   checked={formData.agreeTerms}
-                  onCheckedChange={(checked) => handleInputChange('agreeTerms', checked as boolean)}
+                  onCheckedChange={(checked) =>
+                    handleInputChange("agreeTerms", checked as boolean)
+                  }
                   required
                 />
                 <Label htmlFor="terms" className="text-sm">
@@ -296,7 +377,7 @@ export default function Signup() {
                 {isLoading ? (
                   <div className="flex items-center">
                     <div className="animate-spin h-4 w-4 border-2 border-background border-t-transparent rounded-full mr-2"></div>
-                    {language === 'bn' ? 'অপেক্ষা করুন...' : 'Please wait...'}
+                    {language === "bn" ? "অপেক্ষা করুন..." : "Please wait..."}
                   </div>
                 ) : (
                   t.signupButton

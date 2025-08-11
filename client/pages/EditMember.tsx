@@ -5,19 +5,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  Users, 
-  ArrowLeft, 
-  User, 
-  Phone, 
+import {
+  Users,
+  ArrowLeft,
+  User,
+  Phone,
   DollarSign,
   MapPin,
   Save,
-  AlertTriangle
+  AlertTriangle,
 } from "lucide-react";
 
 export default function EditMember() {
-  const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [language, setLanguage] = useState<"bn" | "en">("bn");
   const [isLoading, setIsLoading] = useState(false);
   const [members, setMembers] = useState<any[]>([]);
   const navigate = useNavigate();
@@ -25,39 +25,41 @@ export default function EditMember() {
   const { memberID } = useParams();
 
   const [formData, setFormData] = useState({
-    memberID: '',
-    memberName: '',
-    nidNumber: '',
-    mobileNumber: '',
-    workerName: '',
-    loanAmount: '',
-    savingsAmount: '',
-    dailyInstallment: '',
-    dailySavings: ''
+    memberID: "",
+    memberName: "",
+    nidNumber: "",
+    mobileNumber: "",
+    workerName: "",
+    loanAmount: "",
+    savingsAmount: "",
+    dailyInstallment: "",
+    dailySavings: "",
   });
 
   const [originalData, setOriginalData] = useState<any>(null);
 
   useEffect(() => {
     // Load members data and find the specific member
-    const storedMembers = localStorage.getItem('members');
+    const storedMembers = localStorage.getItem("members");
     if (storedMembers && memberID) {
       const allMembers = JSON.parse(storedMembers);
       setMembers(allMembers);
-      
-      const memberToEdit = allMembers.find((member: any) => member.memberID === memberID);
+
+      const memberToEdit = allMembers.find(
+        (member: any) => member.memberID === memberID,
+      );
       if (memberToEdit) {
         setOriginalData(memberToEdit);
         setFormData({
-          memberID: memberToEdit.memberID || '',
-          memberName: memberToEdit.memberName || '',
-          nidNumber: memberToEdit.nidNumber || '',
-          mobileNumber: memberToEdit.mobileNumber || '',
-          workerName: memberToEdit.workerName || '',
-          loanAmount: memberToEdit.loanAmount?.toString() || '',
-          savingsAmount: memberToEdit.savingsAmount?.toString() || '',
-          dailyInstallment: memberToEdit.dailyInstallment?.toString() || '',
-          dailySavings: memberToEdit.dailySavings?.toString() || ''
+          memberID: memberToEdit.memberID || "",
+          memberName: memberToEdit.memberName || "",
+          nidNumber: memberToEdit.nidNumber || "",
+          mobileNumber: memberToEdit.mobileNumber || "",
+          workerName: memberToEdit.workerName || "",
+          loanAmount: memberToEdit.loanAmount?.toString() || "",
+          savingsAmount: memberToEdit.savingsAmount?.toString() || "",
+          dailyInstallment: memberToEdit.dailyInstallment?.toString() || "",
+          dailySavings: memberToEdit.dailySavings?.toString() || "",
         });
       }
     }
@@ -82,9 +84,10 @@ export default function EditMember() {
       cancel: "বাতিল",
       required: "আবশ্যক",
       dataProtection: "ডেটা সুরক্ষা",
-      protectionNotice: "গুরুত্বপূর্ণ: এই সদস্যের তথ্য স্থায়ীভাবে মুছে ফেলা যাবে না। সব পরিবর্তন লগ রাখা হবে।",
+      protectionNotice:
+        "গুরুত্বপূর্ণ: এই সদস্যের তথ্য স্থায়ীভাবে মুছে ফেলা যাবে না। সব পরিবর্তন লগ রাখা হবে।",
       memberNotFound: "সদস্য পাওয়া যায়নি",
-      backToList: "সদস্য তালিকায় ফিরুন"
+      backToList: "সদস্য তালিকায় ফিরুন",
     },
     en: {
       title: "Edit Member Information",
@@ -104,30 +107,39 @@ export default function EditMember() {
       cancel: "Cancel",
       required: "Required",
       dataProtection: "Data Protection",
-      protectionNotice: "Important: This member's data cannot be permanently deleted. All changes will be logged.",
+      protectionNotice:
+        "Important: This member's data cannot be permanently deleted. All changes will be logged.",
       memberNotFound: "Member Not Found",
-      backToList: "Back to Members List"
-    }
+      backToList: "Back to Members List",
+    },
   };
 
   const t = text[language];
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validation
-    if (!formData.memberName || !formData.nidNumber || !formData.mobileNumber || !formData.workerName) {
+    if (
+      !formData.memberName ||
+      !formData.nidNumber ||
+      !formData.mobileNumber ||
+      !formData.workerName
+    ) {
       toast({
         variant: "destructive",
-        title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'সদস্যের নাম, এনআইডি, মোবাইল ও কর্মীর নাম আবশ্যক' : 'Member name, NID, mobile and worker name are required'
+        title: language === "bn" ? "ত্রুটি" : "Error",
+        description:
+          language === "bn"
+            ? "সদস্যের নাম, এনআইডি, মোবাইল ও কর্মীর নাম আবশ্যক"
+            : "Member name, NID, mobile and worker name are required",
       });
       return;
     }
@@ -147,35 +159,38 @@ export default function EditMember() {
         dailyInstallment: parseFloat(formData.dailyInstallment) || 0,
         dailySavings: parseFloat(formData.dailySavings) || 0,
         lastModified: new Date().toISOString(),
-        modifiedBy: 'Admin' // In real app, this would be the current user
+        modifiedBy: "Admin", // In real app, this would be the current user
       };
 
       // Update members array
-      const updatedMembers = members.map(member => 
-        member.memberID === memberID ? updatedMember : member
+      const updatedMembers = members.map((member) =>
+        member.memberID === memberID ? updatedMember : member,
       );
 
       // Save to localStorage
-      localStorage.setItem('members', JSON.stringify(updatedMembers));
+      localStorage.setItem("members", JSON.stringify(updatedMembers));
 
       // Log the change for audit trail
-      const auditLog = JSON.parse(localStorage.getItem('auditLog') || '[]');
+      const auditLog = JSON.parse(localStorage.getItem("auditLog") || "[]");
       auditLog.push({
         id: Date.now().toString(),
-        action: 'member_updated',
+        action: "member_updated",
         memberID: memberID,
         changes: {
           before: originalData,
-          after: updatedMember
+          after: updatedMember,
         },
         timestamp: new Date().toISOString(),
-        performedBy: 'Admin'
+        performedBy: "Admin",
       });
-      localStorage.setItem('auditLog', JSON.stringify(auditLog));
+      localStorage.setItem("auditLog", JSON.stringify(auditLog));
 
       toast({
-        title: language === 'bn' ? 'সফল!' : 'Success!',
-        description: language === 'bn' ? 'সদস্যের তথ্য আপডেট করা হয়েছে' : 'Member information updated successfully',
+        title: language === "bn" ? "সফল!" : "Success!",
+        description:
+          language === "bn"
+            ? "সদস্যের তথ্য আপডেট করা হয়েছে"
+            : "Member information updated successfully",
       });
 
       // Navigate back to member profile
@@ -183,8 +198,11 @@ export default function EditMember() {
     } catch (error) {
       toast({
         variant: "destructive",
-        title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'সদস্যের তথ্য আপডেট করতে ব্যর্থ' : 'Failed to update member information'
+        title: language === "bn" ? "ত্রুটি" : "Error",
+        description:
+          language === "bn"
+            ? "সদস্যের তথ্য আপডেট করতে ব্যর্থ"
+            : "Failed to update member information",
       });
     } finally {
       setIsLoading(false);
@@ -214,24 +232,26 @@ export default function EditMember() {
             <Button variant="ghost" size="sm" asChild>
               <Link to={`/member/${memberID}`}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'ফিরে যান' : 'Back'}
+                {language === "bn" ? "ফিরে যান" : "Back"}
               </Link>
             </Button>
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
                 <Users className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="font-bold text-xl text-primary">সমিতি ম্যানেজার</span>
+              <span className="font-bold text-xl text-primary">
+                সমিতি ম্যানেজার
+              </span>
             </div>
           </div>
-          
+
           <div className="ml-auto flex items-center space-x-4">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
+              onClick={() => setLanguage(language === "bn" ? "en" : "bn")}
             >
-              {language === 'bn' ? 'EN' : 'বাং'}
+              {language === "bn" ? "EN" : "বাং"}
             </Button>
           </div>
         </div>
@@ -250,8 +270,12 @@ export default function EditMember() {
             <div className="flex items-start space-x-3">
               <AlertTriangle className="h-5 w-5 text-amber-600 dark:text-amber-400 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-amber-800 dark:text-amber-200 mb-1">{t.dataProtection}</h4>
-                <p className="text-sm text-amber-700 dark:text-amber-300">{t.protectionNotice}</p>
+                <h4 className="font-semibold text-amber-800 dark:text-amber-200 mb-1">
+                  {t.dataProtection}
+                </h4>
+                <p className="text-sm text-amber-700 dark:text-amber-300">
+                  {t.protectionNotice}
+                </p>
               </div>
             </div>
           </CardContent>
@@ -269,54 +293,78 @@ export default function EditMember() {
             <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="memberID">{t.memberID}</Label>
-                <Input 
+                <Input
                   id="memberID"
                   value={formData.memberID}
                   readOnly
                   className="bg-muted"
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="memberName">{t.memberName} *</Label>
-                <Input 
+                <Input
                   id="memberName"
                   value={formData.memberName}
-                  onChange={(e) => handleInputChange('memberName', e.target.value)}
-                  placeholder={language === 'bn' ? 'সদস্যের পূর্ণ নাম লিখুন' : 'Enter member full name'}
+                  onChange={(e) =>
+                    handleInputChange("memberName", e.target.value)
+                  }
+                  placeholder={
+                    language === "bn"
+                      ? "সদস্যের পূর্ণ নাম লিখুন"
+                      : "Enter member full name"
+                  }
                   required
                 />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="nidNumber">{t.nidNumber} *</Label>
-                <Input 
+                <Input
                   id="nidNumber"
                   value={formData.nidNumber}
-                  onChange={(e) => handleInputChange('nidNumber', e.target.value)}
-                  placeholder={language === 'bn' ? 'জাতীয় পরিচয়পত্র নম্বর' : 'National ID number'}
+                  onChange={(e) =>
+                    handleInputChange("nidNumber", e.target.value)
+                  }
+                  placeholder={
+                    language === "bn"
+                      ? "জাতীয় পরিচয়পত্র নম্বর"
+                      : "National ID number"
+                  }
                   required
                 />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="mobileNumber">{t.mobileNumber} *</Label>
-                <Input 
+                <Input
                   id="mobileNumber"
                   value={formData.mobileNumber}
-                  onChange={(e) => handleInputChange('mobileNumber', e.target.value)}
-                  placeholder={language === 'bn' ? '+৮৮০ ১৭ ১২৩৪ ৫৬৭৮' : '+880 17 1234 5678'}
+                  onChange={(e) =>
+                    handleInputChange("mobileNumber", e.target.value)
+                  }
+                  placeholder={
+                    language === "bn"
+                      ? "+৮৮০ ১৭ ১২৩৪ ৫৬৭৮"
+                      : "+880 17 1234 5678"
+                  }
                   required
                 />
               </div>
 
               <div className="space-y-2 md:col-span-2">
                 <Label htmlFor="workerName">{t.workerName} *</Label>
-                <Input 
+                <Input
                   id="workerName"
                   value={formData.workerName}
-                  onChange={(e) => handleInputChange('workerName', e.target.value)}
-                  placeholder={language === 'bn' ? 'এলাকার দায়িত্বপ্রাপ্ত কর্মীর নাম' : 'Area responsible worker name'}
+                  onChange={(e) =>
+                    handleInputChange("workerName", e.target.value)
+                  }
+                  placeholder={
+                    language === "bn"
+                      ? "এলাকার দায়িত্বপ্রাপ্ত কর্মীর নাম"
+                      : "Area responsible worker name"
+                  }
                   required
                 />
               </div>
@@ -334,12 +382,18 @@ export default function EditMember() {
             <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="loanAmount">{t.loanAmount}</Label>
-                <Input 
+                <Input
                   id="loanAmount"
                   type="number"
                   value={formData.loanAmount}
-                  onChange={(e) => handleInputChange('loanAmount', e.target.value)}
-                  placeholder={language === 'bn' ? 'ঋণের পরিমাণ (টাকা)' : 'Loan amount (BDT)'}
+                  onChange={(e) =>
+                    handleInputChange("loanAmount", e.target.value)
+                  }
+                  placeholder={
+                    language === "bn"
+                      ? "ঋণের পরিমাণ (টাকা)"
+                      : "Loan amount (BDT)"
+                  }
                   min="0"
                   step="100"
                 />
@@ -347,12 +401,18 @@ export default function EditMember() {
 
               <div className="space-y-2">
                 <Label htmlFor="savingsAmount">{t.savingsAmount}</Label>
-                <Input 
+                <Input
                   id="savingsAmount"
                   type="number"
                   value={formData.savingsAmount}
-                  onChange={(e) => handleInputChange('savingsAmount', e.target.value)}
-                  placeholder={language === 'bn' ? 'সঞ্চয়ের পরিমাণ (টাকা)' : 'Savings amount (BDT)'}
+                  onChange={(e) =>
+                    handleInputChange("savingsAmount", e.target.value)
+                  }
+                  placeholder={
+                    language === "bn"
+                      ? "সঞ্চয়ের পরিমাণ (টাকা)"
+                      : "Savings amount (BDT)"
+                  }
                   min="0"
                   step="10"
                 />
@@ -360,12 +420,18 @@ export default function EditMember() {
 
               <div className="space-y-2">
                 <Label htmlFor="dailyInstallment">{t.dailyInstallment}</Label>
-                <Input 
+                <Input
                   id="dailyInstallment"
                   type="number"
                   value={formData.dailyInstallment}
-                  onChange={(e) => handleInputChange('dailyInstallment', e.target.value)}
-                  placeholder={language === 'bn' ? 'প্রতিদিন কিস্তির টাকা' : 'Daily installment amount'}
+                  onChange={(e) =>
+                    handleInputChange("dailyInstallment", e.target.value)
+                  }
+                  placeholder={
+                    language === "bn"
+                      ? "প্রতিদিন কিস্তির টাকা"
+                      : "Daily installment amount"
+                  }
                   min="0"
                   step="10"
                 />
@@ -373,12 +439,18 @@ export default function EditMember() {
 
               <div className="space-y-2">
                 <Label htmlFor="dailySavings">{t.dailySavings}</Label>
-                <Input 
+                <Input
                   id="dailySavings"
                   type="number"
                   value={formData.dailySavings}
-                  onChange={(e) => handleInputChange('dailySavings', e.target.value)}
-                  placeholder={language === 'bn' ? 'প্রতিদিন সঞ্চয়ের টাকা' : 'Daily savings amount'}
+                  onChange={(e) =>
+                    handleInputChange("dailySavings", e.target.value)
+                  }
+                  placeholder={
+                    language === "bn"
+                      ? "প্রতিদিন সঞ্চয়ের টাকা"
+                      : "Daily savings amount"
+                  }
                   min="0"
                   step="10"
                 />
@@ -391,15 +463,12 @@ export default function EditMember() {
             <Button variant="outline" type="button" asChild>
               <Link to={`/member/${memberID}`}>{t.cancel}</Link>
             </Button>
-            
-            <Button 
-              type="submit"
-              disabled={isLoading}
-            >
+
+            <Button type="submit" disabled={isLoading}>
               {isLoading ? (
                 <div className="flex items-center">
                   <div className="animate-spin h-4 w-4 border-2 border-background border-t-transparent rounded-full mr-2"></div>
-                  {language === 'bn' ? 'সেভ হচ্ছে...' : 'Saving...'}
+                  {language === "bn" ? "সেভ হচ্ছে..." : "Saving..."}
                 </div>
               ) : (
                 <>

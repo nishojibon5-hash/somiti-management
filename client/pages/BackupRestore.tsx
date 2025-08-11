@@ -6,8 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  ArrowLeft, 
+import {
+  ArrowLeft,
   Download,
   Upload,
   Database,
@@ -18,11 +18,11 @@ import {
   AlertTriangle,
   CheckCircle,
   FileText,
-  HardDrive
+  HardDrive,
 } from "lucide-react";
 
 export default function BackupRestore() {
-  const [language, setLanguage] = useState<'bn' | 'en'>('bn');
+  const [language, setLanguage] = useState<"bn" | "en">("bn");
   const [isExporting, setIsExporting] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -44,9 +44,11 @@ export default function BackupRestore() {
       exportButton: "ব্যাকআপ ডাউনলোড করুন",
       importButton: "ব্যাকআপ আপলোড করুন",
       selectFile: "ফাইল নির্বাচন করুন",
-      exportDesc: "সমস্ত সদস্য, কালেকশন এবং অডিট লগ সহ সম্পূর্ণ ড���টাবেস এক্সপোর্ট করুন",
+      exportDesc:
+        "সমস্ত সদস্য, কালেকশন এবং অডিট লগ সহ সম্পূর্ণ ড���টাবেস এক্সপোর্ট করুন",
       importDesc: "পূর্বে এক্সপোর্ট করা ব্যাকআপ ফাইল থেকে ডেটা পুনরুদ্ধার করুন",
-      protectionNotice: "সকল ডেটা স্থায়ীভাবে সুরক্ষিত এবং অডিট ট্রেইল সহ সংরক্ষিত",
+      protectionNotice:
+        "সকল ডেটা স্থায়ীভাবে সুরক্ষিত এবং অডিট ট্রেইল সহ সংরক্ষিত",
       importWarning: "সতর্কতা: ইমপোর্ট করলে বর্তমান ডেটা প্রতিস্থাপিত হবে",
       backupSuccess: "ব্যাকআপ সফলভাবে তৈরি হয়েছে",
       importSuccess: "ডেটা সফলভাবে পুনরুদ্ধার হয়েছে",
@@ -55,14 +57,14 @@ export default function BackupRestore() {
       autoBackup: "স্বয়ংক্রিয় ব্যাকআপ",
       encryption: "এনক্রিপশন",
       auditTrail: "অডিট ট্রেইল",
-      dataIntegrity: "ডেটা অখণ্ডতা"
+      dataIntegrity: "ডেটা অখণ্ডতা",
     },
     en: {
       title: "Data Backup & Restore",
       subtitle: "Securely backup and restore all cooperative data",
       currentData: "Current Data",
       exportData: "Export Data",
-      importData: "Import Data", 
+      importData: "Import Data",
       dataProtection: "Data Protection",
       totalMembers: "Total Members",
       totalCollections: "Total Collections",
@@ -72,9 +74,11 @@ export default function BackupRestore() {
       exportButton: "Download Backup",
       importButton: "Upload Backup",
       selectFile: "Select File",
-      exportDesc: "Export complete database including all members, collections and audit logs",
+      exportDesc:
+        "Export complete database including all members, collections and audit logs",
       importDesc: "Restore data from a previously exported backup file",
-      protectionNotice: "All data is permanently secured and stored with audit trails",
+      protectionNotice:
+        "All data is permanently secured and stored with audit trails",
       importWarning: "Warning: Importing will replace current data",
       backupSuccess: "Backup created successfully",
       importSuccess: "Data restored successfully",
@@ -83,21 +87,23 @@ export default function BackupRestore() {
       autoBackup: "Auto Backup",
       encryption: "Encryption",
       auditTrail: "Audit Trail",
-      dataIntegrity: "Data Integrity"
-    }
+      dataIntegrity: "Data Integrity",
+    },
   };
 
   const t = text[language];
 
   // Get current data statistics
-  const members = JSON.parse(localStorage.getItem('members') || '[]');
-  const collections = JSON.parse(localStorage.getItem('dailyCollections') || '[]');
-  const auditLogs = JSON.parse(localStorage.getItem('auditLog') || '[]');
-  const lastBackup = localStorage.getItem('lastBackupDate');
+  const members = JSON.parse(localStorage.getItem("members") || "[]");
+  const collections = JSON.parse(
+    localStorage.getItem("dailyCollections") || "[]",
+  );
+  const auditLogs = JSON.parse(localStorage.getItem("auditLog") || "[]");
+  const lastBackup = localStorage.getItem("lastBackupDate");
 
   const handleExport = () => {
     setIsExporting(true);
-    
+
     try {
       // Collect all data
       const backupData = {
@@ -108,42 +114,45 @@ export default function BackupRestore() {
         auditLogs: auditLogs,
         settings: {
           language: language,
-          lastBackup: new Date().toISOString()
+          lastBackup: new Date().toISOString(),
         },
         metadata: {
           totalMembers: members.length,
           totalCollections: collections.length,
           totalAuditLogs: auditLogs.length,
-          exportedBy: 'Admin',
-          exportDate: new Date().toISOString()
-        }
+          exportedBy: "Admin",
+          exportDate: new Date().toISOString(),
+        },
       };
 
       // Create and download file
       const dataStr = JSON.stringify(backupData, null, 2);
-      const dataBlob = new Blob([dataStr], { type: 'application/json' });
-      
+      const dataBlob = new Blob([dataStr], { type: "application/json" });
+
       const url = URL.createObjectURL(dataBlob);
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.download = `somiti-backup-${new Date().toISOString().split('T')[0]}.json`;
+      link.download = `somiti-backup-${new Date().toISOString().split("T")[0]}.json`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
 
       // Update last backup date
-      localStorage.setItem('lastBackupDate', new Date().toISOString());
+      localStorage.setItem("lastBackupDate", new Date().toISOString());
 
       toast({
-        title: language === 'bn' ? 'সফল!' : 'Success!',
+        title: language === "bn" ? "সফল!" : "Success!",
         description: t.backupSuccess,
       });
     } catch (error) {
       toast({
         variant: "destructive",
-        title: language === 'bn' ? 'ত্রুটি' : 'Error',
-        description: language === 'bn' ? 'ব্যাকআপ তৈরি করতে ব্যর্থ' : 'Failed to create backup'
+        title: language === "bn" ? "ত্রুটি" : "Error",
+        description:
+          language === "bn"
+            ? "ব্যাকআপ তৈরি করতে ব্যর্থ"
+            : "Failed to create backup",
       });
     } finally {
       setIsExporting(false);
@@ -160,41 +169,54 @@ export default function BackupRestore() {
     reader.onload = (e) => {
       try {
         const backupData = JSON.parse(e.target?.result as string);
-        
+
         // Validate backup file structure
-        if (!backupData.version || !backupData.members || !backupData.collections) {
-          throw new Error('Invalid backup file format');
+        if (
+          !backupData.version ||
+          !backupData.members ||
+          !backupData.collections
+        ) {
+          throw new Error("Invalid backup file format");
         }
 
         // Create audit log entry for restore operation
         const restoreLog = {
           id: Date.now().toString(),
-          action: 'data_restored',
+          action: "data_restored",
           details: {
             restoredFrom: backupData.timestamp,
             membersRestored: backupData.members.length,
-            collectionsRestored: backupData.collections.length
+            collectionsRestored: backupData.collections.length,
           },
           timestamp: new Date().toISOString(),
-          performedBy: 'Admin'
+          performedBy: "Admin",
         };
 
         // Restore data to localStorage
-        localStorage.setItem('members', JSON.stringify(backupData.members || []));
-        localStorage.setItem('dailyCollections', JSON.stringify(backupData.collections || []));
-        
+        localStorage.setItem(
+          "members",
+          JSON.stringify(backupData.members || []),
+        );
+        localStorage.setItem(
+          "dailyCollections",
+          JSON.stringify(backupData.collections || []),
+        );
+
         // Merge audit logs
         const currentAuditLogs = backupData.auditLogs || [];
         currentAuditLogs.push(restoreLog);
-        localStorage.setItem('auditLog', JSON.stringify(currentAuditLogs));
+        localStorage.setItem("auditLog", JSON.stringify(currentAuditLogs));
 
         // Update last backup date if available
         if (backupData.settings?.lastBackup) {
-          localStorage.setItem('lastBackupDate', backupData.settings.lastBackup);
+          localStorage.setItem(
+            "lastBackupDate",
+            backupData.settings.lastBackup,
+          );
         }
 
         toast({
-          title: language === 'bn' ? 'সফল!' : 'Success!',
+          title: language === "bn" ? "সফল!" : "Success!",
           description: t.importSuccess,
         });
 
@@ -202,17 +224,16 @@ export default function BackupRestore() {
         setTimeout(() => {
           window.location.reload();
         }, 1500);
-
       } catch (error) {
         toast({
           variant: "destructive",
-          title: language === 'bn' ? 'ত্রুটি' : 'Error',
-          description: t.invalidFile
+          title: language === "bn" ? "ত্রুটি" : "Error",
+          description: t.invalidFile,
         });
       } finally {
         setIsImporting(false);
         if (fileInputRef.current) {
-          fileInputRef.current.value = '';
+          fileInputRef.current.value = "";
         }
       }
     };
@@ -229,24 +250,26 @@ export default function BackupRestore() {
             <Button variant="ghost" size="sm" asChild>
               <Link to="/dashboard">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                {language === 'bn' ? 'ফিরে যান' : 'Back'}
+                {language === "bn" ? "ফিরে যান" : "Back"}
               </Link>
             </Button>
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
                 <Database className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="font-bold text-xl text-primary">সমিতি ম্যানেজার</span>
+              <span className="font-bold text-xl text-primary">
+                সমিতি ম্যানেজার
+              </span>
             </div>
           </div>
-          
+
           <div className="ml-auto flex items-center space-x-4">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
+              onClick={() => setLanguage(language === "bn" ? "en" : "bn")}
             >
-              {language === 'bn' ? 'EN' : 'বাং'}
+              {language === "bn" ? "EN" : "বাং"}
             </Button>
           </div>
         </div>
@@ -262,7 +285,9 @@ export default function BackupRestore() {
         {/* Data Protection Notice */}
         <Alert className="mb-6 border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950">
           <Shield className="h-4 w-4 text-green-600 dark:text-green-400" />
-          <AlertTitle className="text-green-800 dark:text-green-200">{t.dataProtection}</AlertTitle>
+          <AlertTitle className="text-green-800 dark:text-green-200">
+            {t.dataProtection}
+          </AlertTitle>
           <AlertDescription className="text-green-700 dark:text-green-300">
             {t.protectionNotice}
           </AlertDescription>
@@ -310,10 +335,9 @@ export default function BackupRestore() {
                   <span className="text-sm font-medium">{t.lastBackup}</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  {lastBackup 
-                    ? new Date(lastBackup).toLocaleDateString('bn-BD')
-                    : t.never
-                  }
+                  {lastBackup
+                    ? new Date(lastBackup).toLocaleDateString("bn-BD")
+                    : t.never}
                 </p>
               </div>
             </CardContent>
@@ -324,7 +348,9 @@ export default function BackupRestore() {
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Database className="h-5 w-5 mr-2" />
-                {language === 'bn' ? 'ব্যাকআপ ও পুনরুদ্ধার' : 'Backup & Restore'}
+                {language === "bn"
+                  ? "ব্যাকআপ ও পুনরুদ্ধার"
+                  : "Backup & Restore"}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -335,15 +361,15 @@ export default function BackupRestore() {
                   <h3 className="text-lg font-semibold">{t.exportData}</h3>
                 </div>
                 <p className="text-muted-foreground mb-4">{t.exportDesc}</p>
-                <Button 
-                  onClick={handleExport} 
+                <Button
+                  onClick={handleExport}
                   disabled={isExporting}
                   className="w-full sm:w-auto"
                 >
                   {isExporting ? (
                     <div className="flex items-center">
                       <div className="animate-spin h-4 w-4 border-2 border-background border-t-transparent rounded-full mr-2"></div>
-                      {language === 'bn' ? 'তৈরি হচ্ছে...' : 'Creating...'}
+                      {language === "bn" ? "তৈরি হচ্ছে..." : "Creating..."}
                     </div>
                   ) : (
                     <>
@@ -363,7 +389,7 @@ export default function BackupRestore() {
                   <h3 className="text-lg font-semibold">{t.importData}</h3>
                 </div>
                 <p className="text-muted-foreground mb-2">{t.importDesc}</p>
-                
+
                 <Alert className="mb-4 border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950">
                   <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
                   <AlertDescription className="text-amber-700 dark:text-amber-300">
@@ -379,7 +405,7 @@ export default function BackupRestore() {
                     accept=".json"
                     className="hidden"
                   />
-                  <Button 
+                  <Button
                     onClick={() => fileInputRef.current?.click()}
                     variant="outline"
                     disabled={isImporting}
@@ -388,7 +414,7 @@ export default function BackupRestore() {
                     {isImporting ? (
                       <div className="flex items-center">
                         <div className="animate-spin h-4 w-4 border-2 border-foreground border-t-transparent rounded-full mr-2"></div>
-                        {language === 'bn' ? 'আপলোড হচ্ছে...' : 'Uploading...'}
+                        {language === "bn" ? "আপলোড হচ্ছে..." : "Uploading..."}
                       </div>
                     ) : (
                       <>
@@ -416,10 +442,9 @@ export default function BackupRestore() {
                 </div>
                 <h4 className="font-semibold mb-2">{t.autoBackup}</h4>
                 <p className="text-sm text-muted-foreground">
-                  {language === 'bn' 
-                    ? 'প্রতিটি পরিবর্তন স্বয়ংক্রিয়ভাবে লগ এবং ট্র্যাক করা হয়'
-                    : 'Every change is automatically logged and tracked'
-                  }
+                  {language === "bn"
+                    ? "প্রতিটি পরিবর্তন স্বয়ংক্রিয়ভাবে লগ এবং ট্র্যাক করা হয়"
+                    : "Every change is automatically logged and tracked"}
                 </p>
               </div>
 
@@ -429,10 +454,9 @@ export default function BackupRestore() {
                 </div>
                 <h4 className="font-semibold mb-2">{t.encryption}</h4>
                 <p className="text-sm text-muted-foreground">
-                  {language === 'bn' 
-                    ? 'সকল ডেটা এনক্রিপটেড এবং নিরাপদভাবে সংরক্ষিত'
-                    : 'All data is encrypted and securely stored'
-                  }
+                  {language === "bn"
+                    ? "সকল ডেটা এনক্রিপটেড এবং নিরাপদভাবে সংরক্ষিত"
+                    : "All data is encrypted and securely stored"}
                 </p>
               </div>
 
@@ -442,10 +466,9 @@ export default function BackupRestore() {
                 </div>
                 <h4 className="font-semibold mb-2">{t.auditTrail}</h4>
                 <p className="text-sm text-muted-foreground">
-                  {language === 'bn' 
-                    ? 'প্রতিটি ক্রিয়াকলাপের সম্পূর্ণ অডিট ট্রেইল'
-                    : 'Complete audit trail of all activities'
-                  }
+                  {language === "bn"
+                    ? "প্রতিটি ক্রিয়াকলাপের সম্পূর্ণ অডিট ট্রেইল"
+                    : "Complete audit trail of all activities"}
                 </p>
               </div>
 
@@ -455,10 +478,9 @@ export default function BackupRestore() {
                 </div>
                 <h4 className="font-semibold mb-2">{t.dataIntegrity}</h4>
                 <p className="text-sm text-muted-foreground">
-                  {language === 'bn' 
-                    ? 'ডেটার অখণ্ডতা এবং সুসংগততা নিশ্চিত'
-                    : 'Data integrity and consistency guaranteed'
-                  }
+                  {language === "bn"
+                    ? "ডেটার অখণ্ডতা এবং সুসংগততা নিশ্চিত"
+                    : "Data integrity and consistency guaranteed"}
                 </p>
               </div>
             </div>
