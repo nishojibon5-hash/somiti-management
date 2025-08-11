@@ -28,7 +28,7 @@ export default function Signup() {
     bn: {
       title: "সমিতি ম্যানেজার",
       signup: "সাইন আপ",
-      createAccount: "নতুন অ্যাকাউন্ট তৈরি করুন",
+      createAccount: "নতুন অ্যাকাউন্ট ত���রি করুন",
       subtitle: "আজই শুরু করুন আপনার সমিতি ব্যবস্থাপনা",
       organizationName: "প্রতিষ্ঠানের নাম",
       fullName: "পূর্ণ নাম",
@@ -252,7 +252,12 @@ export default function Signup() {
               </div>
 
               <div className="flex items-center space-x-2">
-                <Checkbox id="terms" required />
+                <Checkbox
+                  id="terms"
+                  checked={formData.agreeTerms}
+                  onCheckedChange={(checked) => handleInputChange('agreeTerms', checked as boolean)}
+                  required
+                />
                 <Label htmlFor="terms" className="text-sm">
                   {t.agreeTerms}
                 </Label>
