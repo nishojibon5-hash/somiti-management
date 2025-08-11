@@ -57,8 +57,8 @@ export default function Dashboard() {
       welcome: "স্বাগতম",
       totalMembers: "মোট সদস্য",
       totalLoans: "মোট ঋণ",
-      totalSavings: "মোট সঞ্চয়",
-      monthlyCollection: "মাসিক আদায়",
+      totalSavings: "মোট স��্চয়",
+      monthlyCollection: "আজকের আদায়",
       recentTransactions: "সাম্প্রতিক লেনদেন",
       quickActions: "দ্রুত কার্যক্রম",
       addMember: "নতুন সদস্য",
@@ -336,7 +336,7 @@ export default function Dashboard() {
               </h3>
               <p className="text-muted-foreground max-w-md mx-auto mb-6">
                 {language === 'bn'
-                  ? 'আপনার সমিতি ব্যবস্থাপনা শুরু করতে প্রথমে কিছু সদস্য যোগ করুন। প্রতিটি সদস্যের সম্পূর্ণ তথ্য সংরক্ষণ কর�� হবে।'
+                  ? 'আপনার সমিতি ব্যবস্থাপনা শুরু করতে প্রথমে কিছু সদস্য যোগ করুন। প্রতিটি সদস্যের সম্পূর্ণ তথ্য সংরক্ষণ করা হবে।'
                   : 'Start managing your cooperative by adding members first. All member information will be stored securely.'
                 }
               </p>
