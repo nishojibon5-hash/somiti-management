@@ -58,12 +58,13 @@ export default function DailyCollection() {
       cancel: "বাতিল",
       totalAmount: "মোট পরিমাণ",
       defaultAmounts: "ডিফল্ট পরিমাণ ব্যবহার করুন",
-      noMembers: "কো���ো সদস্য নেই",
+      noMembers: "কোনো সদস্য নেই",
       addMembersFirst: "প্রথমে সদস্য যোগ করুন"
     },
     en: {
       title: "Daily Collection",
       subtitle: "Daily savings and installment collection from members",
+      selectWorker: "Select Worker",
       selectMember: "Select Member",
       memberName: "Member Name",
       workerName: "Worker Name",
@@ -236,7 +237,7 @@ export default function DailyCollection() {
               <h3 className="text-xl font-semibold mb-2">{t.noMembers}</h3>
               <p className="text-muted-foreground mb-6">
                 {language === 'bn' 
-                  ? 'কালেকশন রেকর্ড করতে প্রথমে সদস্য যোগ করুন'
+                  ? 'কালেক��ন রেকর্ড করতে প্রথমে সদস্য যোগ করুন'
                   : 'Add members first to record collections'
                 }
               </p>
