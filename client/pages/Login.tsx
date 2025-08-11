@@ -162,10 +162,20 @@ export default function Login() {
                 </Link>
               </div>
 
-              <Button className="w-full" size="lg">
-                <Link to="/dashboard" className="w-full">
-                  {t.loginButton}
-                </Link>
+              <Button
+                type="submit"
+                className="w-full"
+                size="lg"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <div className="flex items-center">
+                    <div className="animate-spin h-4 w-4 border-2 border-background border-t-transparent rounded-full mr-2"></div>
+                    {language === 'bn' ? 'অপেক্ষা করুন...' : 'Please wait...'}
+                  </div>
+                ) : (
+                  t.loginButton
+                )}
               </Button>
             </form>
 
