@@ -29,6 +29,7 @@ export default function Dashboard() {
   } | null>(null);
 
   const [members, setMembers] = useState<any[]>([]);
+  const [dailyCollections, setDailyCollections] = useState<any[]>([]);
 
   useEffect(() => {
     // Load user data from localStorage
@@ -53,7 +54,7 @@ export default function Dashboard() {
       totalSavings: "মোট সঞ্চয়",
       monthlyCollection: "মাসিক আদায়",
       recentTransactions: "সাম্প্রতিক লেনদেন",
-      quickActions: "দ্রুত কার্যক���রম",
+      quickActions: "দ্রুত কার্যক্রম",
       addMember: "নতুন সদস্য",
       newLoan: "নতুন ঋণ",
       deposit: "জমা",
@@ -149,7 +150,7 @@ export default function Dashboard() {
             <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
               <Users className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="font-bold text-xl text-primary">সমিতি ম্য��নেজার</span>
+            <span className="font-bold text-xl text-primary">সমিতি ম্যানেজার</span>
           </div>
           
           <div className="ml-auto flex items-center space-x-4">
@@ -321,7 +322,7 @@ export default function Dashboard() {
                 <Users className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-2xl font-bold mb-3 text-primary">
-                {language === 'bn' ? 'স্বাগতম আপনা��� সমিতিতে!' : 'Welcome to Your Cooperative!'}
+                {language === 'bn' ? 'স্বাগতম আপনার সমিতিতে!' : 'Welcome to Your Cooperative!'}
               </h3>
               <p className="text-muted-foreground max-w-md mx-auto mb-6">
                 {language === 'bn'
@@ -333,11 +334,11 @@ export default function Dashboard() {
                 <Button size="lg" asChild>
                   <Link to="/add-member">
                     <Plus className="h-5 w-5 mr-2" />
-                    {language === 'bn' ? 'প্রথম সদস্য যোগ করুন' : 'Add First Member'}
+                    {language === 'bn' ? 'প্রথম সদস্য যোগ কর���ন' : 'Add First Member'}
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg">
-                  {language === 'bn' ? 'সাহায্য দেখুন' : 'View Help'}
+                  {language === 'bn' ? 'সাহায্য দ��খুন' : 'View Help'}
                 </Button>
               </div>
             </CardContent>
@@ -367,7 +368,7 @@ export default function Dashboard() {
               </h4>
               <p className="text-sm text-muted-foreground">
                 {language === 'bn'
-                  ? 'সদস্যদের সঞ্চয় ���বং ঋণের হিসাব রাখুন এবং ট্র্যাক করুন'
+                  ? 'সদস্যদের সঞ্চয় এবং ঋণের হিসাব রাখুন এবং ট্র্যাক করুন'
                   : 'Track member savings and loan accounts with detailed records'
                 }
               </p>
