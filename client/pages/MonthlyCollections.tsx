@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -44,7 +44,7 @@ export default function MonthlyCollections() {
       subtitle: "সদস্য-ভিত্তিক মাসিক কালেকশনের বিস্তারিত তালিকা",
       selectMember: "সদস্য নির্বাচন করুন",
       selectMonth: "মাস নির্বাচন করুন",
-      collectionSummary: "���ালেকশন সামারি",
+      collectionSummary: "কালেকশন সামারি",
       totalDays: "মোট দিন",
       collectedDays: "আদায়ের দিন",
       missedDays: "মিসিং দিন",
@@ -61,7 +61,7 @@ export default function MonthlyCollections() {
       selectMemberFirst: "প্রথমে একজন সদস্য নির্বাচন করুন",
       noCollections: "এই মাসে কোনো কালেকশন নেই",
       months: [
-        "জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন",
+        "জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রি���", "মে", "জুন",
         "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"
       ],
       days: ["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "শনি"]
@@ -155,7 +155,7 @@ export default function MonthlyCollections() {
               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
                 <Calendar className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="font-bold text-xl text-primary">সমিতি ম্যানেজার</span>
+              <span className="font-bold text-xl text-primary">সমিতি ��্যানেজার</span>
             </div>
           </div>
           
