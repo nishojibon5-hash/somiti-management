@@ -52,7 +52,7 @@ export default function MemberProfile() {
       mobile: "মোবাইল",
       worker: "কর্মী",
       joinDate: "যোগদানের তারিখ",
-      currentLoan: "বর���তমান ঋণ",
+      currentLoan: "বর্তমান ঋণ",
       totalSavings: "মোট সঞ্চয়",
       dailyInstallment: "দৈনিক কিস্তি",
       dailySavings: "দৈনিক সঞ্চয়",
@@ -67,7 +67,7 @@ export default function MemberProfile() {
       savings: "সঞ্চয়",
       installment: "কিস্তি",
       total: "মোট",
-      edit: "সম্পাদনা",
+      edit: "সম্পাদন���",
       active: "সক্রিয়"
     },
     en: {
@@ -179,9 +179,11 @@ export default function MemberProfile() {
             >
               {language === 'bn' ? 'EN' : 'বাং'}
             </Button>
-            <Button>
-              <Edit className="h-4 w-4 mr-2" />
-              {t.edit}
+            <Button asChild>
+              <Link to={`/edit-member/${memberID}`}>
+                <Edit className="h-4 w-4 mr-2" />
+                {t.edit}
+              </Link>
             </Button>
           </div>
         </div>
