@@ -23,6 +23,7 @@ export default function MembersList() {
   const [language, setLanguage] = useState<'bn' | 'en'>('bn');
   const [members, setMembers] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const { toast } = useToast();
 
   useEffect(() => {
     // Load members data
