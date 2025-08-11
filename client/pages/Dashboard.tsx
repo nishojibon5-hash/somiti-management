@@ -64,7 +64,7 @@ export default function Dashboard() {
       type: "ধরন",
       member: "সদস্য",
       comingSoon: "শীঘ্রই আসছে",
-      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
+      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ���ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
     },
     en: {
       title: "Dashboard",
@@ -289,18 +289,80 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        {/* Placeholder Notice */}
-        <Card className="mt-8 border-dashed border-2 border-muted-foreground/25">
-          <CardContent className="text-center py-12">
-            <div className="mx-auto mb-4 h-12 w-12 bg-muted rounded-full flex items-center justify-center">
-              <PieChart className="h-6 w-6 text-muted-foreground" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">{t.comingSoon}</h3>
-            <p className="text-muted-foreground max-w-md mx-auto">
-              {t.placeholder}
-            </p>
-          </CardContent>
-        </Card>
+        {/* Welcome Section for New Users */}
+        {members.length === 0 && (
+          <Card className="mt-8 bg-gradient-to-r from-primary/5 to-accent/5 border-dashed border-2 border-primary/20">
+            <CardContent className="text-center py-12">
+              <div className="mx-auto mb-6 h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center">
+                <Users className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3 text-primary">
+                {language === 'bn' ? 'স্বাগতম আপনার সমিতিতে!' : 'Welcome to Your Cooperative!'}
+              </h3>
+              <p className="text-muted-foreground max-w-md mx-auto mb-6">
+                {language === 'bn'
+                  ? 'আপনার সমিতি ব্যবস্থাপনা শুরু করতে প্রথমে কিছু সদস্য যোগ করুন। প্রতিটি সদস্যের সম্পূর্ণ তথ্য সংরক্ষণ করা হবে।'
+                  : 'Start managing your cooperative by adding members first. All member information will be stored securely.'
+                }
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button size="lg" asChild>
+                  <Link to="/add-member">
+                    <Plus className="h-5 w-5 mr-2" />
+                    {language === 'bn' ? 'প্রথম সদস্য যোগ করুন' : 'Add First Member'}
+                  </Link>
+                </Button>
+                <Button variant="outline" size="lg">
+                  {language === 'bn' ? 'সাহায্য দেখুন' : 'View Help'}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Features Preview for New Users */}
+        {members.length === 0 && (
+          <div className="mt-8 grid md:grid-cols-3 gap-6">
+            <Card className="text-center p-6">
+              <Users className="h-10 w-10 mx-auto text-primary mb-4" />
+              <h4 className="font-semibold mb-2">
+                {language === 'bn' ? 'সদস্য ব্যবস্থাপনা' : 'Member Management'}
+              </h4>
+              <p className="text-sm text-muted-foreground">
+                {language === 'bn'
+                  ? 'সদস্যদের সম্পূর্ণ তথ্য, ছবি এবং পরিচয়পত্র সংরক্ষণ করুন'
+                  : 'Store complete member information, photos and identity documents'
+                }
+              </p>
+            </Card>
+
+            <Card className="text-center p-6">
+              <CreditCard className="h-10 w-10 mx-auto text-accent mb-4" />
+              <h4 className="font-semibold mb-2">
+                {language === 'bn' ? 'সঞ্চয় ও ঋণ' : 'Savings & Loans'}
+              </h4>
+              <p className="text-sm text-muted-foreground">
+                {language === 'bn'
+                  ? 'সদস্যদের সঞ্চয় এবং ঋণের হিসাব রাখুন এবং ট্র্যাক করুন'
+                  : 'Track member savings and loan accounts with detailed records'
+                }
+              </p>
+            </Card>
+
+            <Card className="text-center p-6">
+              <BarChart3 className="h-10 w-10 mx-auto text-success mb-4" />
+              <h4 className="font-semibold mb-2">
+                {language === 'bn' ? 'রিপোর্ট ও বিশ্লেষণ' : 'Reports & Analytics'}
+              </h4>
+              <p className="text-sm text-muted-foreground">
+                {language === 'bn'
+                  ? 'বিস্তারিত আর্থিক রিপোর্ট এবং পারফরমেন্স বিশ্লেষণ দেখুন'
+                  : 'Generate detailed financial reports and performance analytics'
+                }
+              </p>
+            </Card>
+          </div>
+        )}
       </main>
     </div>
   );
