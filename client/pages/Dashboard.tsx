@@ -90,33 +90,36 @@ export default function Dashboard() {
 
   const t = text[language];
 
-  // Mock data
+  // Calculate actual stats
+  const totalSavings = members.reduce((sum, member) => sum + (member.savings || 0), 0);
+  const totalLoans = members.reduce((sum, member) => sum + (member.loanAmount || 0), 0);
+
   const stats = [
     {
       title: t.totalMembers,
-      value: "1,234",
-      change: "+12%",
+      value: members.length.toString(),
+      change: members.length > 0 ? "+100%" : "0%",
       icon: <Users className="h-6 w-6" />,
       positive: true
     },
     {
       title: t.totalLoans,
-      value: "৳45,67,890",
-      change: "+8%",
+      value: totalLoans > 0 ? `৳${totalLoans.toLocaleString()}` : "৳0",
+      change: totalLoans > 0 ? "+100%" : "0%",
       icon: <CreditCard className="h-6 w-6" />,
       positive: true
     },
     {
       title: t.totalSavings,
-      value: "৳12,34,567",
-      change: "+15%",
+      value: totalSavings > 0 ? `৳${totalSavings.toLocaleString()}` : "৳0",
+      change: totalSavings > 0 ? "+100%" : "0%",
       icon: <TrendingUp className="h-6 w-6" />,
       positive: true
     },
     {
       title: t.monthlyCollection,
-      value: "৳3,45,678",
-      change: "-2%",
+      value: "৳0",
+      change: "0%",
       icon: <DollarSign className="h-6 w-6" />,
       positive: false
     }
@@ -126,7 +129,7 @@ export default function Dashboard() {
     { id: 1, member: "আহমেদ আলী", type: "জমা", amount: "৳5,000", date: "২০২৪-০১-১৫" },
     { id: 2, member: "ফাতেমা খাতুন", type: "উত্তোলন", amount: "৳3,000", date: "২০২৪-০১-১৪" },
     { id: 3, member: "রহিম উদ্দিন", type: "ঋণ পরিশোধ", amount: "৳2,500", date: "২০২৪-০১-১৩" },
-    { id: 4, member: "সাল���া বেগম", type: "জমা", amount: "৳1,500", date: "২০২৪-০১-১২" },
+    { id: 4, member: "সালমা বেগম", type: "জমা", amount: "৳1,500", date: "২০২৪-০১-১২" },
     { id: 5, member: "করিম মিয়া", type: "ঋণ গ্রহণ", amount: "৳25,000", date: "২০২৪-০১-১১" }
   ];
 
