@@ -154,7 +154,7 @@ export default function AdminDashboard() {
       auditLogs: "অডিট লগ",
       support: "সাপোর্ট",
       userName: "ব্যবহারকারীর নাম",
-      email: "ইমেইল",
+      email: "ইমে���ল",
       role: "ভূমিকা",
       organization: "সংস্থা",
       lastLogin: "শেষ লগইন",
@@ -350,7 +350,7 @@ export default function AdminDashboard() {
                   </div>
                   <div className="mt-2">
                     <span className="text-sm text-green-600">
-                      {language === 'bn' ? 'মাসিক' : 'Monthly'}
+                      {language === 'bn' ? 'ম��সিক' : 'Monthly'}
                     </span>
                   </div>
                 </CardContent>
@@ -423,9 +423,11 @@ export default function AdminDashboard() {
                     <FileText className="h-4 w-4 mr-2" />
                     {t.auditLogs}
                   </Button>
-                  <Button className="w-full justify-start" variant="outline">
-                    <Settings className="h-4 w-4 mr-2" />
-                    {t.systemSettings}
+                  <Button className="w-full justify-start" variant="outline" asChild>
+                    <Link to="/system-management">
+                      <Settings className="h-4 w-4 mr-2" />
+                      {t.systemSettings}
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -631,7 +633,7 @@ export default function AdminDashboard() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span>{language === 'bn' ? 'রক্ষণাবেক্ষণ মোড' : 'Maintenance Mode'}</span>
+                    <span>{language === 'bn' ? 'রক্ষণাবেক্ষণ মো���' : 'Maintenance Mode'}</span>
                     <Badge variant="secondary">{language === 'bn' ? 'বন্ধ' : 'Off'}</Badge>
                   </div>
                   <div className="flex justify-between items-center">
