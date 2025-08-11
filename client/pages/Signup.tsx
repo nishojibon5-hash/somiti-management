@@ -32,7 +32,7 @@ export default function Signup() {
       signup: "সাইন আপ",
       createAccount: "নতুন অ্যাকাউন্ট তৈরি করুন",
       subtitle: "আজই শুরু করুন আপনার সমিতি ব্যবস্থাপনা",
-      organizationName: "প্রতিষ্ঠানের নাম",
+      organizationName: "প্রত���ষ্ঠানের নাম",
       fullName: "পূর্ণ নাম",
       email: "ইমেইল",
       phone: "ফোন নম্বর",
@@ -134,7 +134,11 @@ export default function Signup() {
       // Navigate to dashboard
       navigate('/dashboard');
     } catch (error) {
-      alert(language === 'bn' ? 'র���জিস্ট্রেশন ব্যর্থ হয়েছে' : 'Registration failed');
+      toast({
+        variant: "destructive",
+        title: language === 'bn' ? 'ত্রুটি' : 'Error',
+        description: language === 'bn' ? 'রেজিস্ট্রেশন ব্যর্থ হয়েছে' : 'Registration failed'
+      });
     } finally {
       setIsLoading(false);
     }
