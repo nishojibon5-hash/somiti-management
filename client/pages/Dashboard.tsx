@@ -64,7 +64,7 @@ export default function Dashboard() {
       type: "ধরন",
       member: "সদস্য",
       comingSoon: "শীঘ্রই আসছে",
-      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশিষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
+      placeholder: "এই পৃষ্ঠাটি এখনো তৈরি হয়নি। আরও বৈশ���ষ্ট্য যোগ করতে আপনার প্রয়োজন অনুযায়ী নির্দেশনা দিন।"
     },
     en: {
       title: "Dashboard",
@@ -228,14 +228,28 @@ export default function Dashboard() {
               {members.length > 0 ? (
                 <div className="space-y-4">
                   {recentTransactions.map((transaction) => (
-                    <div key={transaction.id} className="flex items-center justify-between border-b pb-3">
-                      <div>
-                        <p className="font-medium">{transaction.member}</p>
-                        <p className="text-sm text-muted-foreground">{transaction.type}</p>
+                    <div key={transaction.id} className="border-b pb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <div>
+                          <p className="font-medium">{transaction.member}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {language === 'bn' ? 'আইডি: ' : 'ID: '}{transaction.memberID}
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-medium text-success">{transaction.amount}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {language === 'bn' ? 'সঞ্চয়' : 'Savings'}
+                          </p>
+                        </div>
                       </div>
-                      <div className="text-right">
-                        <p className="font-medium">{transaction.amount}</p>
-                        <p className="text-sm text-muted-foreground">{transaction.date}</p>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-muted-foreground">
+                          {language === 'bn' ? 'কর্মী: ' : 'Worker: '}{transaction.workerName}
+                        </span>
+                        <span className="text-primary">
+                          {language === 'bn' ? 'দৈনিক: ' : 'Daily: '}{transaction.dailyAmount}
+                        </span>
                       </div>
                     </div>
                   ))}
