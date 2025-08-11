@@ -273,7 +273,7 @@ export default function CollectionsList() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-bold text-primary">��{workerTotal.toLocaleString()}</p>
+                        <p className="text-2xl font-bold text-primary">৳{workerTotal.toLocaleString()}</p>
                         <p className="text-sm text-muted-foreground">
                           {t.savings}: ৳{workerSavings.toLocaleString()} | {t.installment}: ৳{workerInstallments.toLocaleString()}
                         </p>
@@ -320,9 +320,31 @@ export default function CollectionsList() {
                                   <Button size="sm" variant="outline">
                                     <Edit className="h-4 w-4" />
                                   </Button>
-                                  <Button size="sm" variant="outline" className="text-destructive hover:bg-destructive hover:text-destructive-foreground">
-                                    <Trash2 className="h-4 w-4" />
-                                  </Button>
+                                  <AlertDialog>
+                                    <AlertDialogTrigger asChild>
+                                      <Button size="sm" variant="outline" className="text-destructive hover:bg-destructive hover:text-destructive-foreground">
+                                        <Trash2 className="h-4 w-4" />
+                                      </Button>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent>
+                                      <AlertDialogHeader>
+                                        <AlertDialogTitle>
+                                          {language === 'bn' ? 'ডেটা স��রক্ষা' : 'Data Protection'}
+                                        </AlertDialogTitle>
+                                        <AlertDialogDescription>
+                                          {language === 'bn'
+                                            ? 'কালেকশন রেকর্ড স্থায়ীভাবে মুছে ফেলা যাবে না। সকল আর্থিক ডেটা অডিট ট্রেইল ও নিরাপত্তার জন্য সুরক্ষিত রাখা হয়।'
+                                            : 'Collection records cannot be permanently deleted. All financial data is protected for audit trail and security purposes.'
+                                          }
+                                        </AlertDialogDescription>
+                                      </AlertDialogHeader>
+                                      <AlertDialogFooter>
+                                        <AlertDialogCancel>
+                                          {language === 'bn' ? 'বুঝেছি' : 'Understood'}
+                                        </AlertDialogCancel>
+                                      </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                  </AlertDialog>
                                 </div>
                               </div>
                             </div>
