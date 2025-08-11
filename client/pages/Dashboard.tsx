@@ -53,7 +53,7 @@ export default function Dashboard() {
       totalSavings: "মোট সঞ্চয়",
       monthlyCollection: "মাসিক আদায়",
       recentTransactions: "সাম্প্রতিক লেনদেন",
-      quickActions: "দ্রুত কার্যক্রম",
+      quickActions: "দ্রুত কার্যক���রম",
       addMember: "নতুন সদস্য",
       newLoan: "নতুন ঋণ",
       deposit: "জমা",
@@ -149,7 +149,7 @@ export default function Dashboard() {
             <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
               <Users className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="font-bold text-xl text-primary">সমিতি ম্যানেজার</span>
+            <span className="font-bold text-xl text-primary">সমিতি ম্য��নেজার</span>
           </div>
           
           <div className="ml-auto flex items-center space-x-4">
@@ -289,17 +289,21 @@ export default function Dashboard() {
                   {t.addMember}
                 </Link>
               </Button>
+              <Button className="w-full justify-start" variant="outline" asChild>
+                <Link to="/daily-collection">
+                  <DollarSign className="h-4 w-4 mr-2" />
+                  {language === 'bn' ? 'দৈনিক কালেকশন' : 'Daily Collection'}
+                </Link>
+              </Button>
+              <Button className="w-full justify-start" variant="outline" asChild>
+                <Link to="/collections">
+                  <BarChart3 className="h-4 w-4 mr-2" />
+                  {language === 'bn' ? 'কালেকশন তালিকা' : 'Collection List'}
+                </Link>
+              </Button>
               <Button className="w-full justify-start" variant="outline">
                 <CreditCard className="h-4 w-4 mr-2" />
                 {t.newLoan}
-              </Button>
-              <Button className="w-full justify-start" variant="outline">
-                <TrendingUp className="h-4 w-4 mr-2" />
-                {t.deposit}
-              </Button>
-              <Button className="w-full justify-start" variant="outline">
-                <Download className="h-4 w-4 mr-2" />
-                {t.withdraw}
               </Button>
               <Button className="w-full justify-start" variant="outline">
                 <BarChart3 className="h-4 w-4 mr-2" />
@@ -317,7 +321,7 @@ export default function Dashboard() {
                 <Users className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-2xl font-bold mb-3 text-primary">
-                {language === 'bn' ? 'স্বাগতম আপনার সমিতিতে!' : 'Welcome to Your Cooperative!'}
+                {language === 'bn' ? 'স্বাগতম আপনা��� সমিতিতে!' : 'Welcome to Your Cooperative!'}
               </h3>
               <p className="text-muted-foreground max-w-md mx-auto mb-6">
                 {language === 'bn'
@@ -363,7 +367,7 @@ export default function Dashboard() {
               </h4>
               <p className="text-sm text-muted-foreground">
                 {language === 'bn'
-                  ? 'সদস্যদের স���্চয় এবং ঋণের হিসাব রাখুন এবং ট্র্যাক করুন'
+                  ? 'সদস্যদের সঞ্চয় ���বং ঋণের হিসাব রাখুন এবং ট্র্যাক করুন'
                   : 'Track member savings and loan accounts with detailed records'
                 }
               </p>
