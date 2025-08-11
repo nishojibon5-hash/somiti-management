@@ -129,11 +129,13 @@ export default function Login() {
               <div className="space-y-2">
                 <Label htmlFor="password">{t.password}</Label>
                 <div className="relative">
-                  <Input 
-                    id="password" 
+                  <Input
+                    id="password"
                     type={showPassword ? "text" : "password"}
+                    value={formData.password}
+                    onChange={(e) => handleInputChange('password', e.target.value)}
                     placeholder={language === 'bn' ? 'আপনার পাসওয়ার্ড' : 'Enter your password'}
-                    required 
+                    required
                   />
                   <Button
                     type="button"
