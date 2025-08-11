@@ -153,6 +153,12 @@ export default function CollectionsList() {
             >
               {language === 'bn' ? 'EN' : 'বাং'}
             </Button>
+            <Button variant="outline" asChild>
+              <Link to="/monthly-collections">
+                <Calendar className="h-4 w-4 mr-2" />
+                {language === 'bn' ? 'মাসিক ক্যালেন্ডার' : 'Monthly Calendar'}
+              </Link>
+            </Button>
             <Button asChild>
               <Link to="/daily-collection">
                 <Plus className="h-4 w-4 mr-2" />
@@ -329,7 +335,7 @@ export default function CollectionsList() {
                                     <AlertDialogContent>
                                       <AlertDialogHeader>
                                         <AlertDialogTitle>
-                                          {language === 'bn' ? 'ডেটা সুরক্��া' : 'Data Protection'}
+                                          {language === 'bn' ? 'ডেটা সুরক্ষা' : 'Data Protection'}
                                         </AlertDialogTitle>
                                         <AlertDialogDescription>
                                           {language === 'bn'
