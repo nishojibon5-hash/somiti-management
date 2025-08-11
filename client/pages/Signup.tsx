@@ -32,13 +32,13 @@ export default function Signup() {
       signup: "সাইন আপ",
       createAccount: "নতুন অ্যাকাউন্ট তৈরি করুন",
       subtitle: "আজই শুরু করুন আপনার সমিতি ব্যবস্থাপনা",
-      organizationName: "প্রতিষ্ঠানের নাম",
+      organizationName: "প্রতিষ্ঠানের না���",
       fullName: "পূর্ণ নাম",
       email: "ইমেইল",
       phone: "ফোন নম্বর",
       password: "পাসওয়ার্ড",
       confirmPassword: "পাসওয়ার্ড নিশ্চিত করুন",
-      plan: "প্ল্যান নির্বা���ন করুন",
+      plan: "প্ল্যান নির্বাচন করুন",
       free: "ফ্রি",
       pro: "প্রো",
       premium: "প্রিমিয়াম",
@@ -112,6 +112,12 @@ export default function Signup() {
         organization: formData.organizationName,
         plan: formData.plan
       }));
+
+      // Show success message
+      toast({
+        title: language === 'bn' ? 'সফল!' : 'Success!',
+        description: language === 'bn' ? 'আপনার অ্যাকাউন্ট তৈরি হয়েছে' : 'Your account has been created successfully',
+      });
 
       // Navigate to dashboard
       navigate('/dashboard');
@@ -204,7 +210,7 @@ export default function Signup() {
                 <Label htmlFor="plan">{t.plan}</Label>
                 <Select value={formData.plan} onValueChange={(value) => handleInputChange('plan', value)}>
                   <SelectTrigger>
-                    <SelectValue placeholder={language === 'bn' ? 'প্ল্যান নির্বাচন কর��ন' : 'Select a plan'} />
+                    <SelectValue placeholder={language === 'bn' ? 'প্ল্যান নির্বাচন করুন' : 'Select a plan'} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="free">{t.free} - {language === 'bn' ? 'বিনামূল্যে' : 'Free'}</SelectItem>
