@@ -236,7 +236,7 @@ export default function DailyCollection() {
             </Button>
             <Button variant="outline" asChild>
               <Link to="/collections">
-                {language === 'bn' ? 'কালেকশন ত��লিকা' : 'View Collections'}
+                {language === 'bn' ? 'কালেকশন তালিকা' : 'View Collections'}
               </Link>
             </Button>
           </div>
@@ -281,19 +281,48 @@ export default function DailyCollection() {
               </CardHeader>
               <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2 md:col-span-2">
-                  <Label htmlFor="memberSelect">{t.selectMember} *</Label>
-                  <Select value={formData.memberID} onValueChange={handleMemberSelect}>
+                  <Label htmlFor="workerSelect">{t.selectWorker} *</Label>
+                  <Select value={formData.selectedWorker} onValueChange={handleWorkerSelect}>
                     <SelectTrigger>
-                      <SelectValue placeholder={language === 'bn' ? 'সদস্য নির্বাচন করুন' : 'Select a member'} />
+                      <SelectValue placeholder={language === 'bn' ? 'প্রথমে কর্মী নির্বাচন করুন' : 'Select worker first'} />
                     </SelectTrigger>
                     <SelectContent>
-                      {members.map((member) => (
-                        <SelectItem key={member.memberID} value={member.memberID}>
-                          {member.memberName} - {member.memberID} ({language === 'bn' ? 'কর্মী: ' : 'Worker: '}{member.workerName})
+                      {uniqueWorkers.map((workerName) => (
+                        <SelectItem key={workerName} value={workerName}>
+                          {workerName}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+
+                <div className="space-y-2 md:col-span-2">
+                  <Label htmlFor="memberSelect">{t.selectMember} *</Label>
+                  <Select
+                    value={formData.memberID}
+                    onValueChange={handleMemberSelect}
+                    disabled={!formData.selectedWorker}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder={
+                        !formData.selectedWorker
+                          ? (language === 'bn' ? 'প্রথমে কর্মী নির্বাচন করুন' : 'Select worker first')
+                          : (language === 'bn' ? 'সদস্য নির্বাচন করুন' : 'Select a member')
+                      } />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {filteredMembers.map((member) => (
+                        <SelectItem key={member.memberID} value={member.memberID}>
+                          {member.memberName} - {member.memberID}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {formData.selectedWorker && filteredMembers.length === 0 && (
+                    <p className="text-sm text-muted-foreground">
+                      {language === 'bn' ? 'এই কর্মীর অধীনে কোনো সদস্য নেই' : 'No members found under this worker'}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
