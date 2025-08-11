@@ -268,7 +268,7 @@ export default function CollectionsList() {
                         <div>
                           <CardTitle className="text-lg">{workerName}</CardTitle>
                           <p className="text-sm text-muted-foreground">
-                            {workerCollections.length}{t.collectionsCount} • {workerCollections.length}{t.memberCount}
+                            {workerCollections.length}{t.collectionsCount} • {new Set(workerCollections.map(c => c.memberID)).size}{t.memberCount}
                           </p>
                         </div>
                       </div>
@@ -329,7 +329,7 @@ export default function CollectionsList() {
                                     <AlertDialogContent>
                                       <AlertDialogHeader>
                                         <AlertDialogTitle>
-                                          {language === 'bn' ? 'ডেটা স��রক্ষা' : 'Data Protection'}
+                                          {language === 'bn' ? 'ডেটা সুরক্��া' : 'Data Protection'}
                                         </AlertDialogTitle>
                                         <AlertDialogDescription>
                                           {language === 'bn'
