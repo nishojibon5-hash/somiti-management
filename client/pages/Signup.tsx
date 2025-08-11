@@ -29,11 +29,11 @@ export default function Signup() {
       title: "সমিতি ম্যানেজার",
       signup: "সাইন আপ",
       createAccount: "নতুন অ্যাকাউন্ট তৈরি করুন",
-      subtitle: "আজই শুরু করুন আপনার সমিতি ব্য���স্থাপনা",
+      subtitle: "আজই শুরু করুন আপনার সমিতি ব্যবস্থাপনা",
       organizationName: "প্রতিষ্ঠানের নাম",
       fullName: "পূর্ণ নাম",
       email: "ইমেইল",
-      phone: "ফোন নম্বর",
+      phone: "ফো��� নম্বর",
       password: "পাসওয়ার্ড",
       confirmPassword: "পাসওয়ার্ড নিশ্চিত করুন",
       plan: "প্ল্যান নির্বাচন করুন",
@@ -68,6 +68,57 @@ export default function Signup() {
   };
 
   const t = text[language];
+
+  const handleInputChange = (field: string, value: string | boolean) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validation
+    if (!formData.organizationName || !formData.fullName || !formData.email ||
+        !formData.phone || !formData.password || !formData.plan) {
+      alert(language === 'bn' ? 'সকল ক্ষেত্র পূরণ করুন' : 'Please fill all fields');
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      alert(language === 'bn' ? 'পাসওয়ার্ড মিলছে না' : 'Passwords do not match');
+      return;
+    }
+
+    if (!formData.agreeTerms) {
+      alert(language === 'bn' ? 'শর্তাবলী মেনে নিন' : 'Please agree to terms and conditions');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Store user data in localStorage (in real app, this would be handled by backend)
+      localStorage.setItem('userLoggedIn', 'true');
+      localStorage.setItem('userData', JSON.stringify({
+        name: formData.fullName,
+        email: formData.email,
+        organization: formData.organizationName,
+        plan: formData.plan
+      }));
+
+      // Navigate to dashboard
+      navigate('/dashboard');
+    } catch (error) {
+      alert(language === 'bn' ? 'রেজিস্ট্রেশন ব্যর্থ হয়েছে' : 'Registration failed');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center p-4">
