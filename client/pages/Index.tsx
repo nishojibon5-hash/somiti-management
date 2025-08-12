@@ -217,6 +217,12 @@ export default function Index() {
             >
               {t.contact}
             </a>
+            <Link to="/admin-login">
+              <Button variant="ghost" size="sm" className="text-purple-600 hover:text-purple-700">
+                <Crown className="h-4 w-4 mr-1" />
+                {language === "bn" ? "এডমিন" : "Admin"}
+              </Button>
+            </Link>
             <Button
               variant="outline"
               size="sm"
@@ -400,7 +406,7 @@ export default function Index() {
               </div>
               <p className="text-muted-foreground">
                 {language === "bn"
-                  ? "বাংলাদেশের সবচেয়ে বিশ্বস্ত সমিতি ব্যবস্থাপনা সমাধান।"
+                  ? "বাংলাদেশের সবচেয়ে বিশ���বস্ত সমিতি ব্যবস্থাপনা সমাধান।"
                   : "Bangladesh's most trusted cooperative management solution."}
               </p>
             </div>
