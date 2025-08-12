@@ -16,7 +16,10 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: "dist",
   },
-  base: process.env.NODE_ENV === 'production' && process.env.GITHUB_ACTIONS ? '/builder-flare-realm/' : '/',
+  base:
+    process.env.NODE_ENV === "production" && process.env.GITHUB_ACTIONS
+      ? "/builder-flare-realm/"
+      : "/",
   plugins: [react(), expressPlugin()],
   resolve: {
     alias: {
