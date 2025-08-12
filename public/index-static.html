@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সমিতি ম্যানেজার - আধুনিক সমিতি ও ক্ষুদ্রঋণ ব্যবস্থাপনা সফটওয়্যার</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-text { 
+            background: linear-gradient(to right, #2563eb, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white border-b shadow-sm">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold">স</span>
+                </div>
+                <span class="font-bold text-xl text-blue-600">সমিতি ম্যানেজার</span>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#features" class="text-sm font-medium hover:text-blue-600 transition-colors">বৈশিষ্ট্যসমূহ</a>
+                <a href="#pricing" class="text-sm font-medium hover:text-blue-600 transition-colors">মূল্য তালিকা</a>
+                <a href="#contact" class="text-sm font-medium hover:text-blue-600 transition-colors">যোগাযোগ</a>
+                <a href="#admin" class="inline-flex items-center px-3 py-1 text-sm font-medium text-purple-600 hover:text-purple-700 border border-purple-200 rounded-md">
+                    👑 এডমিন
+                </a>
+            </nav>
+            
+            <div class="flex items-center space-x-2">
+                <button class="px-4 py-2 text-sm font-medium border border-gray-300 rounded-md hover:bg-gray-50">
+                    লগইন
+                </button>
+                <button class="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                    শুরু করুন
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 px-4">
+        <div class="container mx-auto text-center max-w-4xl">
+            <div class="inline-block px-3 py-1 mb-4 text-sm bg-gray-100 text-gray-800 rounded-full">
+                বাংলাদেশের #১ সমিতি সফটওয়্যার
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">
+                আধুনিক সমিতি ও ক্ষুদ্রঋণ ব্যবস্থাপনা সফটওয়্যার
+            </h1>
+            
+            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                বাংলাদেশের সবচেয়ে উন্নত ও নিরাপদ সমিতি ব্যবস্থাপনা সমাধান। সহজ, নিরাপদ এবং কা���্যকর।
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="px-8 py-4 text-lg font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    শুরু করুন →
+                </button>
+                <button class="px-8 py-4 text-lg font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                    আরও জানুন
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">কেন আমাদের বেছে নিবেন?</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    আধুনিক প্রযুক্তি ও বাংলাদেশী ব্যাংকিং চাহিদার সমন্বয়ে তৈরি
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                        👥
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">সদস্য ব্যবস্থাপনা</h3>
+                    <p class="text-gray-600">সম্পূর্ণ সদস্য তথ্য ও লেনদেন ব্যবস্থাপনা</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mb-4">
+                        💳
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">ঋণ ব্যবস্থাপনা</h3>
+                    <p class="text-gray-600">স্বয়ংক্রিয় ঋণ প্রক্রিয়া ও পরিশোধ ট্র্যাকিং</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-4">
+                        📊
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">রিপোর্ট ও বিশ্লেষণ</h3>
+                    <p class="text-gray-600">বিস্তারিত আর্থিক রিপোর্ট ও ডেটা বিশ্লেষণ</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="h-12 w-12 bg-red-100 rounded-lg flex items-center justify-center text-red-600 mb-4">
+                        🛡️
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">নিরাপত্তা</h3>
+                    <p class="text-gray-600">ব্যাংক স্তরের নিরাপত্তা ও এনক্রিপশন</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                        🌐
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">মোবাইল অ্যাপ</h3>
+                    <p class="text-gray-600">অ্যান্ড্রয়েড ও আইওএস অ্যাপ্লি��েশন</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="h-12 w-12 bg-yellow-100 rounded-lg flex items-center justify-center text-yellow-600 mb-4">
+                        🔒
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">ব্যাকআপ সিস্টেম</h3>
+                    <p class="text-gray-600">স্বয়ংক্রিয় ডেটা ব্যাকআপ ও রিকভারি</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">মূল্য তালিকা</h2>
+                <p class="text-xl text-gray-600">আপনার প্রয়োজন অনুযায়ী প্যাকেজ বেছে নিন</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Free Plan -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">ফ্রি</h3>
+                        <div class="text-3xl font-bold text-blue-600 mb-2">বিনামূল্যে</div>
+                        <p class="text-gray-600 mb-6">ছোট সমিতির জন্য আদর্শ</p>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span>
+                            ৫ জন সদস্য পর্যন্ত
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span>
+                            মৌলিক লেনদেন ব্যবস্থাপনা
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span>
+                            সঞ্চয় ও ঋণ হিসাব
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 px-4 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                        বিনামূল্যে শুরু করুন
+                    </button>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="bg-white border-2 border-blue-500 rounded-lg p-6 shadow-lg relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">জনপ্রিয়</span>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">প্রো</h3>
+                        <div class="text-3xl font-bold text-blue-600 mb-2">৳২,৫০০/মাস</div>
+                        <p class="text-gray-600 mb-6">ক্রমবর্ধমান ব্যবসার জন্য</p>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span>
+                            ৫০০ জন সদস্য পর্যন্ত
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span>
+                            উন্নত লেনদেন ব্যবস্থাপনা
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span>
+                            ভাউচার প্রিন্টিং
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span>
+                            বিস্তারিত রিপোর্ট
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        প্রো শুরু করুন
+                    </button>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">প্রিমিয়াম</h3>
+                        <div class="text-3xl font-bold text-blue-600 mb-2">৳৫,০০০/মাস</div>
+                        <p class="text-gray-600 mb-6">বড় প্রতিষ্ঠানের জন্য সম্পূর্ণ সমাধান</p>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span>
+                            ৫০০০+ সদস্য
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span>
+                            সম্পূর্ণ ফিচার সেট
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span>
+                            কাস্টম রিপোর্ট
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span>
+                            ২৪/৭ প্রাধিমিক সাপোর্ট
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 px-4 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                        প্রিমিয়াম শুরু করুন
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 px-4 bg-blue-600 text-white">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold mb-2">১০০০+</div>
+                    <div class="text-lg opacity-90">সমিতি</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">৫০,০০০+</div>
+                    <div class="text-lg opacity-90">সদস্য</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">৯৯.৯%</div>
+                    <div class="text-lg opacity-90">আপটাইম</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">২৪/৭</div>
+                    <div class="text-lg opacity-90">সাপোর্ট</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-800 text-white py-12 px-4">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold">স</span>
+                        </div>
+                        <span class="font-bold text-xl">সমিতি ম্যানেজার</span>
+                    </div>
+                    <p class="text-gray-400">
+                        বাংলাদেশের সবচেয়ে বিশ্বস্ত সমিতি ব্যবস্থাপনা সমাধান।
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">পণ্য</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>বৈশিষ্ট্যসমূহ</li>
+                        <li>মূল্য তালিকা</li>
+                        <li>সিকিউরিটি</li>
+                        <li>ইন্টিগ্রেশন</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">সাপোর্ট</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>সা��ায্য কেন্দ্র</li>
+                        <li>ডকুমেন্টেশন</li>
+                        <li>ট্রেনিং</li>
+                        <li>যোগাযোগ</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">যোগাযোগ</h3>
+                    <div class="space-y-3 text-gray-400">
+                        <div class="flex items-center">
+                            <span class="mr-2">📞</span>
+                            <span>+৮৮০ ১৭ ১২৩৪ ৫৬৭৮</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="mr-2">✉️</span>
+                            <span>info@somitimanager.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="mr-2">📍</span>
+                            <span>ঢাকা, বাংলাদেশ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <div class="flex justify-center items-center space-x-4 mb-4">
+                    <a href="#admin" class="text-xs text-purple-400 hover:underline flex items-center">
+                        👑 এডমিন লগইন
+                    </a>
+                </div>
+                <p>&copy; 2024 সমিতি ম্যানেজার। সর্বস্বত্ব সংরক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button class="bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-colors">
+            💬 সাহায্য
+        </button>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Admin panel redirection  
+        document.querySelectorAll('a[href="#admin"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('🚀 সমিতি ম্যানেজার React অ্যাপ লোডিং... \n\n✅ এডমিন প্যানেল সহ সব ফিচার \n✅ Android APK তৈরি হচ্ছে \n✅ GitHub Actions এ automatic deploy \n\nDemo Admin: \nEmail: admin@somitimanager.com \nPassword: admin123 \nCode: SM2024');
+            });
+        });
+        
+        // CTA buttons
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('শুরু করুন') || button.textContent.includes('লগইন')) {
+                button.addEventListener('click', function() {
+                    alert('🎉 সমিতি ম্যানেজার চালু হচ্ছে! \n\n✅ React অ্যাপ deployment এ \n✅ সব ফিচার available \n✅ Mobile APK ready soon \n\nলাইভ সাইট শীঘ্রই কাজ করবে!');
+                });
+            }
+        });
+        
+        console.log('🚀 সমিতি ম্যানেজার লোড হয়েছে! \n✅ Static version working \n✅ React version deploying \n✅ Mobile APK building');
+    </script>
+</body>
+</html>
