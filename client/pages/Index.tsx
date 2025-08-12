@@ -218,7 +218,11 @@ export default function Index() {
               {t.contact}
             </a>
             <Link to="/admin-login">
-              <Button variant="ghost" size="sm" className="text-purple-600 hover:text-purple-700">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-purple-600 hover:text-purple-700"
+              >
                 <Crown className="h-4 w-4 mr-1" />
                 {language === "bn" ? "এডমিন" : "Admin"}
               </Button>

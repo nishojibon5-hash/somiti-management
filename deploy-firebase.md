@@ -45,6 +45,7 @@ firebase deploy
 ## ৬. Live URL
 
 Deploy হওয়ার পর আপনার লাইভ URL হবে:
+
 ```
 https://somiti-manager.web.app
 ```
@@ -58,7 +59,7 @@ name: Deploy to Firebase
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   deploy:
@@ -68,14 +69,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
-      
+          cache: "npm"
+
       - run: npm ci
       - run: npm run build
-      
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           projectId: somiti-manager
 ```

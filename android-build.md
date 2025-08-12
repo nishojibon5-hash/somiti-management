@@ -3,12 +3,14 @@
 ## ১. প্রয়োজনীয় সফটওয়্যার ইনস্টল
 
 ### Node.js Dependencies:
+
 ```bash
 npm install @capacitor/core @capacitor/cli @capacitor/android
 npm install @capacitor/splash-screen @capacitor/status-bar
 ```
 
 ### Android Studio Setup:
+
 1. **Android Studio** ডাউনলোড করুন: [developer.android.com](https://developer.android.com/studio)
 2. **Android SDK** ইনস্টল করুন
 3. **Java JDK 11+** ইনস্টল করুন
@@ -54,9 +56,11 @@ cd android
 ## ৫. App Icons & Splash Screen
 
 ### App Icon (1024x1024):
+
 - `android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png`
 
 ### Splash Screen:
+
 - `android/app/src/main/res/drawable/splash.png`
 
 ## ৬. Permissions (android/app/src/main/AndroidManifest.xml)
@@ -108,6 +112,7 @@ echo "✅ APK Ready: android/app/build/outputs/apk/debug/app-debug.apk"
 ## 📱 Testing
 
 APK তৈরি হওয়ার পর:
+
 1. ফোনে **Unknown Sources** enable করুন
 2. APK ফাইল install করুন
 3. অ্যাপ খুলুন ও test করুন

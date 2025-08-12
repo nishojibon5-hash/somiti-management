@@ -1,11 +1,11 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: 'com.somitimanager.app',
-  appName: 'সমিতি ম্যানেজার',
-  webDir: 'dist',
+  appId: "com.somitimanager.app",
+  appName: "সমিতি ম্যানেজার",
+  webDir: "dist",
   server: {
-    androidScheme: 'https'
+    androidScheme: "https",
   },
   plugins: {
     SplashScreen: {
@@ -18,18 +18,18 @@ const config: CapacitorConfig = {
       iosSpinnerStyle: "small",
       spinnerColor: "#ffffff",
       splashFullScreen: true,
-      splashImmersive: true
+      splashImmersive: true,
     },
     StatusBar: {
-      style: 'dark',
-      backgroundColor: '#2563eb'
-    }
+      style: "dark",
+      backgroundColor: "#2563eb",
+    },
   },
   android: {
     allowMixedContent: true,
     captureInput: true,
-    webContentsDebuggingEnabled: true
-  }
+    webContentsDebuggingEnabled: true,
+  },
 };
 
 export default config;
