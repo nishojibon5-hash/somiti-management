@@ -31,9 +31,10 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
-        env:
-          GITHUB_ACTIONS: true
+        run: npm run build:client
+
+      - name: List build output for debugging
+        run: ls -la dist/
 
       - name: Copy index.html to 404.html for SPA routing
         run: cp dist/index.html dist/404.html
