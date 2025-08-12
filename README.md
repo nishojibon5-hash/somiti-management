@@ -17,8 +17,8 @@
 
 ```bash
 # কোড ক্লোন করুন
-git clone https://github.com/YOUR_USERNAME/builder-flare-realm.git
-cd builder-flare-realm
+git clone https://github.com/YOUR_USERNAME/somiti-manager.git
+cd somiti-manager
 
 # Dependencies ইনস্টল
 npm install
@@ -34,7 +34,7 @@ git push origin main
 
 তারপর GitHub Settings → Pages → Source: "GitHub Actions" সিলেক্ট করুন।
 
-### 2. Netlify (সহজ ড্র্যাগ অ্যান্ড ড্রপ)
+### 2. Netlify (সহজ ড্��্যাগ অ্যান্ড ড্রপ)
 
 ```bash
 npm run build
@@ -88,7 +88,7 @@ npm run dev
 
 ## 🛡️ নিরাপত্তা
 
-- সকল ডেটা localStorage এ encrypted থাকে
+- সকল ডেটা localStorage এ encrypted থাক��
 - Admin panel এ multi-factor authentication
 - ডেটা backup ও restore সিস্টেম
 
