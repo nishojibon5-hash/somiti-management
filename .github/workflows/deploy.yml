@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Somiti Management to GitHub Pages
 
 on:
   push:
