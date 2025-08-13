@@ -32,8 +32,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter
         basename={
-          window.location.pathname.includes("/somiti-manager")
-            ? "/somiti-manager"
+          window.location.pathname.includes("/somiti-management")
+            ? "/somiti-management"
             : ""
         }
       >

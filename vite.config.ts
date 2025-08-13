@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => ({
   },
   base:
     process.env.NODE_ENV === "production" && process.env.GITHUB_ACTIONS
-      ? "/somiti-manager/"
+      ? "/somiti-management/"
       : "/",
   plugins: [react(), expressPlugin()],
   resolve: {
