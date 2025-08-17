@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সমিতি ম্যানেজার - আধুনিক সমিতি ও ক্ষুদ্রঋণ ব্যবস্থাপনা সফটওয়্যার</title>
+    <meta name="description" content="বাংলাদেশের সবচেয়ে উন্নত ও নিরাপদ সমিতি ব্যবস্থাপনা সমাধান। সহজ, নিরাপদ এবং কার্যকর।">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        .gradient-text { 
+            background: linear-gradient(to right, #2563eb, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        }
+        .member-data {
+            display: none;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .nav-link.active {
+            background-color: #2563eb;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white border-b shadow-sm">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <i data-lucide="users" class="h-5 w-5 text-white"></i>
+                </div>
+                <span class="font-bold text-xl text-blue-600">সমিতি ম্যানেজার</span>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#home" class="nav-link text-sm font-medium hover:text-blue-600 transition-colors px-3 py-1 rounded" onclick="showPage('home')">হোম</a>
+                <a href="#dashboard" class="nav-link text-sm font-medium hover:text-blue-600 transition-colors px-3 py-1 rounded" onclick="showPage('dashboard')">ড্যাশবোর্ড</a>
+                <a href="#members" class="nav-link text-sm font-medium hover:text-blue-600 transition-colors px-3 py-1 rounded" onclick="showPage('members')">সদস্য তালিকা</a>
+                <a href="#collections" class="nav-link text-sm font-medium hover:text-blue-600 transition-colors px-3 py-1 rounded" onclick="showPage('collections')">দৈনিক সংগ্রহ</a>
+                <a href="#admin" class="nav-link text-sm font-medium text-purple-600 hover:text-purple-700 border border-purple-200 px-3 py-1 rounded" onclick="showPage('admin')">
+                    <i data-lucide="crown" class="h-4 w-4 inline mr-1"></i>এডমিন
+                </a>
+            </nav>
+            
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleLanguage()" class="px-3 py-1 text-sm font-medium border border-gray-300 rounded hover:bg-gray-50" id="langBtn">EN</button>
+                <button onclick="showPage('login')" class="px-4 py-2 text-sm font-medium border border-gray-300 rounded hover:bg-gray-50">লগইন</button>
+                <button onclick="showPage('signup')" class="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded hover:bg-blue-700">শুরু করুন</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="py-20 px-4">
+            <div class="container mx-auto text-center max-w-4xl">
+                <div class="inline-block px-3 py-1 mb-4 text-sm bg-gray-100 text-gray-800 rounded-full">
+                    বাংলাদেশের #১ সমিতি সফটওয়্যার
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">
+                    আধুনিক সমিতি ও ক্ষুদ্রঋণ ব্যবস্থাপনা সফটওয়্যার
+                </h1>
+                
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                    বাংলাদেশের সবচেয়ে উন্নত ও নিরাপদ সমিতি ব্যবস্থাপনা সমাধান। সহজ, নিরাপদ এবং কার্যকর।
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="showPage('signup')" class="px-8 py-4 text-lg font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center">
+                        শুরু করুন <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+                    </button>
+                    <button class="px-8 py-4 text-lg font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                        আরও জানুন
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20 px-4 bg-gray-50">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">কেন আমাদের বেছে নিবেন?</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        আধুনিক প্রযুক্তি ও বাংলাদেশী ব্যাংকিং চাহিদার সমন্বয়ে তৈরি
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                            <i data-lucide="users" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">সদস্য ব্যবস্থাপনা</h3>
+                        <p class="text-gray-600">সম্পূর্ণ সদস্য তথ্য ও লেনদেন ব্যবস্থাপনা</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mb-4">
+                            <i data-lucide="credit-card" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">ঋণ ব্যবস্থাপনা</h3>
+                        <p class="text-gray-600">স্বয়ংক্রিয় ঋণ প্রক্রিয়া ও পরিশোধ ট্র্যাকিং</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-4">
+                            <i data-lucide="bar-chart-3" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">রিপোর্ট ও বিশ্লেষণ</h3>
+                        <p class="text-gray-600">বিস্তারিত আর্থিক রিপোর্ট ও ডেটা বিশ্লেষণ</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="h-12 w-12 bg-red-100 rounded-lg flex items-center justify-center text-red-600 mb-4">
+                            <i data-lucide="shield" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">নিরাপত্তা</h3>
+                        <p class="text-gray-600">ব্যাংক স্তরের নিরাপত্তা ও এনক্রিপশন</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                            <i data-lucide="smartphone" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">মোবাইল অ্যাপ</h3>
+                        <p class="text-gray-600">অ্যান্ড্রয়েড ও আই��এস অ্যাপ্লিকেশন</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="h-12 w-12 bg-yellow-100 rounded-lg flex items-center justify-center text-yellow-600 mb-4">
+                            <i data-lucide="backup" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">ব্যাকআপ সিস্টেম</h3>
+                        <p class="text-gray-600">স্বয়ংক্রিয় ডেটা ব্যাকআপ ও রিকভারি</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="py-20 px-4">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">মূল্য তালিকা</h2>
+                    <p class="text-xl text-gray-600">আপনার প্রয়োজন অনুযায়ী প্যাকেজ বেছে নিন</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Free Plan -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md">
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold mb-2">ফ্রি</h3>
+                            <div class="text-3xl font-bold text-blue-600 mb-2">বিনামূল্যে</div>
+                            <p class="text-gray-600 mb-6">ছোট সমিতির জন্য আদর্শ</p>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i>৫ জন সদস্য পর্যন্ত</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i>মৌলিক লেনদেন ব্যবস্থাপনা</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i>সঞ্চয় ও ঋণ হিসাব</li>
+                        </ul>
+                        <button onclick="showPage('signup')" class="w-full py-3 px-4 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                            বিনামূল্যে শুরু করুন
+                        </button>
+                    </div>
+                    
+                    <!-- Pro Plan -->
+                    <div class="bg-white border-2 border-blue-500 rounded-lg p-6 shadow-lg relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                            <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">জনপ্রিয়</span>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold mb-2">প্রো</h3>
+                            <div class="text-3xl font-bold text-blue-600 mb-2">৳২,৫০০/মাস</div>
+                            <p class="text-gray-600 mb-6">ক্রমবর্ধমান ব্যবসার জন্য</p>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i>৫০০ জন সদস্য পর্যন্ত</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i>উন্নত লেনদেন ব্যবস্থাপনা</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i>ভাউচার প্রিন্টিং</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i>বিস্তারিত রিপোর্ট</li>
+                        </ul>
+                        <button onclick="showPage('signup')" class="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            প্রো শুরু করুন
+                        </button>
+                    </div>
+                    
+                    <!-- Premium Plan -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md">
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold mb-2">প্রিমিয়াম</h3>
+                            <div class="text-3xl font-bold text-blue-600 mb-2">৳৫,০০০/মাস</div>
+                            <p class="text-gray-600 mb-6">বড় প্রতিষ্ঠানের জন্য সম্পূর্ণ সমাধান</p>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i>৫০০০+ সদস্য</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i>সম্পূর্ণ ফিচার সেট</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i>কাস্টম রিপোর্ট</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i>২৪/৭ প্রাধিমিক সাপোর্ট</li>
+                        </ul>
+                        <button onclick="showPage('signup')" class="w-full py-3 px-4 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                            প্রিমিয়াম শুরু করুন
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-20 px-4 bg-blue-600 text-white">
+            <div class="container mx-auto">
+                <div class="grid md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold mb-2">১০০০+</div>
+                        <div class="text-lg opacity-90">সমিতি</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-2">৫০,০০০+</div>
+                        <div class="text-lg opacity-90">সদস্য</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-2">৯৯.৯%</div>
+                        <div class="text-lg opacity-90">আপটাইম</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-2">২৪/৭</div>
+                        <div class="text-lg opacity-90">সাপোর্ট</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard" class="page">
+        <div class="container mx-auto px-4 py-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">স্বাগতম, আহমেদ আলী</h1>
+                <p class="text-gray-600">প্রতিষ্ঠান: আল-আমিন সমিতি | আজকের তা��িখ: ১৫ জানুয়ারি, ২০২৪</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-medium text-gray-500">মোট সদস্য</h3>
+                        <i data-lucide="users" class="h-6 w-6 text-blue-600"></i>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-900" id="totalMembers">৮৫</div>
+                    <p class="text-sm text-green-600">+১২% গত মাস থেকে</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-medium text-gray-500">মোট ঋণ</h3>
+                        <i data-lucide="credit-card" class="h-6 w-6 text-red-600"></i>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-900" id="totalLoan">৳১২,৫০,০০০</div>
+                    <p class="text-sm text-green-600">+৮% গত ম���স থেকে</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-medium text-gray-500">মোট সঞ্চয়</h3>
+                        <i data-lucide="trending-up" class="h-6 w-6 text-green-600"></i>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-900" id="totalSavings">৳৮,৭৫,০০০</div>
+                    <p class="text-sm text-green-600">+১৫% গত মাস থেকে</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-medium text-gray-500">আজকের আদায়</h3>
+                        <i data-lucide="dollar-sign" class="h-6 w-6 text-purple-600"></i>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-900">৳১৫,৫০০</div>
+                    <p class="text-sm text-green-600">+৫% গতকাল থেকে</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">দ্রুত কার্যক্রম</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+                    <button onclick="showPage('add-member')" class="flex flex-col items-center p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
+                        <i data-lucide="user-plus" class="h-8 w-8 text-blue-600 mb-2"></i>
+                        <span class="text-sm font-medium text-blue-900">নতুন সদস্য</span>
+                    </button>
+                    
+                    <button onclick="showPage('collections')" class="flex flex-col items-center p-4 rounded-lg bg-green-50 hover:bg-green-100 transition-colors">
+                        <i data-lucide="credit-card" class="h-8 w-8 text-green-600 mb-2"></i>
+                        <span class="text-sm font-medium text-green-900">দৈনিক কালেকশন</span>
+                    </button>
+                    
+                    <button onclick="showPage('members')" class="flex flex-col items-center p-4 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors">
+                        <i data-lucide="users" class="h-8 w-8 text-purple-600 mb-2"></i>
+                        <span class="text-sm font-medium text-purple-900">সদস্য তালিকা</span>
+                    </button>
+                    
+                    <button onclick="showPage('monthly')" class="flex flex-col items-center p-4 rounded-lg bg-orange-50 hover:bg-orange-100 transition-colors">
+                        <i data-lucide="calendar" class="h-8 w-8 text-orange-600 mb-2"></i>
+                        <span class="text-sm font-medium text-orange-900">মাসিক ক্যালেন্ডার</span>
+                    </button>
+                    
+                    <button onclick="showPage('reports')" class="flex flex-col items-center p-4 rounded-lg bg-red-50 hover:bg-red-100 transition-colors">
+                        <i data-lucide="file-text" class="h-8 w-8 text-red-600 mb-2"></i>
+                        <span class="text-sm font-medium text-red-900">রিপোর্ট</span>
+                    </button>
+                    
+                    <button onclick="showPage('backup')" class="flex flex-col items-center p-4 rounded-lg bg-teal-50 hover:bg-teal-100 transition-colors">
+                        <i data-lucide="database" class="h-8 w-8 text-teal-600 mb-2"></i>
+                        <span class="text-sm font-medium text-teal-900">ব্যাকআপ সিস্টেম</span>
+                    </button>
+                    
+                    <button onclick="showPage('admin')" class="flex flex-col items-center p-4 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors">
+                        <i data-lucide="settings" class="h-8 w-8 text-purple-600 mb-2"></i>
+                        <span class="text-sm font-medium text-purple-900">এডমিন প্যানেল</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold">সাম্প্রতিক লেনদেন</h2>
+                    <button onclick="showPage('members')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">সব দেখুন</button>
+                </div>
+                <div class="space-y-4" id="recentTransactions">
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div>
+                            <h3 class="font-medium">মোহাম্মদ রহিম</h3>
+                            <p class="text-sm text-gray-500">আইডি: SM20240001</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-green-600 font-semibold">৳৫০০</div>
+                            <div class="text-sm text-gray-500">সঞ্চয়</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div>
+                            <h3 class="font-medium">ফাতেমা খাতুন</h3>
+                            <p class="text-sm text-gray-500">আইডি: SM20240002</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-red-600 font-semibold">৳১,০০০</div>
+                            <div class="text-sm text-gray-500">ঋণ কিস্তি</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Members Page -->
+    <div id="members" class="page">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">সদস্য তালিকা</h1>
+                <button onclick="showPage('add-member')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center">
+                    <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
+                    নতুন সদস্য যোগ করুন
+                </button>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">সদস্য খুঁজুন</label>
+                        <input type="text" id="memberSearch" placeholder="নাম বা আইডি দিয়ে খুঁজুন" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onkeyup="filterMembers()">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">কর্মী অনুযায়ী</label>
+                        <select id="workerFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="filterMembers()">
+                            <option value="">সব কর্মী</option>
+                            <option value="করিম উদ্দিন">করিম উদ্দিন</option>
+                            <option value="রহিম আলী">রহিম আলী</option>
+                            <option value="নূর জাহান">নূর জাহান</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">স্ট্যাটাস</label>
+                        <select id="statusFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="filterMembers()">
+                            <option value="">সব স্ট্যাটাস</option>
+                            <option value="active">সক্রিয়</option>
+                            <option value="inactive">নিষ্ক্রিয়</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Members Table -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">সদস্য</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">মোবাইল</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">কর্মী</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ঋণ</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">সঞ্চয়</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">কার্যক্রম</th>
+                            </tr>
+                        </thead>
+                        <tbody id="membersTableBody" class="bg-white divide-y divide-gray-200">
+                            <!-- Members will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Member Page -->
+    <div id="add-member" class="page">
+        <div class="container mx-auto px-4 py-8">
+            <div class="max-w-2xl mx-auto">
+                <h1 class="text-3xl font-bold text-gray-900 mb-8">নতুন সদস্য যোগ করুন</h1>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <form id="addMemberForm" onsubmit="addMember(event)">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">সদস্য আইডি</label>
+                                <input type="text" id="memberID" readonly class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">সদস্যের নাম *</label>
+                                <input type="text" id="memberName" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">জাতীয় পরিচয়পত্র নম্বর *</label>
+                                <input type="text" id="nidNumber" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">মোবাইল নম্বর *</label>
+                                <input type="tel" id="mobileNumber" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">কর্মীর নাম *</label>
+                                <select id="workerName" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="">কর্মী নির্বাচন করুন</option>
+                                    <option value="করিম উদ্দিন">করিম উদ্দিন</option>
+                                    <option value="রহিম আলী">রহিম আলী</option>
+                                    <option value="নূর জাহান">নূর জাহান</option>
+                                    <option value="আমিনা খাতুন">আমিনা খাতুন</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">ঋণের পরিমাণ</label>
+                                <input type="number" id="loanAmount" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">সঞ্চয়ের পরিমাণ</label>
+                                <input type="number" id="savingsAmount" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">দৈনিক কিস্তি</label>
+                                <input type="number" id="dailyInstallment" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">দৈনিক সঞ্চয়</label>
+                                <input type="number" id="dailySavings" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 flex space-x-4">
+                            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 flex items-center">
+                                <i data-lucide="save" class="h-4 w-4 mr-2"></i>
+                                সংরক্ষণ করুন
+                            </button>
+                            <button type="button" onclick="showPage('members')" class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400">
+                                বাতিল
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Collections Page -->
+    <div id="collections" class="page">
+        <div class="container mx-auto px-4 py-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">দৈনিক সংগ্রহ</h1>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4">আজকের সংগ্রহ - ১৫ জানুয়ারি, ২০২৪</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">কর্মী নির্বাচন করুন</label>
+                        <select id="selectedWorker" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="loadMembersByWorker()">
+                            <option value="">কর্মী নির্বাচন করুন</option>
+                            <option value="করিম উদ্দিন">করিম উদ্দিন</option>
+                            <option value="রহিম আলী">রহিম আলী</option>
+                            <option value="নূর জাহান">নূর জাহান</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">সদস্য নির্বাচন করুন</label>
+                        <select id="selectedMember" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
+                            <option value="">প্রথমে কর্মী নির্বাচন করুন</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="collectionForm" style="display: none;">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">ঋণের কিস্তি</label>
+                        <input type="number" id="loanCollection" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">সঞ্চয়</label>
+                        <input type="number" id="savingsCollection" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">মোট</label>
+                        <input type="number" id="totalCollection" readonly class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100">
+                    </div>
+                </div>
+                
+                <div class="mt-6" id="saveCollectionBtn" style="display: none;">
+                    <button onclick="saveCollection()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 flex items-center">
+                        <i data-lucide="save" class="h-4 w-4 mr-2"></i>
+                        সংগ্রহ সংরক্ষণ করুন
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Today's Collections Summary -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-4">আজকের সংগ্রহের সারসংক্ষেপ</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center p-4 bg-green-50 rounded-lg">
+                        <div class="text-2xl font-bold text-green-600">৳১৫,৫০০</div>
+                        <div class="text-sm text-gray-600">মোট সংগ্রহ</div>
+                    </div>
+                    <div class="text-center p-4 bg-blue-50 rounded-lg">
+                        <div class="text-2xl font-bold text-blue-600">৪৫</div>
+                        <div class="text-sm text-gray-600">সংগৃহীত সদস্য</div>
+                    </div>
+                    <div class="text-center p-4 bg-red-50 rounded-lg">
+                        <div class="text-2xl font-bold text-red-600">১০</div>
+                        <div class="text-sm text-gray-600">বাকি সদস্য</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Page -->
+    <div id="admin" class="page">
+        <div class="container mx-auto px-4 py-8">
+            <div class="max-w-md mx-auto">
+                <div class="text-center mb-8">
+                    <div class="mx-auto h-16 w-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="shield-check" class="h-8 w-8 text-purple-600"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-900">এডমিন প্যানেল</h1>
+                    <p class="text-gray-600">সিস্টেম অ্যাক্সেসের জন্য লগইন করুন</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <form id="adminLoginForm" onsubmit="adminLogin(event)">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">ইমেইল</label>
+                                <input type="email" id="adminEmail" value="admin@somitimanager.com" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">পাসওয়ার্ড</label>
+                                <input type="password" id="adminPassword" value="admin123" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">এডমিন কোড</label>
+                                <input type="text" id="adminCode" value="SM2024" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full mt-6 bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition-colors">
+                            এডমিন প্যানেলে প্রবেশ করুন
+                        </button>
+                    </form>
+                    
+                    <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                        <h3 class="font-medium text-blue-900 mb-2">ডেমো ক্রেডেনশিয়াল:</h3>
+                        <div class="text-sm text-blue-800">
+                            <p>ইমেইল: admin@somitimanager.com</p>
+                            <p>পাসওয়ার্ড: admin123</p>
+                            <p>এডমিন কোড: SM2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login" class="page">
+        <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-md w-full space-y-8">
+                <div class="text-center">
+                    <div class="mx-auto h-16 w-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="user" class="h-8 w-8 text-blue-600"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900">লগইন করুন</h2>
+                    <p class="text-gray-600">আপনার একাউন্টে প্রবেশ করুন</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <form onsubmit="userLogin(event)">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">ইমেইল</label>
+                                <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">পাসওয়ার্ড</label>
+                                <input type="password" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full mt-6 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+                            লগইন করুন
+                        </button>
+                    </form>
+                    
+                    <div class="mt-4 text-center">
+                        <span class="text-gray-600">নতুন একাউন্ট? </span>
+                        <button onclick="showPage('signup')" class="text-blue-600 hover:text-blue-800 font-medium">রেজিস্ট্রেশন করুন</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Page -->
+    <div id="signup" class="page">
+        <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-md w-full space-y-8">
+                <div class="text-center">
+                    <div class="mx-auto h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="user-plus" class="h-8 w-8 text-green-600"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900">রেজিস্ট্রেশন করুন</h2>
+                    <p class="text-gray-600">নতুন একাউন্ট তৈরি করুন</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <form onsubmit="userSignup(event)">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">সংস্থার নাম</label>
+                                <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">আপনার নাম</label>
+                                <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">ইমেইল</label>
+                                <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">মোবাইল নম্বর</label>
+                                <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">পাসওয়ার্ড</label>
+                                <input type="password" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full mt-6 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors">
+                            রেজিস্ট্রেশন করুন
+                        </button>
+                    </form>
+                    
+                    <div class="mt-4 text-center">
+                        <span class="text-gray-600">আগে থেকে একাউন্ট আছে? </span>
+                        <button onclick="showPage('login')" class="text-green-600 hover:text-green-800 font-medium">লগইন করুন</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 px-4">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="users" class="h-5 w-5 text-white"></i>
+                        </div>
+                        <span class="font-bold text-xl">সমিতি ম্যানেজার</span>
+                    </div>
+                    <p class="text-gray-400">
+                        বাংলাদেশের সবচেয়ে বিশ্বস্ত সমিতি ব্যবস্থাপনা সমাধান।
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">পণ্য</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">বৈশিষ্ট��যসমূহ</a></li>
+                        <li><a href="#" class="hover:text-white">মূল্য তালিকা</a></li>
+                        <li><a href="#" class="hover:text-white">সিকিউরিটি</a></li>
+                        <li><a href="#" class="hover:text-white">ইন্টিগ্রেশন</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">সাপোর্ট</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">সাহায্য কেন্দ্র</a></li>
+                        <li><a href="#" class="hover:text-white">ডকুমেন্টেশন</a></li>
+                        <li><a href="#" class="hover:text-white">ট্রেনিং</a></li>
+                        <li><a href="#" class="hover:text-white">যোগাযোগ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">যোগাযোগ</h3>
+                    <div class="space-y-3 text-gray-400">
+                        <div class="flex items-center">
+                            <i data-lucide="phone" class="h-4 w-4 mr-2"></i>
+                            <span>+৮৮০ ১৭ ১২৩ৄ ৫৬৭৮</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="mail" class="h-4 w-4 mr-2"></i>
+                            <span>info@somitimanager.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="map-pin" class="h-4 w-4 mr-2"></i>
+                            <span>ঢাকা, বাংলাদেশ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 সমিতি ম্যানেজার। সর্বস্বত্ব সংরক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Sample data
+        let members = [
+            {
+                memberID: 'SM20240001',
+                memberName: 'মোহাম্মদ রহিম',
+                nidNumber: '1234567890123',
+                mobileNumber: '01712345678',
+                workerName: 'করিম উদ্দিন',
+                loanAmount: '50000',
+                savingsAmount: '15000',
+                dailyInstallment: '500',
+                dailySavings: '100'
+            },
+            {
+                memberID: 'SM20240002',
+                memberName: 'ফাতেমা খাতুন',
+                nidNumber: '1234567890124',
+                mobileNumber: '01712345679',
+                workerName: 'রহিম আলী',
+                loanAmount: '75000',
+                savingsAmount: '22000',
+                dailyInstallment: '750',
+                dailySavings: '150'
+            },
+            {
+                memberID: 'SM20240003',
+                memberName: 'আব্দুল করিম',
+                nidNumber: '1234567890125',
+                mobileNumber: '01712345680',
+                workerName: 'নূর জাহান',
+                loanAmount: '60000',
+                savingsAmount: '18000',
+                dailyInstallment: '600',
+                dailySavings: '120'
+            }
+        ];
+
+        let memberIdCounter = 4;
+        let currentLanguage = 'bn';
+
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            const activeLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Special handling for different pages
+            if (pageId === 'members') {
+                loadMembersTable();
+            } else if (pageId === 'add-member') {
+                generateMemberID();
+            } else if (pageId === 'dashboard') {
+                updateDashboardStats();
+            }
+        }
+
+        // Language toggle
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'bn' ? 'en' : 'bn';
+            document.getElementById('langBtn').textContent = currentLanguage === 'bn' ? 'EN' : 'বাং';
+            // Here you would update all text content based on language
+        }
+
+        // Generate member ID
+        function generateMemberID() {
+            const memberID = `SM2024${memberIdCounter.toString().padStart(4, '0')}`;
+            document.getElementById('memberID').value = memberID;
+        }
+
+        // Add member function
+        function addMember(event) {
+            event.preventDefault();
+            
+            const formData = {
+                memberID: document.getElementById('memberID').value,
+                memberName: document.getElementById('memberName').value,
+                nidNumber: document.getElementById('nidNumber').value,
+                mobileNumber: document.getElementById('mobileNumber').value,
+                workerName: document.getElementById('workerName').value,
+                loanAmount: document.getElementById('loanAmount').value || '0',
+                savingsAmount: document.getElementById('savingsAmount').value || '0',
+                dailyInstallment: document.getElementById('dailyInstallment').value || '0',
+                dailySavings: document.getElementById('dailySavings').value || '0'
+            };
+            
+            members.push(formData);
+            memberIdCounter++;
+            
+            alert('সদস্য সফল��াবে যোগ করা হয়েছে!');
+            document.getElementById('addMemberForm').reset();
+            generateMemberID();
+            showPage('members');
+        }
+
+        // Load members table
+        function loadMembersTable() {
+            const tbody = document.getElementById('membersTableBody');
+            tbody.innerHTML = '';
+            
+            members.forEach(member => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">${member.memberName}</div>
+                        <div class="text-sm text-gray-500">${member.memberID}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${member.mobileNumber}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${member.workerName}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">৳${parseInt(member.loanAmount).toLocaleString()}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">৳${parseInt(member.savingsAmount).toLocaleString()}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button class="text-blue-600 hover:text-blue-900 mr-3">সম্পাদনা</button>
+                        <button class="text-red-600 hover:text-red-900">মুছুন</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Filter members
+        function filterMembers() {
+            const searchTerm = document.getElementById('memberSearch').value.toLowerCase();
+            const workerFilter = document.getElementById('workerFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            
+            // Implementation would filter the members table based on criteria
+            loadMembersTable(); // For now, just reload the table
+        }
+
+        // Collection functions
+        function loadMembersByWorker() {
+            const selectedWorker = document.getElementById('selectedWorker').value;
+            const memberSelect = document.getElementById('selectedMember');
+            
+            memberSelect.innerHTML = '<option value="">সদস্য নির্বাচন করুন</option>';
+            
+            if (selectedWorker) {
+                memberSelect.disabled = false;
+                const workerMembers = members.filter(member => member.workerName === selectedWorker);
+                
+                workerMembers.forEach(member => {
+                    const option = document.createElement('option');
+                    option.value = member.memberID;
+                    option.textContent = `${member.memberName} (${member.memberID})`;
+                    memberSelect.appendChild(option);
+                });
+            } else {
+                memberSelect.disabled = true;
+                document.getElementById('collectionForm').style.display = 'none';
+                document.getElementById('saveCollectionBtn').style.display = 'none';
+            }
+        }
+
+        // Show collection form when member is selected
+        document.getElementById('selectedMember').addEventListener('change', function() {
+            if (this.value) {
+                document.getElementById('collectionForm').style.display = 'grid';
+                document.getElementById('saveCollectionBtn').style.display = 'block';
+                
+                // Auto-calculate total
+                const loanInput = document.getElementById('loanCollection');
+                const savingsInput = document.getElementById('savingsCollection');
+                const totalInput = document.getElementById('totalCollection');
+                
+                function calculateTotal() {
+                    const loan = parseFloat(loanInput.value) || 0;
+                    const savings = parseFloat(savingsInput.value) || 0;
+                    totalInput.value = loan + savings;
+                }
+                
+                loanInput.addEventListener('input', calculateTotal);
+                savingsInput.addEventListener('input', calculateTotal);
+            } else {
+                document.getElementById('collectionForm').style.display = 'none';
+                document.getElementById('saveCollectionBtn').style.display = 'none';
+            }
+        });
+
+        // Save collection
+        function saveCollection() {
+            const memberID = document.getElementById('selectedMember').value;
+            const loanAmount = document.getElementById('loanCollection').value || 0;
+            const savingsAmount = document.getElementById('savingsCollection').value || 0;
+            const total = document.getElementById('totalCollection').value;
+            
+            alert(`সংগ্রহ সংরক্ষণ করা হয়েছে!\nসদস্য: ${memberID}\nমোট: ৳${total}`);
+            
+            // Reset form
+            document.getElementById('selectedWorker').value = '';
+            document.getElementById('selectedMember').innerHTML = '<option value="">প্রথমে কর্মী নির্বাচন করুন</option>';
+            document.getElementById('selectedMember').disabled = true;
+            document.getElementById('collectionForm').style.display = 'none';
+            document.getElementById('saveCollectionBtn').style.display = 'none';
+        }
+
+        // Update dashboard stats
+        function updateDashboardStats() {
+            const totalMembers = members.length;
+            const totalLoan = members.reduce((sum, member) => sum + parseInt(member.loanAmount), 0);
+            const totalSavings = members.reduce((sum, member) => sum + parseInt(member.savingsAmount), 0);
+            
+            document.getElementById('totalMembers').textContent = totalMembers;
+            document.getElementById('totalLoan').textContent = `৳${totalLoan.toLocaleString()}`;
+            document.getElementById('totalSavings').textContent = `৳${totalSavings.toLocaleString()}`;
+        }
+
+        // Login functions
+        function userLogin(event) {
+            event.preventDefault();
+            alert('লগইন সফল! ড্যাশবোর্ডে স্বাগতম।');
+            showPage('dashboard');
+        }
+
+        function userSignup(event) {
+            event.preventDefault();
+            alert('রেজিস্ট্রেশন সফল! ড্যাশবোর্ডে স্বাগতম।');
+            showPage('dashboard');
+        }
+
+        function adminLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            const code = document.getElementById('adminCode').value;
+            
+            if (email === 'admin@somitimanager.com' && password === 'admin123' && code === 'SM2024') {
+                alert('এডমিন লগইন সফল! এডমিন প্যানেলে স্বাগতম।');
+                // Here you would show admin dashboard
+                alert('এডমিন ড্যাশবোর্ড শীঘ্রই আসছে...');
+            } else {
+                alert('ভুল ক্রেডেনশিয়াল! অনুগ্রহ করে আবার চেষ্টা করুন।');
+            }
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize icons
+            lucide.createIcons();
+            
+            // Show home page by default
+            showPage('home');
+            
+            // Load initial data
+            updateDashboardStats();
+        });
+
+        // Save data to localStorage
+        function saveData() {
+            localStorage.setItem('somitiMembers', JSON.stringify(members));
+            localStorage.setItem('somitiMemberCounter', memberIdCounter.toString());
+        }
+
+        // Load data from localStorage
+        function loadData() {
+            const savedMembers = localStorage.getItem('somitiMembers');
+            const savedCounter = localStorage.getItem('somitiMemberCounter');
+            
+            if (savedMembers) {
+                members = JSON.parse(savedMembers);
+            }
+            
+            if (savedCounter) {
+                memberIdCounter = parseInt(savedCounter);
+            }
+        }
+
+        // Load data on startup
+        loadData();
+
+        // Auto-save data when members array changes
+        window.addEventListener('beforeunload', saveData);
+    </script>
+</body>
+</html>

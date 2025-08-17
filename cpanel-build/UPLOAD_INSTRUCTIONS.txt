@@ -1,0 +1,44 @@
+🚀 সমিতি ম্যানেজার - cPanel Upload Instructions
+
+📁 এই ফোল্ডারের সব ফাইল আপনার cPanel এ upload করুন:
+
+1. cPanel File Manager এ যান
+2. public_html ফোল্ডারে প্রবেশ করুন  
+3. ��ই ফাইলগুলো upload করুন:
+   - index.html (মূল ফাইল)
+   - UPLOAD_INSTRUCTIONS.txt (এই ফাইল)
+
+🌐 Upload করার পর আপনার ওয়েবসাইট এই URL এ দেখা যাবে:
+https://yourdomain.com
+
+✨ সব ফিচার include করা আছে:
+✅ হোম পেজ (pricing, features)
+✅ ড্যাশবোর্ড (stats, quick actions)  
+✅ সদস্য ব্যবস্থাপনা (add, list, edit)
+✅ দৈনিক সংগ্রহ (worker-based filtering)
+✅ এডমিন প্যানেল (secure login)
+✅ লগইন/রেজিস্ট্রেশন সিস্টেম
+✅ বাংলা/ইংরেজি ভাষা সাপোর্ট
+✅ মোবাইল responsive design
+✅ Offline data storage (localStorage)
+
+🔐 Demo Credentials:
+Admin Email: admin@somitimanager.com
+Admin Password: admin123  
+Admin Code: SM2024
+
+📱 Mobile Compatible:
+- সব feature মোবাইলে কাজ করবে
+- Touch-friendly interface
+- Responsive design
+
+🔧 Technical Details:
+- Pure HTML/CSS/JavaScript
+- No server required
+- Works on any hosting (cPanel/shared hosting)
+- Data stored in browser localStorage
+- Fast loading, lightweight
+
+💡 Support:
+যেকোনো সমস্যায় যোগাযোগ করুন।
+সবকিছু কাজ করার কথা! 🎉
