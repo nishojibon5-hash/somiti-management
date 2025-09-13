@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { storage } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -44,7 +45,7 @@ export default function AdminDashboard() {
     loadSystemData();
   }, []);
 
-  const loadSystemData = () => {
+  const loadSystemData = async () => {
     // In a real system, this would load data from multiple organizations
     // For demo, we'll simulate multiple organizations
     const demoOrganizations = [
@@ -108,15 +109,10 @@ export default function AdminDashboard() {
     setSystemUsers(demoUsers);
 
     // Load existing members and collections (this would be aggregated from all orgs)
-    const storedMembers = localStorage.getItem("members");
-    if (storedMembers) {
-      setAllMembers(JSON.parse(storedMembers));
-    }
-
-    const storedCollections = localStorage.getItem("dailyCollections");
-    if (storedCollections) {
-      setAllCollections(JSON.parse(storedCollections));
-    }
+    const ms = await storage.getArray<any>("members");
+    setAllMembers(ms);
+    const cs = await storage.getArray<any>("dailyCollections");
+    setAllCollections(cs);
   };
 
   const text = {
