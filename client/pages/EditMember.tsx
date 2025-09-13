@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { storage } from "@/lib/storage";
 import {
   Users,
   ArrowLeft,
@@ -39,12 +40,10 @@ export default function EditMember() {
   const [originalData, setOriginalData] = useState<any>(null);
 
   useEffect(() => {
-    // Load members data and find the specific member
-    const storedMembers = localStorage.getItem("members");
-    if (storedMembers && memberID) {
-      const allMembers = JSON.parse(storedMembers);
+    (async () => {
+      if (!memberID) return;
+      const allMembers = await storage.getArray<any>("members");
       setMembers(allMembers);
-
       const memberToEdit = allMembers.find(
         (member: any) => member.memberID === memberID,
       );
@@ -62,7 +61,7 @@ export default function EditMember() {
           dailySavings: memberToEdit.dailySavings?.toString() || "",
         });
       }
-    }
+    })();
   }, [memberID]);
 
   const text = {
@@ -87,7 +86,7 @@ export default function EditMember() {
       protectionNotice:
         "গুরুত্বপূর্ণ: এই সদস্যের তথ্য স্থায়ীভাবে মুছে ফেলা যাবে না। সব পরিবর্তন লগ রাখা হবে।",
       memberNotFound: "সদস্য পাওয়া যায়নি",
-      backToList: "সদস্য তালিকায় ফিরুন",
+      backToList: "সদস্য তালিকায�� ফিরুন",
     },
     en: {
       title: "Edit Member Information",
@@ -167,11 +166,11 @@ export default function EditMember() {
         member.memberID === memberID ? updatedMember : member,
       );
 
-      // Save to localStorage
-      localStorage.setItem("members", JSON.stringify(updatedMembers));
+      // Persist changes
+      await storage.set("members", updatedMembers);
 
       // Log the change for audit trail
-      const auditLog = JSON.parse(localStorage.getItem("auditLog") || "[]");
+      const auditLog = await storage.getArray<any>("auditLog");
       auditLog.push({
         id: Date.now().toString(),
         action: "member_updated",
@@ -183,7 +182,7 @@ export default function EditMember() {
         timestamp: new Date().toISOString(),
         performedBy: "Admin",
       });
-      localStorage.setItem("auditLog", JSON.stringify(auditLog));
+      await storage.set("auditLog", auditLog);
 
       toast({
         title: language === "bn" ? "সফল!" : "Success!",
@@ -240,7 +239,7 @@ export default function EditMember() {
                 <Users className="h-5 w-5 text-primary-foreground" />
               </div>
               <span className="font-bold text-xl text-primary">
-                সমিতি ম্যানেজার
+                ���মিতি ম্যানেজার
               </span>
             </div>
           </div>
