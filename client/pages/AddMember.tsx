@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { storage } from "@/lib/storage";
 import {
   Users,
   ArrowLeft,
@@ -36,7 +37,7 @@ export default function AddMember() {
   const text = {
     bn: {
       title: "নতুন সদস্য যোগ করুন",
-      subtitle: "সদস্যের প্রয়োজনীয় তথ্য দিয়ে ফর্মটি পূরণ করুন",
+      subtitle: "সদস্যের প্রয়োজনীয় তথ্য দ��য়ে ফর্মটি পূরণ করুন",
       basicInfo: "মৌলিক তথ্য",
       financialInfo: "আর্থিক তথ্য",
       memberID: "সদস্য আইডি",
@@ -106,7 +107,7 @@ export default function AddMember() {
         title: language === "bn" ? "ত্রুটি" : "Error",
         description:
           language === "bn"
-            ? "সদস্যের নাম, এনআইডি, মোবা��ল ও কর্মীর নাম আবশ্যক"
+            ? "সদস্যের নাম, এনআইডি, মোবা��ল ও কর্���ীর নাম আবশ্যক"
             : "Member name, NID, mobile and worker name are required",
       });
       return;
@@ -131,12 +132,10 @@ export default function AddMember() {
         createdAt: new Date().toISOString(),
       };
 
-      // Save to localStorage
-      const existingMembers = JSON.parse(
-        localStorage.getItem("members") || "[]",
-      );
+      // Save using persistent storage
+      const existingMembers = await storage.getArray<any>("members");
       const updatedMembers = [...existingMembers, newMember];
-      localStorage.setItem("members", JSON.stringify(updatedMembers));
+      await storage.set("members", updatedMembers);
 
       toast({
         title: language === "bn" ? "সফল!" : "Success!",
