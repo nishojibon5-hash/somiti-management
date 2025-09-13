@@ -17,6 +17,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
+import { storage } from "@/lib/storage";
 import {
   DollarSign,
   ArrowLeft,
@@ -40,11 +41,10 @@ export default function CollectionsList() {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Load collections data
-    const storedCollections = localStorage.getItem("dailyCollections");
-    if (storedCollections) {
-      setCollections(JSON.parse(storedCollections));
-    }
+    (async () => {
+      const data = await storage.getArray<any>("dailyCollections");
+      setCollections(data);
+    })();
   }, []);
 
   const text = {
@@ -69,7 +69,7 @@ export default function CollectionsList() {
       addFirst: "প্রথম কালেকশন যোগ করুন",
       noResults: "কোনো ফলাফল পাওয়া যায়নি",
       collectionsCount: "টি কালেকশন",
-      memberCount: "জন সদস্য",
+      memberCount: "জ��� সদস্য",
       today: "আজ",
       yesterday: "গতকাল",
     },
