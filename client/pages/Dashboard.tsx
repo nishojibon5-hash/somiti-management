@@ -20,6 +20,7 @@ import {
   Shield,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { storage } from "@/lib/storage";
 
 export default function Dashboard() {
   const [language, setLanguage] = useState<"bn" | "en">("bn");
@@ -34,23 +35,14 @@ export default function Dashboard() {
   const [dailyCollections, setDailyCollections] = useState<any[]>([]);
 
   useEffect(() => {
-    // Load user data from localStorage
-    const storedUserData = localStorage.getItem("userData");
-    if (storedUserData) {
-      setUserData(JSON.parse(storedUserData));
-    }
-
-    // Load members data
-    const storedMembers = localStorage.getItem("members");
-    if (storedMembers) {
-      setMembers(JSON.parse(storedMembers));
-    }
-
-    // Load daily collections data
-    const storedCollections = localStorage.getItem("dailyCollections");
-    if (storedCollections) {
-      setDailyCollections(JSON.parse(storedCollections));
-    }
+    (async () => {
+      const ud = await storage.get<any>("userData");
+      if (ud) setUserData(ud);
+      const ms = await storage.getArray<any>("members");
+      setMembers(ms);
+      const dc = await storage.getArray<any>("dailyCollections");
+      setDailyCollections(dc);
+    })();
   }, []);
 
   const text = {
@@ -478,7 +470,7 @@ export default function Dashboard() {
               <BarChart3 className="h-10 w-10 mx-auto text-success mb-4" />
               <h4 className="font-semibold mb-2">
                 {language === "bn"
-                  ? "রিপোর্ট ও বিশ্লেষণ"
+                  ? "রিপোর্ট ও বিশ্লেষ��"
                   : "Reports & Analytics"}
               </h4>
               <p className="text-sm text-muted-foreground">
