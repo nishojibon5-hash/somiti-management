@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { storage } from "@/lib/storage";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -141,17 +142,14 @@ export default function Signup() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      // Store user data in localStorage (in real app, this would be handled by backend)
-      localStorage.setItem("userLoggedIn", "true");
-      localStorage.setItem(
-        "userData",
-        JSON.stringify({
-          name: formData.fullName,
-          email: formData.email,
-          organization: formData.organizationName,
-          plan: formData.plan,
-        }),
-      );
+      // Store user data using persistent storage
+      await storage.set("userLoggedIn", true);
+      await storage.set("userData", {
+        name: formData.fullName,
+        email: formData.email,
+        organization: formData.organizationName,
+        plan: formData.plan,
+      });
 
       // Show success message
       toast({
