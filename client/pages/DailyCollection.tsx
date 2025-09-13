@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { storage } from "@/lib/storage";
 import {
   Users,
   ArrowLeft,
@@ -40,11 +41,10 @@ export default function DailyCollection() {
   });
 
   useEffect(() => {
-    // Load members data
-    const storedMembers = localStorage.getItem("members");
-    if (storedMembers) {
-      setMembers(JSON.parse(storedMembers));
-    }
+    (async () => {
+      const ms = await storage.getArray<any>("members");
+      setMembers(ms);
+    })();
   }, []);
 
   const text = {
@@ -174,15 +174,10 @@ export default function DailyCollection() {
         createdAt: new Date().toISOString(),
       };
 
-      // Save to localStorage
-      const existingCollections = JSON.parse(
-        localStorage.getItem("dailyCollections") || "[]",
-      );
+      // Save using persistent storage
+      const existingCollections = await storage.getArray<any>("dailyCollections");
       const updatedCollections = [...existingCollections, newCollection];
-      localStorage.setItem(
-        "dailyCollections",
-        JSON.stringify(updatedCollections),
-      );
+      await storage.set("dailyCollections", updatedCollections);
 
       // Update member's total savings and loan balance
       const updatedMembers = members.map((member) => {
@@ -199,7 +194,7 @@ export default function DailyCollection() {
         }
         return member;
       });
-      localStorage.setItem("members", JSON.stringify(updatedMembers));
+      await storage.set("members", updatedMembers);
 
       toast({
         title: language === "bn" ? "সফল!" : "Success!",
@@ -379,7 +374,7 @@ export default function DailyCollection() {
                   {formData.selectedWorker && filteredMembers.length === 0 && (
                     <p className="text-sm text-muted-foreground">
                       {language === "bn"
-                        ? "এই কর্মীর অধীনে কোনো সদস্য নেই"
+                        ? "এই কর্মীর অধীনে কোনো স��স্য নেই"
                         : "No members found under this worker"}
                     </p>
                   )}
