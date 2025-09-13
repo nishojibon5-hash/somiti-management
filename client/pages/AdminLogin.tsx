@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { storage } from "@/lib/storage";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -102,15 +103,12 @@ export default function AdminLogin() {
         formData.adminCode === validAdmin.adminCode
       ) {
         // Store admin session
-        localStorage.setItem("adminLoggedIn", "true");
-        localStorage.setItem(
-          "adminSession",
-          JSON.stringify({
-            email: formData.email,
-            loginTime: new Date().toISOString(),
-            role: "super_admin",
-          }),
-        );
+        await storage.set("adminLoggedIn", true);
+        await storage.set("adminSession", {
+          email: formData.email,
+          loginTime: new Date().toISOString(),
+          role: "super_admin",
+        });
 
         toast({
           title: language === "bn" ? "সফল!" : "Success!",
