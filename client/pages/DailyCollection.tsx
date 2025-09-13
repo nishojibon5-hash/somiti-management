@@ -175,7 +175,8 @@ export default function DailyCollection() {
       };
 
       // Save using persistent storage
-      const existingCollections = await storage.getArray<any>("dailyCollections");
+      const existingCollections =
+        await storage.getArray<any>("dailyCollections");
       const updatedCollections = [...existingCollections, newCollection];
       await storage.set("dailyCollections", updatedCollections);
 
