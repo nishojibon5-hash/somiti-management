@@ -16,6 +16,7 @@ import {
   Edit,
   Eye,
 } from "lucide-react";
+import { storage } from "@/lib/storage";
 
 export default function MemberProfile() {
   const [language, setLanguage] = useState<"bn" | "en">("bn");
@@ -24,23 +25,17 @@ export default function MemberProfile() {
   const { memberID } = useParams();
 
   useEffect(() => {
-    // Load member data
-    const storedMembers = localStorage.getItem("members");
-    if (storedMembers && memberID) {
-      const members = JSON.parse(storedMembers);
-      const foundMember = members.find((m: any) => m.memberID === memberID);
-      setMember(foundMember);
-    }
-
-    // Load collections data for this member
-    const storedCollections = localStorage.getItem("dailyCollections");
-    if (storedCollections && memberID) {
-      const allCollections = JSON.parse(storedCollections);
+    (async () => {
+      if (!memberID) return;
+      const allMembers = await storage.getArray<any>("members");
+      const foundMember = allMembers.find((m: any) => m.memberID === memberID);
+      if (foundMember) setMember(foundMember);
+      const allCollections = await storage.getArray<any>("dailyCollections");
       const memberCollections = allCollections.filter(
         (c: any) => c.memberID === memberID,
       );
       setCollections(memberCollections);
-    }
+    })();
   }, [memberID]);
 
   const text = {
@@ -67,7 +62,7 @@ export default function MemberProfile() {
       noCollections: "কোনো কালেকশন নেই",
       date: "তারিখ",
       savings: "সঞ্চয়",
-      installment: "কিস্তি",
+      installment: "কি���্তি",
       total: "মোট",
       edit: "সম্পাদনা",
       active: "সক্রিয়",
