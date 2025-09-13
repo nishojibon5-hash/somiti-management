@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { storage } from "@/lib/storage";
 import {
   Select,
   SelectContent,
@@ -33,22 +34,15 @@ export default function MonthlyCollections() {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    // Load members and collections data
-    const storedMembers = localStorage.getItem("members");
-    if (storedMembers) {
-      setMembers(JSON.parse(storedMembers));
-    }
-
-    const storedCollections = localStorage.getItem("dailyCollections");
-    if (storedCollections) {
-      setCollections(JSON.parse(storedCollections));
-    }
-
-    // Auto-select member from URL parameter
-    const memberParam = searchParams.get("member");
-    if (memberParam) {
-      setSelectedMember(memberParam);
-    }
+    (async () => {
+      setMembers(await storage.getArray<any>("members"));
+      setCollections(await storage.getArray<any>("dailyCollections"));
+      // Auto-select member from URL parameter
+      const memberParam = searchParams.get("member");
+      if (memberParam) {
+        setSelectedMember(memberParam);
+      }
+    })();
   }, [searchParams]);
 
   const text = {
@@ -58,7 +52,7 @@ export default function MonthlyCollections() {
       selectMember: "সদস্য নির্বাচন করুন",
       selectMonth: "মাস নির্বাচন করুন",
       collectionSummary: "কালেকশন সামারি",
-      totalDays: "মোট দিন",
+      totalDays: "মোট দি��",
       collectedDays: "আদায়ের দিন",
       missedDays: "মিসিং দিন",
       totalAmount: "মোট পরিমাণ",
@@ -87,7 +81,7 @@ export default function MonthlyCollections() {
         "নভেম্বর",
         "ডিসেম্বর",
       ],
-      days: ["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "শনি"],
+      days: ["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "��নি"],
     },
     en: {
       title: "Monthly Collection Calendar",
