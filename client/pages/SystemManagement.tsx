@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
+import { storage } from "@/lib/storage";
 import {
   ArrowLeft,
   Settings,
@@ -60,7 +61,7 @@ export default function SystemManagement() {
       backup: "ব্যাকআপ",
       monitoring: "মনিটরিং",
       maintenanceMode: "রক্ষণাবেক্ষণ মোড",
-      maintenanceDesc: "সিস্টেম রক্ষণাবেক্ষণের জন্য সাময়িকভাবে বন্ধ ���রুন",
+      maintenanceDesc: "সিস্টেম রক্ষণাবেক্ষণের জন্য সাময়িকভা���ে বন্ধ ���রুন",
       autoBackup: "স্বয়ংক্রিয় ব্যাকআপ",
       autoBackupDesc: "প্রতিদিন স্বয়ংক্রিয়ভাবে ডেটা ব্যাকআপ নিন",
       newUserRegistration: "নতুন ব্যবহারকারী নিবন্ধন",
@@ -97,7 +98,7 @@ export default function SystemManagement() {
       refresh: "রিফ্রেশ করুন",
       enabled: "সক্রিয়",
       disabled: "নিষ্ক্রিয়",
-      high: "উচ্চ",
+      high: "উ���্চ",
       medium: "মাঝারি",
       settingsSaved: "সেটিংস সংরক্ষিত হয়েছে",
       warningTitle: "সতর্কতা",
@@ -161,6 +162,13 @@ export default function SystemManagement() {
 
   const t = text[language];
 
+  useEffect(() => {
+    (async () => {
+      const saved = await storage.get<typeof systemSettings>("systemSettings");
+      if (saved) setSystemSettings(saved);
+    })();
+  }, []);
+
   const handleSettingChange = (key: string, value: any) => {
     setSystemSettings((prev) => ({
       ...prev,
@@ -168,9 +176,9 @@ export default function SystemManagement() {
     }));
   };
 
-  const handleSaveSettings = () => {
+  const handleSaveSettings = async () => {
     // In a real system, this would save to backend
-    localStorage.setItem("systemSettings", JSON.stringify(systemSettings));
+    await storage.set("systemSettings", systemSettings);
 
     toast({
       title: language === "bn" ? "সফল!" : "Success!",
