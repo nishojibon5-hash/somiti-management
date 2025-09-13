@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { storage } from "@/lib/storage";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,7 +28,7 @@ export default function Login() {
   const text = {
     bn: {
       title: "সমিতি ম্যানেজার",
-      login: "লগইন",
+      login: "��গইন",
       email: "ইমেইল",
       password: "পাসওয়ার্ড",
       forgotPassword: "পাসওয়ার্ড ভুলে গেছেন?",
@@ -81,17 +82,14 @@ export default function Login() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Store user data in localStorage (in real app, this would be handled by backend)
-      localStorage.setItem("userLoggedIn", "true");
-      localStorage.setItem(
-        "userData",
-        JSON.stringify({
-          name: "আহমেদ আলী",
-          email: formData.email,
-          organization: "আল-আমিন সমিতি",
-          plan: "pro",
-        }),
-      );
+      // Store user data using persistent storage
+      await storage.set("userLoggedIn", true);
+      await storage.set("userData", {
+        name: "আহমেদ আলী",
+        email: formData.email,
+        organization: "আল-আমিন সমিতি",
+        plan: "pro",
+      });
 
       // Show success message
       toast({
@@ -208,7 +206,7 @@ export default function Login() {
                 {isLoading ? (
                   <div className="flex items-center">
                     <div className="animate-spin h-4 w-4 border-2 border-background border-t-transparent rounded-full mr-2"></div>
-                    {language === "bn" ? "অপেক্ষা করুন..." : "Please wait..."}
+                    {language === "bn" ? "অপেক্ষা কর��ন..." : "Please wait..."}
                   </div>
                 ) : (
                   t.loginButton
