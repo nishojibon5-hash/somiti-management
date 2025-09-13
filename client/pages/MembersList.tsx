@@ -16,6 +16,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
+import { storage } from "@/lib/storage";
 import {
   Users,
   ArrowLeft,
@@ -36,17 +37,15 @@ export default function MembersList() {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Load members data
-    const storedMembers = localStorage.getItem("members");
-    if (storedMembers) {
-      setMembers(JSON.parse(storedMembers));
-    }
+    (async () => {
+      setMembers(await storage.getArray<any>("members"));
+    })();
   }, []);
 
   const text = {
     bn: {
       title: "সদস্য তালিকা",
-      subtitle: "সকল সদস্যদের তথ্য ও বিস্তারিত",
+      subtitle: "সক�� সদস্যদের তথ্য ও বিস্তারিত",
       totalMembers: "মোট সদস্য",
       search: "সদস্য খুঁজুন",
       memberID: "সদস্য আইডি",
