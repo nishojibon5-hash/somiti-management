@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
+import { storage } from "@/lib/storage";
 import {
   ArrowLeft,
   Download,
@@ -31,7 +32,7 @@ export default function BackupRestore() {
   const text = {
     bn: {
       title: "ডেটা ব্যাকআপ ও পুনরুদ্ধার",
-      subtitle: "সমিতির সমস্ত তথ্য নিরাপদে সংরক্ষণ ও পুনরুদ্ধার করুন",
+      subtitle: "সমিতির সমস্ত তথ্য নিরাপদে সংরক্ষণ ও পুনরুদ্ধার করু���",
       currentData: "বর্তমান ডেটা",
       exportData: "ডেটা এক্সপোর্ট",
       importData: "ডেটা ইমপোর্ট",
@@ -93,15 +94,23 @@ export default function BackupRestore() {
 
   const t = text[language];
 
-  // Get current data statistics
-  const members = JSON.parse(localStorage.getItem("members") || "[]");
-  const collections = JSON.parse(
-    localStorage.getItem("dailyCollections") || "[]",
-  );
-  const auditLogs = JSON.parse(localStorage.getItem("auditLog") || "[]");
-  const lastBackup = localStorage.getItem("lastBackupDate");
+  // Current data (loaded asynchronously)
+  const [members, setMembers] = useState<any[]>([]);
+  const [collections, setCollections] = useState<any[]>([]);
+  const [auditLogs, setAuditLogs] = useState<any[]>([]);
+  const [lastBackup, setLastBackup] = useState<string | null>(null);
 
-  const handleExport = () => {
+  useEffect(() => {
+    (async () => {
+      setMembers(await storage.getArray<any>("members"));
+      setCollections(await storage.getArray<any>("dailyCollections"));
+      setAuditLogs(await storage.getArray<any>("auditLog"));
+      const lb = await storage.get<string>("lastBackupDate");
+      setLastBackup(lb);
+    })();
+  }, []);
+
+  const handleExport = async () => {
     setIsExporting(true);
 
     try {
@@ -139,7 +148,7 @@ export default function BackupRestore() {
       URL.revokeObjectURL(url);
 
       // Update last backup date
-      localStorage.setItem("lastBackupDate", new Date().toISOString());
+      await storage.set("lastBackupDate", new Date().toISOString());
 
       toast({
         title: language === "bn" ? "সফল!" : "Success!",
@@ -192,27 +201,18 @@ export default function BackupRestore() {
           performedBy: "Admin",
         };
 
-        // Restore data to localStorage
-        localStorage.setItem(
-          "members",
-          JSON.stringify(backupData.members || []),
-        );
-        localStorage.setItem(
-          "dailyCollections",
-          JSON.stringify(backupData.collections || []),
-        );
+        // Restore data using persistent storage
+        await storage.set("members", backupData.members || []);
+        await storage.set("dailyCollections", backupData.collections || []);
 
         // Merge audit logs
         const currentAuditLogs = backupData.auditLogs || [];
         currentAuditLogs.push(restoreLog);
-        localStorage.setItem("auditLog", JSON.stringify(currentAuditLogs));
+        await storage.set("auditLog", currentAuditLogs);
 
         // Update last backup date if available
         if (backupData.settings?.lastBackup) {
-          localStorage.setItem(
-            "lastBackupDate",
-            backupData.settings.lastBackup,
-          );
+          await storage.set("lastBackupDate", backupData.settings.lastBackup);
         }
 
         toast({
@@ -220,14 +220,15 @@ export default function BackupRestore() {
           description: t.importSuccess,
         });
 
-        // Refresh the page to show updated data
-        setTimeout(() => {
-          window.location.reload();
-        }, 1500);
+        // Refresh local state to show updated data
+        setMembers(backupData.members || []);
+        setCollections(backupData.collections || []);
+        setAuditLogs(currentAuditLogs);
+        setLastBackup(backupData.settings?.lastBackup || null);
       } catch (error) {
         toast({
           variant: "destructive",
-          title: language === "bn" ? "ত্রুটি" : "Error",
+          title: language === "bn" ? "��্রুটি" : "Error",
           description: t.invalidFile,
         });
       } finally {
